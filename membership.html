@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elora | Membership</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Aesop-inspired CSS Variables */
+        :root {
+            /* Color Palette - Aesop's muted, natural tones */
+            --color-primary: #333333;
+            --color-secondary: #5e5e5e;
+            --color-accent: #8a7356;
+            --color-background: #f7f7f7;
+            --color-surface: #ffffff;
+            --color-border: #e0e0e0;
+            --color-text: #2a2a2a;
+            --color-text-light: #757575;
+            
+            /* Typography - Aesop uses elegant serif fonts */
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Helvetica Neue', Arial, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-md: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            
+            /* Spacing - Generous white space */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 6rem;
+            
+            /* Layout */
+            --container-width: 1280px;
+            --border-radius: 0; /* Aesop uses minimal rounding */
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: var(--font-size-md);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.01em;
+            color: var(--color-primary);
+        }
+
+        h1 {
+            font-size: var(--font-size-xxl);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header */
+        header {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+            height:110px;
+            align-items: center;       
+            justify-content: center;
+            display:flex;
+        }
+
+        .logo {
+            font-size: var(--font-size-xxl);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+            margin: 0;       
+            line-height:1;
+            font-family: "Lucida Handwriting", cursive;         
+        }
+
+        /* Navigation - Aesop's clean, minimal navigation */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter:blur(10px);
+            height:60px;
+        }
+
+        .nav-item {
+        position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0.95rem 1.6rem;
+        }
+
+        .nav-item a {
+            font-weight: 500;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 12px;
+            transition: color var(--transition-medium);
+            font-family: "FS Kim", serif;
+
+        }
+
+        .nav-item:hover a {
+            color: rgb(194, 132, 142);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 180px;
+            z-index: 10;
+            padding: var(--spacing-md) 0;
+            text-align:center;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+            background-color:white;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: normal;
+            transition: all 0.2s ease;
+            font-family: 'Karla', sans-serif;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f8e2e7;
+            color: var(--dark-gray);
+        }
+
+        /* Search and Cart Container */
+        .search-cart-container {
+             margin-left: auto;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding: 0 var(--spacing-md);
+            height: 100%;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            width: 200px;
+            font-family: var(--font-body);
+            font-size: 12px;
+            transition: all 0.3s ease;
+            background: var(--color-surface);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-sm);
+            border-bottom: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background-color: var(--color-background);
+        }
+
+        .search-result-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: var(--spacing-sm);
+        }
+
+        .search-result-info h4 {
+            margin: 0;
+            font-size: var(--font-size-sm);
+            font-family: var(--font-body);
+        }
+
+        .search-result-info .price {
+            font-size: var(--font-size-xs);
+            color: var(--color-accent);
+        }
+
+        .cart-icon, .profile-icon, .settings-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+
+        .cart-icon:hover, .profile-icon:hover, .settings-icon:hover {
+              color: #d4afb7;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: rgb(194, 132, 142);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Main Content Styles */
+        .content-section {
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* Membership Hero Section */
+        .membership-hero {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .membership-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--color-surface);
+            padding: var(--spacing-lg);
+        }
+
+        .hero-overlay h1 {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-surface);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-overlay p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-surface);
+            max-width: 600px;
+        }
+
+        .cta-button {
+            background-color: transparent;
+            color: var(--color-surface);
+            border: 1px solid var(--color-surface);
+            padding: var(--spacing-sm) var(--spacing-xl);
+            cursor: pointer;
+            font-weight: 400;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: var(--font-size-sm);
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-surface);
+            color: var(--color-text);
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--color-surface);
+        }
+
+        .benefits-image {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto var(--spacing-xl);
+            display: block;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .benefit-card {
+            background-color: var(--color-background);
+            padding: var(--spacing-lg);
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .benefit-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .benefit-card h4 {
+            font-family: var(--font-heading);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+
+        .benefit-card p {
+            color: var(--color-text-light);
+            font-family: 'Karla', sans-serif;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: rgb(194, 132, 142);
+        }
+
+        .main-footer {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: 0; /* Remove top margin */
+    background-color: var(--color-surface); /* White background */
+}
+
+.main-footer .footer p {
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Karla', sans-serif;
+    color:#757575;   
+}
+
+.main-footer .footer p:last-child {
+    margin-bottom: 0;
+}
+  
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-cart-container {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                padding: var(--spacing-sm) 0;
+                border-top: 1px solid var(--color-border);
+            }
+            
+            .hero-overlay h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: var(--font-size-xl);
+            }
+            
+            h2 {
+                font-size: var(--font-size-lg);
+            }
+            
+            .logo {
+                font-size: var(--font-size-xl);
+            }
+            
+            .nav-item {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .hero-overlay h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-overlay p {
+                font-size: var(--font-size-md);
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p class="logo">Elora</p>
+    </header>
+    <nav class="nav-container">
+         <div class="nav-item">
+            <a href="about-us.html">About Elora</a>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html">Home</a>
+        </div>        
+        <div class="nav-item">
+            <a href="elora2.html#whats-new-sec">What's New</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#new-arrival-sec">New Arrival</a>
+                <a href="elora2.html#best-seller-sec">Best Seller</a>
+                <a href="elora2.html#limited-deal-sec">Limited Deal</a>
+                <a href="elora2.html#gift-set-sec">Gift Set</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html#face-care-sec">Face Care</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#c-and-t-sec">Cleanser & Toner</a>
+                <a href="elora2.html#face-serum-sec">Face Serum</a>
+                <a href="elora2.html#moisturizer-sec">Moisturizer</a>
+                <a href="elora2.html#eye-care-sec">Eye Care</a>
+                <a href="elora2.html#mask-sec">Face Mask</a>
+                <a href="elora2.html#face-treatment-oil-sec">Face Treatment Oil</a>
+                <a href="elora2.html#uv-sec">Daily UV Protector</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html#make-up-sec">Make-up</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#face-sec">Face</a>
+                <a href="elora2.html#eye-make-up-sec">Eye make-up</a>
+                <a href="elora2.html#lip-sec">Lip</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href='membership.html' style="color: rgb(194, 132, 142);">Membership</a>
+        </div>
+        <div class="nav-item">
+            <a href='faq.html'>FAQ</a>
+        </div>
+        <div class="nav-item">
+            <a href='consultation.html'>Consultation</a>
+        </div>
+        <div class="search-cart-container">
+            <div class="profile-icon" id="profileIcon">
+                <i class="far fa-user"></i>
+            </div>
+            <div class="settings-icon" id="settingsIcon">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Membership Hero Section -->
+        <section class="membership-hero">
+            <img src="https://i.imgur.com/BusUORC.jpeg" alt="Elora Membership">
+            <div class="hero-overlay">
+                <h1>DISCOVER A GALAXY OF ELORA PRIVILEGES</h1>
+                <p style="font-family:'Karla', sans-serif;">Unlock more beauty, more rewards with our exclusive membership program.</p>
+                <button class="cta-button" onclick="window.location.href='membership_form.html'">JOIN NOW</button>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2>Membership Benefits</h2>
+                
+                <img src="https://i.imgur.com/IZelk1d.png" alt="Membership Benefits" class="benefits-image">
+                
+                <h2>All the Perks</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>Easy Participation</h4>
+                        <p>Sign up, start accumulating purchases automatically, and unlock eligible membership tiers as you qualify.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <h4>Personalized Profile</h4>
+                        <p>Get product recommendations tailored to your specific skin needs and preferences.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h4>Redemption Rewards</h4>
+                        <p>Redeem points for products or shopping vouchers anytime through our rewards program.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h4>Exclusive Privileges</h4>
+                        <p>Enjoy members-only promotions, early access to new products, and special offers.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-surprise"></i>
+                        </div>
+                        <h4>The ELORA's Beauty Jackpot</h4>
+                        <p>Spin the wheel after every 8 purchases for exciting surprises and exclusive rewards.</p>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer">
+            <p>&copy; 2023 Elora Skincare. All rights reserved.</p>
+            <p>Natural, sustainable skincare for all skin types</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize cart from localStorage if available
+        let cart = JSON.parse(localStorage.getItem('eloraCart')) || [];
+        
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.getElementById('cartCount');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+        
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Elora Skincare & Beauty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Aesop-inspired CSS Variables */
+        :root {
+            /* Color Palette - Aesop's muted, natural tones */
+            --color-primary: #333333;
+            --color-secondary: #5e5e5e;
+            --color-accent: #8a7356;
+            --color-background: #f7f7f7;
+            --color-surface: #ffffff;
+            --color-border: #e0e0e0;
+            --color-text: #2a2a2a;
+            --color-text-light: #757575;
+            
+            /* Typography - Aesop uses elegant serif fonts */
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Helvetica Neue', Arial, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-md: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            
+            /* Spacing - Generous white space */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 6rem;
+            
+            /* Layout */
+            --container-width: 1280px;
+            --border-radius: 0; /* Aesop uses minimal rounding */
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: var(--font-size-md);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.01em;
+            color: var(--color-primary);
+        }
+
+        h1 {
+            font-size: var(--font-size-xxl);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header */
+        header {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+            height:110px;
+            align-items: center;       
+            justify-content: center;
+            display:flex;
+        }
+
+        .logo {
+            font-size: var(--font-size-xxl);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+            margin: 0;       
+            line-height:1;
+            font-family: "Lucida Handwriting", cursive;         
+        }
+
+        /* Navigation - Aesop's clean, minimal navigation */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter:blur(10px);
+            height:60px;
+        }
+
+        .nav-item {
+          position: relative;
+          padding: 0.95rem 1.6rem;
+          cursor: pointer;
+          height:100%;
+        }
+
+        .nav-item a {
+            font-weight: 500;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 12px;
+            transition: color var(--transition-medium);
+            font-family: "FS Kim", serif;
+        }
+
+        .nav-item:hover a {
+            color: rgb(194, 132, 142);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 180px;
+            z-index: 10;
+            padding: var(--spacing-md) 0;
+            text-align:center;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: normal;
+            transition: all 0.2s ease;
+            font-family: 'Karla', sans-serif;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--primary-pink);
+            color: var(--dark-gray);
+        }
+
+        /* Search and Cart Container */
+        .search-cart-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-left: auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            width: 200px;
+            font-family: var(--font-body);
+            font-size: 12px;
+            transition: all 0.3s ease;
+            background: var(--color-surface);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-sm);
+            border-bottom: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background-color: var(--color-background);
+        }
+
+        .search-result-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: var(--spacing-sm);
+        }
+
+        .search-result-info h4 {
+            margin: 0;
+            font-size: var(--font-size-sm);
+            font-family: var(--font-body);
+        }
+
+        .search-result-info .price {
+            font-size: var(--font-size-xs);
+            color: var(--color-accent);
+        }
+
+        .cart-icon, .profile-icon, .settings-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+
+        .cart-icon:hover, .profile-icon:hover, .settings-icon:hover {
+              color: var(--accent-pink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: rgb(194, 132, 142);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Main Content Sections */
+        .content-section {
+            padding: var(--spacing-xl) 0;
+            text-align:center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* About Us Specific Styles */
+        .about-section {
+            padding: var(--spacing-xl) 0;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .about-section h2 {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            font-size: 2.5rem;
+            color: var(--color-primary);
+        }
+
+        .about-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: var(--spacing-xs);
+            color:#d4afb7;
+
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+        }
+
+        .about-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .about-item.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background-color: var(--color-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-style: italic;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .contact-item {
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+        }
+
+        .contact-item h4 {
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-accent);
+        }
+
+        /* Footer */
+    .main-footer {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--spacing-xl);
+}
+
+.main-footer .footer p {
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Karla', sans-serif;
+    color:#757575;
+}
+
+.main-footer .footer p:last-child {
+    margin-bottom: 0;
+}
+/* Values Section Styles */
+.values-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.values-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+}
+
+.values-intro h2 {
+    font-size: 2.8rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    font-weight: 400;
+}
+
+.values-intro p {
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.value-card {
+    background: var(--color-surface);
+    padding: var(--spacing-xl);
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-pink);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover::before {
+    transform: scaleX(1);
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.value-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    transition: all 0.3s ease;
+}
+
+.value-card:hover .value-icon {
+    background: var(--accent-pink);
+    transform: scale(1.1);
+}
+
+.value-icon i {
+    font-size: 2rem;
+    color: var(--dark-gray);
+}
+
+.value-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+.value-card p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-lg);
+    flex-grow: 1;
+}
+
+.value-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.value-details li {
+    padding: var(--spacing-xs) 0;
+    position: relative;
+    padding-left: var(--spacing-md);
+    color: var(--medium-gray);
+}
+
+.value-details li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-pink);
+    font-weight: bold;
+}
+
+.values-commitment {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.values-commitment p {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-text-light);
+    line-height: 1.7;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .values-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-lg);
+    }
+    
+    .value-card {
+        padding: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .values-intro h2 {
+        font-size: 2.2rem;
+    }
+    
+    .value-card {
+        padding: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .values-intro h2 {
+        font-size: 1.8rem;
+    }
+    
+    .values-intro p {
+        font-size: 1rem;
+    }
+    
+    .value-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .value-card p {
+        font-size: 1rem;
+    }
+}
+  
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-cart-container {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                padding: var(--spacing-sm) 0;
+                border-top: 1px solid var(--color-border);
+            }
+            
+            .about-item {
+                flex-direction: column;
+            }
+            
+            .about-item.reverse {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+            }
+        }
+
+        :root {
+            /* Aesop-inspired Color Palette */
+            --primary-pink: #f8e2e7;
+            --primary-pink-dark: #e8c6cf;
+            --accent-pink: #d4afb7;
+            --dark-gray: #2a2a2a;
+            --medium-gray: #444444;
+            --white: #ffffff;
+            
+            /* Spacing */
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-xxl: 3rem;
+            
+            /* Transitions */
+            --transition-medium: 0.3s ease;
+            --transition-fast: 0.2s ease;
+        }
+
+        /* Global Styles for the ad content */
+        h2, p, a {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.01em;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            color: var(--medium-gray);
+        }
+
+        a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: color var(--transition-medium);
+        }
+
+        a:hover {
+            color: var(--accent-pink);
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: var(--font-size-xl);
+            }
+            
+            h2 {
+                font-size: var(--font-size-lg);
+            }
+            
+            .logo {
+                font-size: var(--font-size-xl);
+            }
+            
+            .nav-item {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .about-section h2 {
+                font-size: 2rem;
+            }
+            
+            .about-section h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p class="logo">Elora</p>
+    </header>
+    
+    <nav class="nav-container">
+        <div class="nav-item">
+            <a href="about-us.html" style="color: rgb(194, 132, 142);">About Elora</a>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html">Home</a>
+        </div>        
+        <div class="nav-item">
+            <a href="elora2.html#whats-new-sec">What's New</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#new-arrival-sec">New Arrival</a>
+                <a href="elora2.html#best-seller-sec">Best Seller</a>
+                <a href="elora2.html#limited-deal-sec">Limited Deal</a>
+                <a href="elora2.html#gift-set-sec">Gift Set</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html#face-care-sec">Face Care</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#c-and-t-sec">Cleanser & Toner</a>
+                <a href="elora2.html#face-serum-sec">Face Serum</a>
+                <a href="elora2.html#moisturizer-sec">Moisturizer</a>
+                <a href="elora2.html#eye-care-sec">Eye Care</a>
+                <a href="elora2.html#mask-sec">Face Mask</a>
+                <a href="elora2.html#face-treatment-oil-sec">Face Treatment Oil</a>
+                <a href="elora2.html#uv-sec">Daily UV Protector</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html#make-up-sec">Make-up</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#face-sec">Face</a>
+                <a href="elora2.html#eye-make-up-sec">Eye make-up</a>
+                <a href="elora2.html#lip-sec">Lip</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href='membership.html'>Membership</a>
+        </div>
+        <div class="nav-item">
+            <a href='faq.html'>FAQ</a>
+        </div>
+        <div class="nav-item">
+            <a href='consultation.html'>Consultation</a>
+        </div>
+      
+        <div class="search-cart-container">
+       
+            <div class="profile-icon" id="profileIcon">
+                <i class="far fa-user"></i>
+            </div>
+            <div class="settings-icon" id="settingsIcon">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+          
+          <!-- Add this section right after the navigation and before the About Us section -->
+
+<section class="values-section">
+    <div class="container">
+        <div class="values-intro">
+            <h2>Our Guiding Principles</h2>
+            <p>At the heart of Elora lies a commitment to three core values that define our philosophy and shape every product we create.</p>
+        </div>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Sustainability</h3>
+                <p>We honor our planet through mindful sourcing, eco-conscious packaging, and ethical practices. Beauty should never compromise our Earth's wellbeing.</p>
+                <div class="value-details">
+                    <ul>
+                        <li>Responsible ingredient sourcing</li>
+                        <li>Recyclable & biodegradable packaging</li>
+                        <li>Carbon-neutral initiatives</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Natural</h3>
+                <p>Pure botanical ingredients form the foundation of our formulations. We harness nature's wisdom to create effective, authentic skincare solutions.</p>
+                <div class="value-details">
+                    <ul>
+                        <li>Botanical-powered formulations</li>
+                        <li>No harsh synthetic additives</li>
+                        <li>Transparent ingredient disclosure</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Gentle</h3>
+                <p>Every formulation respects your skin's delicate balance. We create products that nurture, protect, and care for all skin types with tenderness.</p>
+                <div class="value-details">
+                    <ul>
+                        <li>Dermatologically tested</li>
+                        <li>Suitable for sensitive skin</li>
+                        <li>Non-irritating formulations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="values-commitment">
+            <p>These principles guide our journey, ensuring every Elora product delivers not just beauty, but integrity, purity, and care.</p>
+        </div>
+    </div>
+</section>
+
+        <section class="about-section">
+            <h2>Our Philosophy</h2>
+            <div class="about-content">
+                <div class="about-item">
+                    <div class="about-text">
+                   <h3>Our History</h3>
+                        <p>Founded in 2022 by Kitty and Zoey in Kepong, Kuala Lumpur, Elora was born from the belief that every woman deserves to feel confident and discover her own beauty. Our mission is simple: skincare crafted with natural ingredients, made for all skin types, designed to care, and created to reveal every woman’s best look.</p>
+                        <p>Inspired by Kitty’s struggle with sensitive skin and years of unsuitable products, Elora began with a gentle Cleansing Milk and has since grown into a range that nurtures, protects, and empowers women to embrace their natural glow.</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-image-placeholder">
+                            <img src="https://i.imgur.com/6RG75ac.jpeg">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="about-item reverse">
+                    <div class="about-text">
+                        <h3>Our Commitment</h3>
+                        <p>At Elora, we are dedicated to creating skincare and makeup that truly care. Our products are made with natural ingredients and gentle formulas, ensuring they are safe and effective for all skin types. We believe in transparency, sharing openly about what goes into every product so you can trust what touches your skin.</p>
+                        <p>We are committed to sustainability, from mindful ingredient sourcing to eco-conscious packaging, because beauty should never come at the planet’s expense. Above all, we strive to inspire confidence and help reveal everyone’s best look — enhancing natural beauty, never masking it.</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-image-placeholder">
+                            <img src="https://i.imgur.com/PmNQjOT.jpeg">
+                        </div>
+                    </div>
+    
+                </div>
+                
+                <div class="about-item">
+                    <div class="about-text">
+                        <h3>Secret of the Beauty</h3>
+                        <p>At Elora, we believe true beauty starts with nature. That’s why our products are powered by botanical and natural ingredients, carefully chosen for their purity and effectiveness. Every formula is crafted with care to be gentle on all skin types, bringing balance, nourishment, and long-lasting results.</p>
+                        <p>One of our signature ingredients is Niacinamide, a powerhouse vitamin we include in many of our products. Known for its ability to brighten, smooth, and strengthen the skin barrier, Niacinamide works in harmony with other natural extracts to enhance your glow. Combined with our thoughtful formulations, it is part of our promise to deliver skincare that cares — naturally.</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-image-placeholder">
+                            <img src="https://i.imgur.com/A3OAM1E.jpeg">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-item reverse">
+                    <div class="about-text">
+                        <h3>Physical Outlet</h3>
+                        <p>While we've expanded our online presence, our physical boutiques remain the heart of the Elora experience. Each location is designed as a sanctuary where you can explore our products, receive personalized consultations, and experience the full range of our skincare and beauty offerings.</p>
+                        <p>Our trained beauty advisors are available to help you find the perfect products for your skin type and concerns. We believe in creating meaningful connections with our customers and providing an exceptional in-store experience that reflects the quality of our products.</p>
+                        <p><strong>Current Locations:</strong> Pavillion Kuala Lumpur, One Utama, Ipoh Parade</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-image-placeholder">
+                            <img src="https://i.imgur.com/cTVDf5c.png">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-item">
+                    <div class="about-text">
+                        <h3>Contact Us</h3>
+                        <p>We love hearing from our community! Whether you have questions about our products, need skincare advice, or want to share your Elora experience, our customer care team is here to help.</p>
+                        
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <h4>Customer Service</h4>
+                                <p>Email: elora@gmail.com</p>
+                                <p>Phone: 012-3456777 - CS</p>
+                                <p>Hours: Mon-Fri, 9am-6pm EST</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <h4>Press Inquiries</h4>
+                                <p>Email: elora@gmail.com</p>
+                                <p>Phone: 012-3456777 - PRESS</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <h4>Headquarters</h4>
+                                <p>Level 20, Menara Pavilion,</p>
+                                <p>168 Jalan Bukit Bintang,</p>
+                                <p>55100 Kuala Lumpur,</p>
+                                <p>Malaysia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-image-placeholder">
+                            <img src="https://i.imgur.com/7ApGk4p.jpeg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer">
+            <p>&copy; 2023 Elora Skincare. All rights reserved.</p>
+            <p>Natural, sustainable skincare for all skin types</p>
+        </div>
+    </footer>
+
+    <script>
+        // Basic cart functionality to match the homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize cart from localStorage if available
+            let cart = JSON.parse(localStorage.getItem('eloraCart')) || [];
+            updateCartCount();
+            
+            // Update cart count
+            function updateCartCount() {
+                const cartCount = document.getElementById('cartCount');
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+            
+            // Search functionality (simplified)
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                // In a real implementation, this would search through products
+                searchResults.innerHTML = '<div class="search-result-item">Search functionality available on the homepage</div>';
+                searchResults.style.display = 'block';
+            });
+            
+            // Close search results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

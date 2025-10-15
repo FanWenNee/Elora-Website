@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elora Skincare - Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Aesop-inspired CSS Variables */
+        :root {
+            /* Color Palette - Aesop's muted, natural tones */
+            --color-primary: #333333;
+            --color-secondary: #5e5e5e;
+            --color-accent: #8a7356;
+            --color-background: #f7f7f7;
+            --color-surface: #ffffff;
+            --color-border: #e0e0e0;
+            --color-text: #2a2a2a;
+            --color-text-light: #757575;
+            --color-success: #a5c9a5;
+            --color-error: #d17d7d;
+            
+            /* Typography - Aesop uses elegant serif fonts */
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Helvetica Neue', Arial, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-md: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            
+            /* Spacing - Generous white space */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 6rem;
+            
+            /* Layout */
+            --container-width: 1280px;
+            --border-radius: 0; /* Aesop uses minimal rounding */
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: var(--font-size-md);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.01em;
+            color: var(--color-primary);
+        }
+
+        h1 {
+            font-size: var(--font-size-xxl);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header */
+          header {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+            height:110px;
+              align-items: center;       
+  justify-content: center;
+  display:flex;}
+
+        .logo {
+            font-size: var(--font-size-xxl);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+            margin: 0;       
+            line-height:1;
+            font-family: "Lucida Handwriting", cursive;         
+        }
+
+        .home-button {
+            position: absolute;
+            left: var(--spacing-xl);
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: var(--color-text);
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            margin-top:270px;
+
+        }
+
+        .home-button:hover {
+            background-color: var(--color-text);
+            color: var(--color-surface);
+        }
+
+        /* Checkout container */
+        .checkout-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xl);
+            margin: var(--spacing-xxl) 0;
+        }
+
+        /* Order summary */
+        .order-summary {
+            flex: 1;
+            min-width: 300px;
+            background: var(--color-surface);
+            padding: var(--spacing-xl);
+            border: 1px solid var(--color-border);
+        }
+
+        .order-summary h2 {
+            color: var(--color-text);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .order-items {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .order-item {
+            display: flex;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .order-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            margin-right: var(--spacing-md);
+        }
+
+        .order-item-info {
+            flex: 1;
+        }
+
+        .order-item-info h4 {
+            margin-bottom: var(--spacing-xs);
+            font-family: var(--font-body);
+            font-weight: 500;
+        }
+
+        .order-item-price {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .order-total {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .final-total {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--color-text);
+        }
+
+        /* Voucher section */
+        .voucher-section {
+            margin: var(--spacing-lg) 0;
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background-color: var(--color-background);
+        }
+
+        .voucher-form {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin:0;
+        }
+
+        .voucher-input {
+            flex: 1;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            font-family: var(--font-body);
+          width:80%;
+        }
+
+        .apply-voucher {
+            padding: var(--spacing-sm) 2px;
+            background-color: var(--color-text);
+            color: var(--color-surface);
+            border: 1px solid var(--color-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+          width:30%;
+          text-align:center;
+        }
+
+        .apply-voucher:hover {
+            background-color: transparent;
+            color: var(--color-text);
+        }
+
+        .voucher-message {
+            margin-top: var(--spacing-xs);
+            font-size: var(--font-size-sm);
+        }
+
+        .voucher-success {
+            color: var(--color-success);
+        }
+
+        .voucher-error {
+            color: var(--color-error);
+        }
+
+        /* Shipping address section */
+        .shipping-address {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .shipping-address h3 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .address-details {
+            line-height: 1.6;
+        }
+
+        .change-address {
+            margin-top: var(--spacing-md);
+            color: var(--color-accent);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+        }
+
+        /* Address form */
+        .address-form {
+            display: none;
+            margin-top: var(--spacing-md);
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background-color: var(--color-background);
+        }
+
+        .address-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            font-size: 1em;
+            font-family: var(--font-body);
+            transition: border-color 0.3s ease;
+            background-color: var(--color-surface);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-text);
+        }
+
+        .form-row {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .save-address {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background-color: var(--color-text);
+            color: var(--color-surface);
+            border: 1px solid var(--color-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-address:hover {
+            background-color: transparent;
+            color: var(--color-text);
+        }
+
+        .cancel-address {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background-color: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-address:hover {
+            border-color: var(--color-text);
+        }
+
+        /* Payment section */
+        .payment-section {
+            flex: 2;
+            min-width: 300px;
+            background: var(--color-surface);
+            padding: var(--spacing-xl);
+            border: 1px solid var(--color-border);
+        }
+
+        .payment-section h2 {
+            color: var(--color-text);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .payment-category {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .payment-category h3 {
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text);
+            font-size: 1.1em;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .payment-option {
+            border: 1px solid var(--color-border);
+            padding: var(--spacing-md) var(--spacing-sm);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 90px;
+        }
+
+        .payment-option:hover {
+            border-color: var(--color-text);
+        }
+
+        .payment-option.selected {
+            border-color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        .payment-option img {
+            max-width: 70px;
+            max-height: 25px;
+            margin-bottom: var(--spacing-xs);
+            object-fit: contain;
+        }
+
+        .payment-option span {
+            font-size: 0.8em;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .payment-details {
+            margin-top: var(--spacing-xl);
+            display: none;
+        }
+
+        .payment-details.active {
+            display: block;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: var(--spacing-md);
+            background-color: var(--color-text);
+            color: var(--color-surface);
+            border: 1px solid var(--color-text);
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: var(--spacing-lg);
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .pay-button:hover {
+            background-color: transparent;
+            color: var(--color-text);
+        }
+
+        .bank-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .bank-option {
+            border: 1px solid var(--color-border);
+            padding: var(--spacing-md) var(--spacing-sm);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 90px;
+        }
+
+        .bank-option:hover {
+            border-color: var(--color-text);
+        }
+
+        .bank-option.selected {
+            border-color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        .bank-option img {
+            max-width: 80px;
+            max-height: 25px;
+            margin-bottom: var(--spacing-xs);
+            object-fit: contain;
+        }
+
+        .bank-option span {
+            font-size: 0.8em;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .security-note {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            color: var(--color-text-light);
+            font-size: 0.9em;
+        }
+
+        .security-note i {
+            color: var(--color-text);
+            margin-right: var(--spacing-xs);
+        }
+
+        /* Loading overlay styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--color-background);
+            border-top: 3px solid var(--color-text);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+        }
+
+        .success-message.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-icon {
+            color: var(--color-success);
+            font-size: 5rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .success-text {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-text);
+            text-align: center;
+        }
+
+        .close-button {
+            padding: var(--spacing-md) var(--spacing-xl);
+            background-color: var(--color-text);
+            color: var(--color-surface);
+            border: 1px solid var(--color-text);
+            border-radius: 0;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .close-button:hover {
+            background-color: transparent;
+            color: var(--color-text);
+        }
+
+        @media (max-width: 968px) {
+            .checkout-container {
+                flex-direction: column;
+            }
+            
+            .payment-options, .bank-list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .voucher-form {
+                flex-direction: column;
+            }
+            
+            .home-button {
+                position: relative;
+                left: 0;
+                top: 0;
+                transform: none;
+                display: inline-flex;
+                margin-top: var(--spacing-md);
+            }
+            
+            header {
+                padding-bottom: var(--spacing-xl);
+            }
+            
+            h1 {
+                font-size: var(--font-size-xl);
+            }
+            
+            h2 {
+                font-size: var(--font-size-lg);
+            }
+            
+            .logo {
+                font-size: var(--font-size-xl);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .payment-options, .bank-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Processing your payment...</p>
+    </div>
+    
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle success-icon"></i>
+        <h2 class="success-text">Payment Successful!</h2>
+        <p>Thank you for your purchase.</p>
+        <button class="close-button" id="closeButton">Back to Elora</button>
+    </div>
+    
+    <header>
+        <a href="elora2.html" class="home-button" id="homeButton">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <div class="logo">Elora</div>
+    </header>
+
+    
+    <div class="container">
+        <div class="checkout-container">
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div class="order-items" id="orderItems">
+                    <!-- Order items will be populated by JavaScript -->
+                </div>
+                
+                <!-- Voucher Code Section -->
+                <div class="voucher-section">
+                    <h3>Apply Voucher Code</h3>
+                    <div class="voucher-form">
+                        <input type="text" class="voucher-input" id="voucherCode" placeholder="Enter voucher code">
+                        <button class="apply-voucher" id="applyVoucher">Apply</button>
+                    </div>
+                    <div class="voucher-message" id="voucherMessage"></div>
+                </div>
+                
+                <div class="order-total">
+                    <div class="total-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Shipping:</span>
+                        <span id="shipping">$0.00</span>
+                    </div>
+                    <div class="total-row" id="discountRow" style="display: none;">
+                        <span>Discount:</span>
+                        <span id="discount">-$0.00</span>
+                    </div>
+                    <div class="total-row final-total">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+                
+                <!-- Shipping Address Section -->
+                <div class="shipping-address">
+                    <h3>Shipping Address</h3>
+                    <div class="address-details" id="addressDetails">
+                        <!-- Address will be populated by JavaScript -->
+                    </div>
+                    <div class="change-address" id="changeAddress">Change address</div>
+                    
+                    <!-- Address Form -->
+                    <div class="address-form" id="addressForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="addressLine1">Address Line 1</label>
+                            <input type="text" id="addressLine1" placeholder="Street address, P.O. box">
+                        </div>
+                        <div class="form-group">
+                            <label for="addressLine2">Address Line 2 (Optional)</label>
+                            <input type="text" id="addressLine2" placeholder="Apartment, suite, unit, building, floor, etc.">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" placeholder="City">
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State/Province/Region</label>
+                                <input type="text" id="state" placeholder="State">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zipCode">ZIP / Postal Code</label>
+                                <input type="text" id="zipCode" placeholder="ZIP code">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <button class="save-address" id="saveAddress">Save Address</button>
+                            <button class="cancel-address" id="cancelAddress">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-section">
+                <h2>Payment Method</h2>
+                <div class="payment-methods">
+                    <div class="payment-category">
+                        <h3>E-Wallets</h3>
+                        <div class="payment-options">
+                            <div class="payment-option" data-method="tng">
+                                <img src="http://penanghyperlocal.com/wp-content/uploads/2020/01/Touch-n-Go-eWallet-logo.png" alt="Touch 'n Go">
+                                <span>Touch 'n Go</span>
+                            </div>
+                            <div class="payment-option" data-method="grabpay">
+                                <img src="https://qashier.com/my/wp-content/uploads/sites/7/2022/09/GrabPay-1024x1024.png" alt="GrabPay">
+                                <span>GrabPay</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-category">
+                        <h3>Credit/Debit Cards</h3>
+                        <div class="payment-options">
+                            <div class="payment-option" data-method="visa">
+                                <img src="http://lofrev.net/wp-content/photos/2016/07/visa_logo_7.jpg" alt="Visa">
+                                <span>Visa</span>
+                            </div>
+                            <div class="payment-option" data-method="mastercard">
+                                <img src="https://pngimg.com/uploads/mastercard/mastercard_PNG23.png" alt="Mastercard">
+                                <span>Mastercard</span>
+                            </div>
+                            <div class="payment-option" data-method="amex">
+                                <img src="https://logos-world.net/wp-content/uploads/2020/11/American-Express-Logo.png" alt="American Express">
+                                <span>American Express</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-category">
+                        <h3>Online Banking</h3>
+                        <div class="bank-list">
+                            <div class="bank-option" data-bank="maybank">
+                                <img src="https://vectorise.net/logo/wp-content/uploads/2011/09/2011maybanklogo.png" alt="Maybank">
+                                <span>Maybank</span>
+                            </div>
+                            <div class="bank-option" data-bank="cimb">
+                                <img src="https://images.seeklogo.com/logo-png/3/1/cimb-bank-logo-png_seeklogo-30387.png" alt="CIMB Bank">
+                                <span>CIMB Bank</span>
+                            </div>
+                            <div class="bank-option" data-bank="public">
+                                <img src="https://www.pbebank.com/media/2kwovkhx/pbb.svg" alt="Public Bank">
+                                <span>Public Bank</span>
+                            </div>
+                            <div class="bank-option" data-bank="rhb">
+                                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/6a/60/e5/6a60e58d-5275-e60a-4ccf-0ea9ed6cbbe1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/1200x630wa.png" alt="RHB Bank">
+                                <span>RHB Bank</span>
+                            </div>
+                            <div class="bank-option" data-bank="hlb">
+                                <img src="https://www.goodfengshui.com/media/k2/items/cache/d722f2a14a84b7ad8053262f61a6106b_XL.jpg" alt="Hong Leong Bank">
+                                <span>Hong Leong Bank</span>
+                            </div>
+                            <div class="bank-option" data-bank="ambank">
+                                <img src="https://logowiki.net/wp-content/uploads/imgp/AmBank-Logo-1-2292.jpg" alt="AmBank">
+                                <span>AmBank</span>
+                            </div>
+                            <div class="bank-option" data-bank="bankislam">
+                                <img src="https://assets.nst.com.my/images/articles/Bank_Islam_Logo.transformed.jpg" alt="Bank Islam">
+                                <span>Bank Islam</span>
+                            </div>
+                            <div class="bank-option" data-bank="bankrakyat">
+                                <img src="https://www.eratuku.com/wp-content/uploads/2018/08/Bank-Rakyat-logo.jpg" alt="Bank Rakyat">
+                                <span>Bank Rakyat</span>
+                            </div>
+                            <div class="bank-option" data-bank="ocbc">
+                                <img src="https://logos-world.net/wp-content/uploads/2023/03/OCBC-Bank-Logo.png" alt="OCBC Bank">
+                                <span>OCBC Bank</span>
+                            </div>
+                            <div class="bank-option" data-bank="hsbc">
+                                <img src="https://www.hsbc.com.hk/content/dam/hsbc/hk/images/hongkong-hsbc-logo-en.svg" alt="HSBC Malaysia">
+                                <span>HSBC Malaysia</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-details" id="cardDetails">
+                        <h3>Card Details</h3>
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input type="text" id="expiryDate" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="XXX">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardName">Name on Card</label>
+                            <input type="text" id="cardName" placeholder="Your Name">
+                        </div>
+                    </div>
+                    
+                    <button class="pay-button" id="payButton">Pay Now</button>
+                    
+                    <div class="security-note">
+                        <i class="fas fa-lock"></i> Your payment information is secure and encrypted
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get cart data from localStorage
+            const checkoutData = JSON.parse(localStorage.getItem('eloraCheckoutData'));
+            const orderItems = document.getElementById('orderItems');
+            const subtotalEl = document.getElementById('subtotal');
+            const shippingEl = document.getElementById('shipping');
+            const totalEl = document.getElementById('total');
+            const discountRow = document.getElementById('discountRow');
+            const discountEl = document.getElementById('discount');
+            const backToCart = document.getElementById('backToCart');
+            const homeButton = document.getElementById('homeButton');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const successMessage = document.getElementById('successMessage');
+            const closeButton = document.getElementById('closeButton');
+            const applyVoucher = document.getElementById('applyVoucher');
+            const voucherCode = document.getElementById('voucherCode');
+            const voucherMessage = document.getElementById('voucherMessage');
+            const addressDetails = document.getElementById('addressDetails');
+            const changeAddress = document.getElementById('changeAddress');
+            const addressForm = document.getElementById('addressForm');
+            const saveAddress = document.getElementById('saveAddress');
+            const cancelAddress = document.getElementById('cancelAddress');
+            
+            // Default shipping address
+            let shippingAddress = {
+                fullName: "Jane Doe",
+                addressLine1: "123 Beauty Street",
+                addressLine2: "Apt 4B",
+                city: "Kuala Lumpur",
+                state: "Wilayah Persekutuan",
+                zipCode: "50480",
+                country: "Malaysia"
+            };
+            
+            // Check if address exists in localStorage
+            const savedAddress = localStorage.getItem('eloraShippingAddress');
+            if (savedAddress) {
+                shippingAddress = JSON.parse(savedAddress);
+            }
+            
+            // Display shipping address
+            function displayAddress() {
+                addressDetails.innerHTML = `
+                    <p><strong>${shippingAddress.fullName}</strong></p>
+                    <p>${shippingAddress.addressLine1}</p>
+                    ${shippingAddress.addressLine2 ? `<p>${shippingAddress.addressLine2}</p>` : ''}
+                    <p>${shippingAddress.city}, ${shippingAddress.state} ${shippingAddress.zipCode}</p>
+                    <p>${shippingAddress.country}</p>
+                `;
+            }
+            
+            displayAddress();
+            
+            // Populate address form with current values
+            function populateAddressForm() {
+                document.getElementById('fullName').value = shippingAddress.fullName;
+                document.getElementById('addressLine1').value = shippingAddress.addressLine1;
+                document.getElementById('addressLine2').value = shippingAddress.addressLine2 || '';
+                document.getElementById('city').value = shippingAddress.city;
+                document.getElementById('state').value = shippingAddress.state;
+                document.getElementById('zipCode').value = shippingAddress.zipCode;
+                document.getElementById('country').value = shippingAddress.country;
+            }
+            
+            // Change address functionality
+            changeAddress.addEventListener('click', function() {
+                populateAddressForm();
+                addressForm.classList.add('active');
+                changeAddress.style.display = 'none';
+            });
+            
+            // Save address functionality
+            saveAddress.addEventListener('click', function() {
+                // Get values from form
+                shippingAddress = {
+                    fullName: document.getElementById('fullName').value,
+                    addressLine1: document.getElementById('addressLine1').value,
+                    addressLine2: document.getElementById('addressLine2').value,
+                    city: document.getElementById('city').value,
+                    state: document.getElementById('state').value,
+                    zipCode: document.getElementById('zipCode').value,
+                    country: document.getElementById('country').value
+                };
+                
+                // Validate required fields
+                if (!shippingAddress.fullName || !shippingAddress.addressLine1 || 
+                    !shippingAddress.city || !shippingAddress.state || 
+                    !shippingAddress.zipCode || !shippingAddress.country) {
+                    alert('Please fill in all required address fields');
+                    return;
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('eloraShippingAddress', JSON.stringify(shippingAddress));
+                
+                // Update displayed address
+                displayAddress();
+                
+                // Hide form and show change button
+                addressForm.classList.remove('active');
+                changeAddress.style.display = 'block';
+            });
+            
+            // Cancel address change
+            cancelAddress.addEventListener('click', function() {
+                addressForm.classList.remove('active');
+                changeAddress.style.display = 'block';
+            });
+            
+            // Voucher code validation
+            let discountApplied = false;
+            let discountAmount = 0;
+            
+            applyVoucher.addEventListener('click', function() {
+                const code = voucherCode.value.trim();
+                
+                if (!code) {
+                    voucherMessage.textContent = "Please enter a voucher code";
+                    voucherMessage.className = "voucher-message voucher-error";
+                    return;
+                }
+                
+                if (code === "elora888") {
+                    // Apply 10% discount
+                    discountApplied = true;
+                    discountAmount = subtotal * 0.1;
+                    voucherMessage.textContent = "Voucher applied successfully! 10% discount added.";
+                    voucherMessage.className = "voucher-message voucher-success";
+                    
+                    // Update totals
+                    updateTotals();
+                } else {
+                    voucherMessage.textContent = "Invalid voucher code";
+                    voucherMessage.className = "voucher-message voucher-error";
+                }
+            });
+            
+            // Populate order summary
+            let subtotal = 0;
+            let shipping = 5.00;
+            
+            function updateTotals() {
+                const total = subtotal + shipping - (discountApplied ? discountAmount : 0);
+                
+                subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+                shippingEl.textContent = `$${shipping.toFixed(2)}`;
+                
+                if (discountApplied) {
+                    discountRow.style.display = "flex";
+                    discountEl.textContent = `-$${discountAmount.toFixed(2)}`;
+                } else {
+                    discountRow.style.display = "none";
+                }
+                
+                totalEl.textContent = `$${total.toFixed(2)}`;
+            }
+            
+            if (checkoutData && checkoutData.items) {
+                subtotal = 0;
+                
+                checkoutData.items.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'order-item';
+                    itemEl.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="order-item-info">
+                            <h4>${item.name}</h4>
+                            <div>Quantity: ${item.quantity}</div>
+                            <div class="order-item-price">$${itemTotal.toFixed(2)}</div>
+                        </div>
+                    `;
+                    
+                    orderItems.appendChild(itemEl);
+                });
+                
+                updateTotals();
+            } else {
+                orderItems.innerHTML = '<p>No items in cart</p>';
+            }
+            
+            // Payment method selection
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            const bankOptions = document.querySelectorAll('.bank-option');
+            const cardDetails = document.getElementById('cardDetails');
+            const payButton = document.getElementById('payButton');
+            
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    bankOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Show card details if credit card is selected
+                    if (this.dataset.method === 'visa' || this.dataset.method === 'mastercard' || this.dataset.method === 'amex') {
+                        cardDetails.classList.add('active');
+                    } else {
+                        cardDetails.classList.remove('active');
+                    }
+                });
+            });
+            
+            bankOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    bankOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    cardDetails.classList.remove('active');
+                });
+            });
+            
+            // Home button functionality
+            homeButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Clear any cart sidebar flags to ensure normal homepage behavior
+                localStorage.removeItem('openCartSidebar');
+                window.location.href = 'elora2.html';
+            });
+            
+            // Close button functionality
+            closeButton.addEventListener('click', function() {
+                // Clear any cart sidebar flags to ensure normal homepage behavior
+                localStorage.removeItem('openCartSidebar');
+                window.location.href = 'elora2.html';
+            });
+            
+            // Pay button functionality
+            payButton.addEventListener('click', function() {
+                // Check if a payment method is selected
+                const selectedPayment = document.querySelector('.payment-option.selected');
+                const selectedBank = document.querySelector('.bank-option.selected');
+                
+                if (!selectedPayment && !selectedBank) {
+                    alert('Please select a payment method');
+                    return;
+                }
+                
+                // If card is selected, validate card details
+                if (selectedPayment && (selectedPayment.dataset.method === 'visa' || 
+                    selectedPayment.dataset.method === 'mastercard' || 
+                    selectedPayment.dataset.method === 'amex')) {
+                    
+                    const cardNumber = document.getElementById('cardNumber').value;
+                    const expiryDate = document.getElementById('expiryDate').value;
+                    const cvv = document.getElementById('cvv').value;
+                    const cardName = document.getElementById('cardName').value;
+                    
+                    if (!cardNumber || !expiryDate || !cvv || !cardName) {
+                        alert('Please fill in all card details');
+                        return;
+                    }
+                }
+                
+                // Show loading overlay
+                loadingOverlay.classList.add('active');
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    // Hide loading overlay
+                    loadingOverlay.classList.remove('active');
+                    
+                    // Show success message
+                    successMessage.classList.add('active');
+                    
+                    // Clear cart
+                    localStorage.removeItem('eloraCart');
+                    localStorage.removeItem('eloraCheckoutData');
+                    localStorage.removeItem('openCartSidebar');
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

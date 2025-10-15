@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Personalized Skincare Advisor - Elora</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=FSKim:text@300;400;500;600&display=swap');
+
+    :root {
+      /* Color Palette */
+      --primary: #f8e2e7;
+      --primary-dark: #e8c6cf;
+      --secondary: #333333;
+      --accent: #d4afb7;
+      --light: #faf7f8;
+      --dark: #2a2a2a;
+      --text: #444444;
+      --text-light: #777777;
+      --border: #e8e8e8;
+      --success: #a5c9a5;
+      
+      /* Spacing */
+      --spacing-xs: 0.25rem;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --spacing-xxl: 3rem;
+      
+      /* Border Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Karla', sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'FSKim', serif;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: var(--spacing-md);
+      letter-spacing: -0.01em;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+    
+    h2 {
+      font-size: 2rem;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    p {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: var(--accent);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+    
+    /* Header & Logo */
+    header {
+      padding: var(--spacing-xl) 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background-color: rgb(255, 227, 232);
+      height:110px;
+    }
+
+    #button-container{
+      padding: var(--spacing-xl) 0;
+      text-align: center;
+    }
+    
+    .logo {
+      font-family: "Lucida Handwriting", cursive;              
+      font-size:2rem;
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--spacing-md);
+      letter-spacing: -0.02em;
+
+    }
+    
+    /* Main Content */
+    .content-section {
+      padding: var(--spacing-xxl) 0;
+    }
+    
+    .advisor-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .advisor-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+      margin-top: var(--spacing-xl);
+    }
+    
+    .form-container {
+      width: 100%;
+    }
+    
+    .result-container {
+      width: 100%;
+    }
+    
+    .form-section {
+      background-color: white;
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .section-title {
+      font-family: 'FSKim', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .question {
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .question-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-sm);
+      color: var(--dark);
+      font-size: 1.05rem;
+    }
+    
+    .option {
+      display: block;
+      padding: var(--spacing-sm) var(--spacing-md);
+      margin: var(--spacing-xs) 0;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    
+    .option:hover {
+      background-color: rgba(212, 175, 183, 0.05);
+      border-color: var(--accent);
+    }
+    
+    input[type="radio"], 
+    input[type="checkbox"] {
+      margin-right: var(--spacing-sm);
+      accent-color: var(--accent);
+    }
+    
+    select, input[type="text"], textarea {
+      width: 100%;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: white;
+      font-family: 'Karla', sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    
+    select:focus, input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(212, 175, 183, 0.2);
+    }
+    
+    .note {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-top: var(--spacing-xs);
+      font-style: italic;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-xl);
+    }
+    
+    button {
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-family: 'Karla', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .primary-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      margin-top:10px;
+    }
+    
+    .primary-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    .secondary-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    
+    .secondary-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    
+    .home-btn {
+      background: var(--dark);
+      color: white;
+      border: none;
+      margin-right: auto;
+    }
+    
+    .home-btn:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+    }
+    
+    .result-card {
+      background: white;
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+    }
+    
+    .result-title {
+      font-family: 'FSKim', serif;
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .routine-list {
+      list-style: none;
+      margin: var(--spacing-md) 0;
+    }
+    
+    .routine-list li {
+      padding: var(--spacing-sm) 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      padding-left: var(--spacing-lg);
+    }
+    
+    .routine-list li:before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      font-size: 1.2rem;
+    }
+    
+    .routine-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .reason-box {
+      background: var(--primary);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin-top: var(--spacing-md);
+      font-size: 0.95rem;
+    }
+    
+    .reason-box strong {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      color: var(--dark);
+    }
+    
+    .summary {
+      margin-top: var(--spacing-md);
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    /* Quiz Progress Styles */
+    .quiz-progress {
+      margin: var(--spacing-xl) 0;
+      width: 100%;
+    }
+    
+    .progress-bar {
+      height: 6px;
+      background-color: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background-color: var(--accent);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    
+    .progress-text {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .quiz-step {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .quiz-step.active {
+      display: block;
+    }
+    
+    .start-screen {
+      text-align: center;
+      padding: var(--spacing-xxl) 0;
+    }
+    
+    .start-btn {
+      padding: var(--spacing-md) var(--spacing-xl);
+      font-size: 1.2rem;
+      margin-top: var(--spacing-lg);
+    }
+    
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--spacing-xl);
+    }
+    #backBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+ background: var(--accent);
+  color: white;
+ border: none;  
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Karla', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+#backBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  color: #f8e2e7;
+}
+
+#backBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#backBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(212, 175, 183, 0.2) 0%, rgba(248, 226, 231, 0.4) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#backBtn:hover::before {
+  opacity: 1;
+}
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      .logo {
+        font-size: 2.5rem;
+      }
+      
+      .button-group {
+        flex-direction: column;
+      }
+      
+      .home-btn {
+        margin-right: 0;
+        order: -1;
+      }
+      
+      .nav-buttons {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="logo">elora</p>
+  </header>
+    <div id="button-container"><a id="backBtn" href="elora2.html">BACK</a></div>
+
+  <main class="container">
+    <section id="advisor" class="content-section">
+      <div class="advisor-header">
+        <h1>Your Personalized Skincare Advisor</h1>
+        <p class="subtitle">Discover your perfect skincare routine with our personalized quiz.</p>
+      </div>
+
+      <div class="content-wrapper">
+        <!-- Start Screen -->
+        <div class="start-screen" id="startScreen">
+          <button class="primary-btn start-btn" onclick="startQuiz()">Start My Quiz</button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="quiz-progress" id="quizProgress" style="display: none;">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-text" id="progressText">Question 1 of 10</div>
+        </div>
+
+        <!-- Quiz Form -->
+        <div class="form-container" id="quizFormContainer" style="display: none;">
+          <form id="advisorForm">
+            <!-- Section 1: Skin Type & Condition -->
+            <div class="quiz-step active" id="step1">
+              <div class="form-section">
+                <div class="section-title">Skin Type & Condition</div>
+                <div class="question">
+                  <div class="question-title">What is your skin type?</div>
+                  <label class="option"><input type="radio" name="skinType" value="Normal" required>Normal</label>
+                  <label class="option"><input type="radio" name="skinType" value="Dry">Dry</label>
+                  <label class="option"><input type="radio" name="skinType" value="Oily">Oily</label>
+                  <label class="option"><input type="radio" name="skinType" value="Combination">Combination</label>
+                  <label class="option"><input type="radio" name="skinType" value="Sensitive">Sensitive</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="home-btn" onclick="goHome()">Back to Home</button>
+                <button type="button" class="primary-btn" onclick="nextStep(2)">Next</button>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="quiz-step" id="step2">
+              <div class="form-section">
+                <div class="section-title">Skin Type & Condition</div>
+                <div class="question">
+                  <div class="question-title">How does your skin usually feel at the end of the day?</div>
+                  <label class="option"><input type="radio" name="endFeel" value="Balanced, no issues" required>Balanced, no issues</label>
+                  <label class="option"><input type="radio" name="endFeel" value="Very oily/shiny">Very oily/shiny</label>
+                  <label class="option"><input type="radio" name="endFeel" value="Tight">Tight and dry</label>
+                  <label class="option"><input type="radio" name="endFeel" value="Sometimes oily, sometimes dry">Sometimes oily, sometimes dry</label>
+                  <label class="option"><input type="radio" name="endFeel" value="Itchy, irritated, or red">Itchy, irritated, or red</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="secondary-btn" onclick="prevStep(1)">Previous</button>
+                <button type="button" class="primary-btn" onclick="nextStep(3)">Next</button>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="quiz-step" id="step3">
+              <div class="form-section">
+                <div class="section-title">Skin Type & Condition</div>
+                <div class="question">
+                  <div class="question-title">Do you often get acne / breakouts?</div>
+                  <label class="option"><input type="radio" name="acneFreq" value="Yes, often" required>Yes, often</label>
+                  <label class="option"><input type="radio" name="acneFreq" value="Sometimes, during stress/hormones">Sometimes, during stress/hormones</label>
+                  <label class="option"><input type="radio" name="acneFreq" value="Rarely">Rarely</label>
+                  <label class="option"><input type="radio" name="acneFreq" value="Never">Never</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="secondary-btn" onclick="prevStep(2)">Previous</button>
+                <button type="button" class="primary-btn" onclick="nextStep(4)">Next</button>
+              </div>
+            </div>
+
+            <!-- Step 4: Skin Concerns -->
+            <div class="quiz-step" id="step4">
+              <div class="form-section">
+                <div class="section-title">Skin Concerns</div>
+                <div class="question">
+                  <div class="question-title">Which skin concerns are bigger right now? (Choose any)</div>
+                  <label class="option"><input type="checkbox" name="concern" value="Acne & blemishes">Acne & blemishes</label>
+                  <label class="option"><input type="checkbox" name="concern" value="Dullness / uneven skin tone">Dullness / uneven skin tone</label>
+                  <label class="option"><input type="checkbox" name="concern" value="Wrinkles / fine lines">Wrinkles / fine lines</label>
+                  <label class="option"><input type="checkbox" name="concern" value="Dark spots / pigmentation">Dark spots / pigmentation</label>
+                  <label class="option"><input type="checkbox" name="concern" value="Dehydration">Dryness / dehydration</label>
+                  <label class="option"><input type="checkbox" name="concern" value="Redness / sensitivity">Redness / sensitivity</label>
+                  <label class="option"><input type="checkbox" name="concern" value="Large pores">Large pores</label>
+                  <label class="option"><input type="checkbox" name="concern" value="Clogged pores">Clogged pores</label>
+                  <label class="option"><input type="checkbox" name="concern" value="Sun damage">Sun damage</label>
+                  <label class="option"><input type="checkbox" name="concern" value="Blackheads">Blackheads</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="secondary-btn" onclick="prevStep(3)">Previous</button>
+                <button type="button" class="primary-btn" onclick="nextStep(5)">Next</button>
+              </div>
+            </div>
+
+            <div class="quiz-step" id="step5">
+              <div class="form-section">
+                <div class="section-title">Lifestyle & Environment</div>
+                <div class="question">
+                  <div class="question-title">How much time do you spend outdoors daily?</div>
+                  <label class="option"><input type="radio" name="outdoor" value="None" required>Almost none (indoor most of the day)</label>
+                  <label class="option"><input type="radio" name="outdoor" value="A few hours outdoors">A few hours outdoors</label>
+                  <label class="option"><input type="radio" name="outdoor" value="Many hours outdoors (work/study outside)">Many hours outdoors (work/study outside)</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="secondary-btn" onclick="prevStep(4)">Previous</button>
+                <button type="button" class="primary-btn" onclick="nextStep(6)">Next</button>
+              </div>
+            </div>
+
+            <div class="quiz-step" id="step6">
+            <div class="form-section">
+                <div class="section-title">Lifestyle & Environment</div>
+                <div class="question">
+                  <div class="question-title">Do you live in a place with air conditioning most of the day?</div>
+                  <label class="option"><input type="radio" name="ac" value="Yes, almost always" required>Yes, almost always</label>
+                  <label class="option"><input type="radio" name="ac" value="Sometimes">Sometimes</label>
+                  <label class="option"><input type="radio" name="ac" value="No">No</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="secondary-btn" onclick="prevStep(5)">Previous</button>
+                <button type="button" class="primary-btn" onclick="nextStep(7)">Next</button>
+              </div>
+            </div>
+
+            <div class="quiz-step" id="step7">
+             <div class="form-section">
+                <div class="section-title">Lifestyle & Environment</div>
+                <div class="question">
+                  <div class="question-title">How much stress or lack of sleep do you usually have?</div>
+                  <label class="option"><input type="radio" name="stress" value="Very high" required>Very high</label>
+                  <label class="option"><input type="radio" name="stress" value="Moderate">Moderate</label>
+                  <label class="option"><input type="radio" name="stress" value="Low">Low</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="secondary-btn" onclick="prevStep(6)">Previous</button>
+                <button type="button" class="primary-btn" onclick="nextStep(8)">Next</button>
+              </div>
+            </div>
+
+            <div class="quiz-step" id="step8">
+              <div class="form-section">
+                <div class="section-title">Routine & Preferences</div>
+                <div class="question">
+                  <div class="question-title">How many steps do you prefer in your skincare routine?</div>
+                  <label class="option"><input type="radio" name="routinePref" value="Simple (2–3 products max)" required>Simple (2–3 products max)</label>
+                  <label class="option"><input type="radio" name="routinePref" value="Balanced (4–5 products)">Balanced (4–5 products)</label>
+                  <label class="option"><input type="radio" name="routinePref" value="Complete (6+ products)">Complete (6+ products)</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="secondary-btn" onclick="prevStep(7)">Previous</button>
+                <button type="button" class="primary-btn" onclick="nextStep(9)">Next</button>
+              </div>
+            </div>
+
+            <div class="quiz-step" id="step9">
+             <div class="form-section">
+                <div class="section-title">Routine & Preferences</div>
+                <div class="question">
+                  <div class="question-title">Do you want your products to be:</div>
+                  <label class="option"><input type="radio" name="prefType" value="Vegan / natural" required>Vegan / natural</label>
+                  <label class="option"><input type="radio" name="prefType" value="Dermatologist-tested">Dermatologist-tested</label>
+                  <label class="option"><input type="radio" name="prefType" value="Fragrance-free">Fragrance-free</label>
+                  <label class="option"><input type="radio" name="prefType" value="Alcohol-free">Alcohol-free</label>
+                  <label class="option"><input type="radio" name="prefType" value="Doesn't matter">Doesn't matter</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="secondary-btn" onclick="prevStep(8)">Previous</button>
+                <button type="button" class="primary-btn" onclick="nextStep(10)">Next</button>
+              </div>
+            </div>
+
+            <div class="quiz-step" id="step10">
+             <div class="form-section">
+                <div class="section-title">Routine & Preferences</div>
+                <div class="question">
+                  <div class="question-title">Which extra products would you be interested in? (Choose any)</div>
+                  <label class="option"><input type="checkbox" name="extras" value="Masks (weekly treatment)">Masks (weekly treatment)</label>
+                  <label class="option"><input type="checkbox" name="extras" value="Face oils (glow/hydration)">Face oils (glow/hydration)</label>
+                  <label class="option"><input type="checkbox" name="extras" value="Eye care">Eye care</label>
+                </div>
+              </div>
+              <div class="nav-buttons">
+                <button type="button" class="secondary-btn" onclick="prevStep(9)">Previous</button>
+                <button type="button" class="primary-btn" onclick=" handleGetAdvice()">End Quiz</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="result-container">
+          <div class="result-card" id="resultCard">
+            <h3 class="result-title">Your Personalized Recommendation</h3>
+            <div id="resultArea">
+              <p>Complete the questionnaire to receive your customized skincare routine.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Quiz state management
+    let currentStep = 1;
+    const totalSteps = 10;
+
+    // Initialize the quiz
+    function startQuiz() {
+      document.getElementById('startScreen').style.display = 'none';
+      document.getElementById('quizProgress').style.display = 'block';
+      document.getElementById('quizFormContainer').style.display = 'block';
+      updateProgressBar();
+    }
+
+    // Navigate to next step
+    function nextStep(step) {
+      // Validate current step before proceeding
+      const currentStepElement = document.getElementById(`step${currentStep}`);
+      const inputs = currentStepElement.querySelectorAll('input[required]');
+      let isValid = true;
+      
+      inputs.forEach(input => {
+        if (!input.value) {
+          isValid = false;
+        }
+      });
+      
+      if (!isValid) {
+        alert('Please answer the question before proceeding.');
+        return;
+      }
+      
+      // Hide current step and show next step
+      document.getElementById(`step${currentStep}`).classList.remove('active');
+      document.getElementById(`step${step}`).classList.add('active');
+      currentStep = step;
+      updateProgressBar();
+      
+      // Scroll to top of form
+      document.getElementById('quizFormContainer').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Navigate to previous step
+    function prevStep(step) {
+      document.getElementById(`step${currentStep}`).classList.remove('active');
+      document.getElementById(`step${step}`).classList.add('active');
+      currentStep = step;
+      updateProgressBar();
+    }
+
+    // Update progress bar
+    function updateProgressBar() {
+      const progressPercentage = (currentStep / totalSteps) * 100;
+      document.getElementById('progressFill').style.width = `${progressPercentage}%`;
+      document.getElementById('progressText').textContent = `Question ${currentStep} of ${totalSteps}`;
+    }
+
+    // Utility: collect multi-checkbox values
+    function getCheckedValues(name) {
+      return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(i => i.value);
+    }
+
+    function getValue(name) {
+      const el = document.querySelector('input[name="' + name + '"]:checked');
+      return el ? el.value : '';
+    }
+
+    function goHome() {
+      window.location.href = 'elora2.html';
+    }
+
+    function handleGetAdvice() {
+      const data = {
+        skinType: getValue('skinType'),
+        endFeel: getValue('endFeel'),
+        acneFreq: getValue('acneFreq'),
+        concerns: getCheckedValues('concern'),
+        outdoor: getValue('outdoor'),
+        ac: getValue('ac'),
+        stress: getValue('stress'),
+        routinePref: getValue('routinePref'),
+        prefType: getValue('prefType'),
+        extras: getCheckedValues('extras')
+      };
+
+      const advice = generateAdvice(data);
+      renderResult(advice, data);
+    }
+
+    function resetForm() {
+      document.getElementById('advisorForm').reset();
+      document.getElementById('resultArea').innerHTML = `<p>Complete the questionnaire to receive your customized skincare routine.</p>`;
+    }
+
+    // Main decision engine: maps answers -> personalized routines
+    // Priority: more specific rules first, then fallbacks
+    function generateAdvice(f) {
+      const c = (v) => f.concerns.includes(v);
+
+if (f.skinType==='Sensitive' || c('Redness / sensitivity') || f.endFeel==='Itchy, irritated, or red') {
+if (f.ac==='Yes, almost always' && f.routinePref === 'Simple (2–3 products max)') {
+  return {
+    title: 'Sensitive Skin / Redness Concern + Always Air Conditioning + Simple Routine',
+    routine: [
+      'Cleansing Milk',
+      'Barrier Repair Cream',
+      'Lightweight Gel Moisturizer'
+    ],
+    reason: 'Gentle, barrier-protecting routine that supports collagen without irritating sensitive, AC-exposed skin.'
+  };
+}
+
+else if (c('Dark spots / pigmentation') && f.stress==='Low'){
+  return {
+    title: 'Sensitive Skin + Dark Spots Concern + Low Stress Level',
+    routine: [
+      'Cleansing Milk',
+      'Brightening Serum (Vitamin C)',
+      'Deep Hydration Cream'
+    ],
+    reason: 'Safely fades pigmentation, soothes irritation, and hydrates sensitive, low-stress skin.'
+  };
+}
+else if (c('Dark spots / pigmentation')) {
+  return {
+    title: 'Sensitive Skin + Dark Spots Concern',
+    routine: [
+      'Cleansing Milk',
+      'Brightening Serum (Vitamin C)',
+      'Deep Hydration Cream'
+    ],
+    reason: 'Fades dark spots safely for sensitive skin while calming irritation.'
+  };
+}
+else if (c('Wrinkles / fine lines')) {
+  return {
+    title: 'Sensitive Skin + Aging Concern',
+    routine: [
+      'Cleansing Milk',
+      'Anti-Aging Serum',
+      'Anti-Aging Night Cream'
+    ],
+    reason: 'Strengthens barrier while supporting collagen with non-irritating peptides.'
+  };
+}
+else if (c('Dullness / uneven skin tone')) {
+  return {
+    title: 'Sensitive Skin + Dullness Concern',
+    routine: [
+      'Cleansing Milk',
+      'Brightening Serum (Vitamin C)',
+      'Overnight Sleeping Mask'
+    ],
+    reason: 'Restores radiance gently without overloading reactive skin.'
+  };
+}
+        return {
+          title: 'Sensitive Skin + Redness Concern',
+          routine: [
+            'Cleansing Milk',
+            'Hydrating Serum',
+            'Barrier Repair Cream'
+          ],
+          reason: 'Gentle, non-irritating formulations to reduce redness and restore the skin barrier. Avoid active exfoliants until skin calms.'
+      };
+    }
+
+       if (f.skinType==='Dry' || c('Dehydration') || f.endFeel==='Tight') {
+if (c('Wrinkles / fine lines') && c('Redness / sensitivity') && f.ac==='Yes, almost always' && f.routinePref === 'Balanced (4–5 products)') {
+  return {
+    title: 'Dry Skin + Wrinkles & Redness Concern + Always Air Conditioning + Balanced Routine',
+    routine: [
+      'Hydrating Cleanser',
+      'Anti-Aging Serum',
+      'Barrier Repair Cream',
+      'Anti-Aging Night Cream'
+    ],
+    reason: 'Hydrates, reduces fine lines, calms redness, and strengthens barrier for dry indoor skin.'
+  };
+}
+else if (c('Redness / sensitivity') && f.ac==='Yes, almost always') {
+  return {
+    title: 'Dry Skin + Redness Concern + Almost Indoor',
+    routine: [
+      'Hydrating Cleanser',
+      'Hydrating Serum (Hyaluronic Acid)',
+      'Barrier Repair Cream',
+      'Deep Hydration Cream'
+    ],
+    reason: 'Combines hydration and barrier repair to calm redness and irritation from dry, sensitive skin in air-conditioned environments.'
+  };
+}
+
+else if ((c('Wrinkles / fine lines') && c('Dark spots / pigmentation'))) {
+  return {
+    title: 'Dry Skin + Aging & Dark Spots Concern',
+    routine: [
+      'Hydrating Cleanser',
+      'Brightening Serum (Vitamin C)',
+      'Anti-Aging Oil'
+    ],
+    reason: 'Combines hydration, pigmentation fade, and anti-aging for dry skin.'
+  };
+}
+else if (f.routinePref==='Complete (6+ products)') {
+  return { title: 'Dry Skin + Dehydration Concern + Full Routine',
+  routine: [
+            'Hydrating Cleanser',
+            'Refreshing Toner',
+            'Hydrating Serum (Hyaluronic Acid)',
+            'Deep Hydration Cream',
+            'Overnight Sleeping Mask'
+          ],
+          reason: 'Layering hydrating steps + barrier repair ingredients for deeper restoration and long-term hydration.'
+ };
+} 
+ else if (f.routinePref==='Simple (2–3 products max)') {
+          return {
+            title: 'Dry Skin + Dehydration Concern + Simple Routine',
+            routine: [
+              'Hydrating Cleanser',
+              'Hydrating Serum (Hyaluronic Acid)',
+              'Deep Hydration Cream'
+            ],
+            reason: 'Replenishes moisture and locks it in without too many steps — ideal for busy routines.'
+          };
+        }
+else if (c('Redness / sensitivity')) {
+  return {
+  title: 'Dry Skin + Redness Concern',
+    routine: [
+      'Hydrating Cleanser',
+      'Hydrating Serum',
+      'Deep Hydration Cream'
+    ],
+    reason: 'Reduces tightness and irritation while replenishing hydration.'
+  };
+}
+
+else if (c('Wrinkles / fine lines')) {
+  return {
+    title: 'Dry Skin + Wrinkles Concern',
+    routine: [
+      'Hydrating Cleanser',
+      'Anti-Aging Serum',
+      'Anti-Aging Night Cream'
+    ],
+    reason: 'Promotes renewal, improves elasticity, and keeps skin nourished overnight.'
+  };
+}
+
+return{
+   title: 'Dry Skin',
+    routine: [
+      'Hydrating Cleanser',
+      'Refreshing Toner',
+      'Lightweight Gel Moisturizer'
+    ],
+    reason: 'Keep Moisture.'
+}
+}
+
+if (f.skinType==='Oily' || f.endFeel==='Very oily/shiny'){
+ if (c('Acne & blemishes') && (f.acneFreq==='Sometimes, during stress/hormones' || f.stress==='Very high')&&f.routinePref==='Simple (2–3 products max)'){
+          return {
+            title: 'Oily + Acne-prone + Stress-related Breakouts + Minimal Effort',
+            routine: [
+              'Foaming Cleanser',
+              'Acne Control Serum',
+              'Mattifying Moisturizer',
+              'Matte Sunscreen SPF 50'
+            ],
+            reason: 'Removes excess oil, helps unclog pores and reduce inflammation while keeping skin hydrated and protected.'
+          };
+        }
+else if (c('Acne & blemishes') && c('Large pores') && c('Dullness / uneven skin tone')) {
+  return {
+    title: 'Oily Skin + Acne / Large Pores Concern + Dullness Skin',
+    routine: [
+      'Purifying Cleanser',
+      'Acne-Control Serum',
+      'Mattifying Moisturizer',
+      'Brightening Serum'
+    ],
+    reason: 'Targets acne and enlarged pores while brightening skin tone with vegan-friendly ingredients.'
+  };
+}
+
+else if(c('Acne & blemishes') && acneFreq==='Yes, often')
+{
+  return {
+          title: 'Oily skin + Frequent Acne',
+          routine: [
+            'Foaming Cleanser',
+            'Acne-Control Serum',
+            'Mattifying Moisturizer'
+          ],
+          reason: 'Balanced oil control without over-drying; niacinamide helps minimize pores and regulate sebum.'
+        };
+      }
+
+else if (c('Blackheads') && c('Acne & blemishes')) {
+  return {
+    title: 'Oily Skin + Blackheads & Acne Concern',
+    routine: [
+      'Purifying Cleanser',
+      'Clarifying Toner',
+      'Acne-Control Serum',
+      'Charcoal Mask'
+    ],
+    reason: 'Targets blackheads and breakouts while controlling oil, with weekly detox masks for added clarity.'
+  };
+}
+
+else if (c('Blackheads')) {
+  return {
+    title: 'Oily Skin + Blackheads Concern',
+    routine: [
+      'Purifying Cleanser',
+      'Clarifying Toner',
+      'Charcoal Mask'
+    ],
+    reason: 'Unclogs pores, reduces blackheads, and prevents excess oil build-up.'
+  };
+}
+else if (c('Redness / sensitivity')) {
+  return {
+    title: 'Oily Skin + Sensitivity Concern',
+    routine: [
+      'Foaming Cleanser',
+      'Acne-Control Serum',
+      'Barrier Repair Cream'
+    ],
+    reason: 'Soothes irritation while keeping skin fresh, oil-free, and hydrated.'
+  };
+}
+else if (c('Wrinkles / fine lines')) {
+  return {
+    title: 'Oily Skin + Wrinkles Concern',
+    routine: [
+      'Purifying Cleanser',
+      'Acne-Control Serum',
+      'Lightweight Gel Moisturizer'
+    ],
+    reason: 'Reduces signs of aging without clogging pores.'
+  };
+}
+
+  return{title: 'Oily Skin',
+    routine: [
+      'Purifying Cleanser',
+      'Clarifying Toner',
+      'Lightweight Gel Moisturizer'
+    ],
+    reason: 'Reduces oil while keep hydrated.'
+  }
+}
+    
+if (f.skinType==='Combination' ||f.endFeel==='Sometimes oily, sometimes dry') {
+if (c ('Clogged pores') && c('Dullness / uneven skin tone') && f.outdoor==='Many hours outdoors (work/study outside)') {
+  return {
+    title: 'Combination Skin + Clogged Pores & Dullness Concern + Many Hours Outdoors',
+    routine: [
+      'Purifying Cleanser',
+      'Clarifying Toner',
+      'Clay Mask',
+      'Brightening Serum'
+    ],
+    reason: 'Clears congestion, brightens skin, and balances mixed zones exposed to outdoor elements.'
+  };
+}
+else if (c('Wrinkles / fine lines') && f.routinePref==='Complete (6+ products)' ) {
+          return {
+            title: 'Combination Skin + Aging Concern + Full Routine',
+            routine: [
+              'Exfoliating Cleanser',
+              'Anti-Aging Serum',
+              'Firming Eye Gel',
+              'Anti-Aging Night Cream',
+              'Overnight Sleeping Mask',
+              'Anti-Aging Oil'
+            ],
+            reason: 'Targets uneven texture and early signs of aging while protecting and hydrating dry areas.'
+          };
+        }
+
+else if (c('Acne & blemishes') || c('Large pores')) {
+          return {
+            title: 'Combination Skin + Blemish/Pore Control',
+            routine: [
+              'Purifying Cleanser',
+              'Clarifying Toner',
+              'Clay Mask'
+            ],
+            reason: 'Clears congestion in oily areas and hydrates drier parts.'
+          };
+        }
+
+else if (c('Dullness / uneven skin tone')) {
+  return {
+    title: 'Combination Skin + Dullness Concern',
+    routine: [
+      'Exfoliating Cleanser',
+      'Refreshing Toner',
+      'Brightening Serum'
+    ],
+    reason: 'Brightens skin while balancing hydration for mixed zones.'
+  };
+}
+else if (c('Sun damage')) {
+  return {
+    title: 'Combination Skin + Sun Damage Concern',
+    routine: [
+      'Exfoliating Cleanser',
+      'Brightening Serum (Vitamin C)',
+      'Hydrating Sunscreen SPF 50+'
+    ],
+    reason: 'Shields against UV and restores clarity from sun exposure.'
+  };
+}
+
+else if (f.stress==='Very high') {
+  return {
+    title: 'Combination Skin + Stress Breakouts',
+    routine: [
+      'Foaming Cleanser',
+      'Clarifying Toner',
+      'Lightweight Gel Moisturizer'
+    ],
+    reason: 'Keeps T-zone clear while supporting skin against stress-induced breakouts.'
+  };
+ }
+        return {
+          title: 'Combination Skin + Balanced Routine',
+          routine: [
+            'Exfoliating Cleanser',
+            'Hydrating Serum (Hyaluronic Acid)',
+            'Lightweight Moisturizer'
+          ],
+          reason: 'Balances hydration and oil control for combination skin without overcomplicating the routine.'
+        };
+}
+      
+    
+if (f.skinType==='Normal' || f.endFeel==='Balanced, no issues'){
+if (c('Dehydration') && c('Wrinkles / fine lines') && f.outdoor==='Many hours outdoors (work/study outside)') {
+return { 
+title: 'Normal Skin + Dehydration & Fine Lines Concern + Always Outdoor',
+    routine: [
+      'Hydrating Cleanser',
+      'Refreshing Toner',
+      'Lightweight Gel Moisturizer',
+      'Anti-Aging Serum',
+      'Hydrating Sunscreen SPF 50+'
+      ],
+    reason: 'Maintains moisture, protects against UV damage, and supports anti-aging for normal skin with daily sun exposure.'
+  };
+}
+
+else if (c('Wrinkles / fine lines') || c('Dark spots / pigmentation')) {
+        return {
+          title: 'Normal Skin + Anti-Aging Focus',
+          routine: [
+            'Exfoliating Cleanser',
+            'Anti-Aging Serum',
+            'Anti-Aging Night Cream',
+            'Overnight Sleeping Mask',
+            'Hydrating Sunscreen SPF 50+'
+          ],
+          reason: 'Preventative care with antioxidants and retinoids to maintain skin health and target early signs of aging.'
+        };
+      }
+else if (c('Dullness / uneven skin tone') && c('Dark spots / pigmentation')) {
+  return {
+    title: 'Normal Skin + Dullness & Dark Spots Concern',
+    routine: [
+      'Exfoliating Cleanser',
+      'Brightening Serum (Vitamin C)',
+      'Anti-Aging Night Cream',
+      'Hydrating Sunscreen SPF 50+'
+    ],
+    reason: 'Brightens and evens tone while addressing early signs of aging in stressed skin.'
+  };
+}
+else if (c('Dark spots / pigmentation')) {
+  return {
+    title: 'Normal Skin + Dark Spots Concern',
+    routine: [
+      'Cleansing Milk',
+      'Brightening Serum (Vitamin C)',
+      'Anti-Aging Night Cream'
+    ],
+    reason: 'Fades pigmentation and restores even, radiant skin tone.'
+  };
+}
+
+      else if (c('Dullness / uneven skin tone')) {
+        return {
+          title: 'Normal Skin + Brightening Focus',
+          routine: [
+            'Exfoliating Cleanser',
+            'Brightening Serum',
+            'Overnight Sleeping Mask'
+          ],
+          reason: 'Keeps skin balanced while boosting radiance and evening out skin tone.'
+        };
+      }
+
+else if (c('Dehydration')) {
+  return {
+    title: 'Normal Skin + Dehydration Concern',
+    routine: [
+      'Hydrating Cleanser',
+      'Refreshing Toner',
+      'Hydrating Serum (Hyaluronic Acid)'
+    ],
+    reason: 'Keeps skin plump and hydrated throughout the day.'
+  };
+}
+        return {
+          title: 'Normal Skin + Maintenance Routine',
+          routine: [
+            'Cleansing Milk',
+            'Refreshing Toner',
+            'Hydrating Serum (Hyaluronic Acid)',
+            'Deep Hydration Cream',
+            'Hydrating Sunscreen SPF 50+'
+          ],
+          reason: 'Simple maintenance routine to keep skin healthy and protected from environmental damage.'
+        };
+}}
+     
+    function renderResult(advice, data) {
+      const resultArea = document.getElementById('resultArea');
+      let html = `
+        <h4>${advice.title}</h4>
+        <ul class="routine-list">
+      `;
+      
+      advice.routine.forEach(step => {
+        html += `<li>${step}</li>`;
+      });
+      
+      html += `</ul>`;
+      
+      html += `
+        <div class="reason-box">
+          <strong>Why this routine works for you:</strong>
+          <p>${advice.reason}</p>
+        </div>
+      `;
+      
+      // Add extras if selected
+      if (data.extras && data.extras.length > 0) {
+        html += `<p><strong>Recommended extras:</strong> ${data.extras.join(', ')}</p>`;
+      }
+      
+      resultArea.innerHTML = html;
+      
+      // Scroll to results
+      resultArea.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

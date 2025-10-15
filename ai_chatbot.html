@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elora | Skincare AI Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Elora-Inspired CSS Variables */
+        :root {
+            /* Color Palette - Elora's elegant tones */
+            --color-primary: #333333;
+            --color-secondary: #5e5e5e;
+            --color-accent: #d4afb7;
+            --color-accent-light: #f8e2e7;
+            --color-background: #f7f7f7;
+            --color-surface: #ffffff;
+            --color-border: #e0e0e0;
+            --color-text: #2a2a2a;
+            --color-text-light: #757575;
+            
+            /* Typography - Elora's elegant fonts */
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Karla', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-md: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            
+            /* Spacing - Generous white space */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 6rem;
+            
+            /* Layout */
+            --container-width: 1280px;
+            --border-radius: 0; /* Elora uses minimal rounding */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-body);
+        }
+        
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: var(--font-body);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            border-radius: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        h1 {
+            font-family: var(--font-heading);
+            font-size: var(--font-size-xxl);
+            margin-bottom: 12px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            color: var(--color-primary);
+        }
+        
+        .description {
+            font-size: var(--font-size-md);
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            font-family: var(--font-body);
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .faq-section {
+            flex: 1;
+            background-color: var(--color-surface);
+            border-radius: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            width: 35%;
+            border: 1px solid var(--color-border);
+        }
+        
+        .section-header {
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            padding: 18px 25px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border);
+            font-family: var(--font-body);
+        }
+        
+        .refresh-btn {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            border-radius: 0;
+            padding: 8px 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-family: var(--font-body);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .refresh-btn:hover {
+            background: var(--color-accent-light);
+            border-color: var(--color-accent);
+        }
+        
+        .faq-container {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+            max-height: 500px;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            padding: 16px 20px;
+            background-color: var(--color-surface);
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid var(--color-accent);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+        
+        .faq-item:hover {
+            background-color: var(--color-accent-light);
+            transform: translateX(5px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+        }
+        
+        .chat-section {
+            flex: 2;
+            min-width: 320px;
+            background-color: var(--color-surface);
+            border-radius: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--color-border);
+        }
+        
+        .chat-header {
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            padding: 18px 25px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--color-border);
+            font-family: var(--font-body);
+        }
+        
+        .chat-box {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px;
+            background-color: var(--color-background);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .message {
+            margin-bottom: 5px;
+            max-width: 80%;
+            padding: 15px 20px;
+            border-radius: 0;
+            animation: fadeIn 0.4s ease;
+            line-height: 1.5;
+            position: relative;
+            font-family: var(--font-body);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background-color: var(--color-surface);
+            border-left: 3px solid var(--color-accent);
+            align-self: flex-start;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+        
+        .user-message {
+            background-color: var(--color-accent);
+            color: var(--color-surface);
+            align-self: flex-end;
+            box-shadow: 0 1px 3px rgba(212, 175, 183, 0.3);
+            border: 1px solid var(--color-accent);
+        }
+        
+        .typing-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--color-surface);
+            border-radius: 0;
+            border-left: 3px solid var(--color-accent);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-border);
+        }
+        
+        .typing-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+            margin: 0 4px;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+        
+        .input-area {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            padding: 0 10px;
+        }
+        
+        #userInput {
+            flex: 1;
+            padding: 16px 22px;
+            border: 1px solid var(--color-border);
+            border-radius: 0;
+            background: var(--color-surface);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            font-size: var(--font-size-md);
+            transition: all 0.3s;
+            font-family: var(--font-body);
+        }
+        
+        #userInput:focus {
+            outline: none;
+            box-shadow: 0 1px 5px rgba(212, 175, 183, 0.3);
+            border-color: var(--color-accent);
+        }
+        
+        #send {
+            padding: 16px 25px;
+            border: 1px solid var(--color-accent);
+            border-radius: 0;
+            background: var(--color-accent);
+            color: var(--color-surface);
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(212, 175, 183, 0.3);
+            transition: all 0.3s;
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: var(--font-size-sm);
+        }
+        
+        #send:hover {
+            background: transparent;
+            color: var(--color-accent);
+        }
+        
+        .keyword-section {
+            margin-top: 25px;
+            background: var(--color-surface);
+            border-radius: 0;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-border);
+        }
+        
+        .keyword-title {
+            font-weight: 500;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+            font-size: var(--font-size-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-body);
+        }
+        
+        #chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .chip {
+            padding: 10px 18px;
+            background: var(--color-accent-light);
+            border-radius: 0;
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--color-text);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-border);
+            font-family: var(--font-body);
+        }
+        
+        .chip:hover {
+            background: var(--color-accent);
+            color: var(--color-surface);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(212, 175, 183, 0.3);
+        }
+        
+        .message-time {
+            font-size: var(--font-size-xs);
+            opacity: 0.6;
+            margin-top: 8px;
+            text-align: right;
+            font-family: var(--font-body);
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .faq-section, .chat-section {
+                min-width: 100%;
+            }
+            
+            .message {
+                max-width: 85%;
+            }
+            
+            h1 {
+                font-size: var(--font-size-xl);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: var(--font-size-lg);
+            }
+            
+            .description {
+                font-size: var(--font-size-sm);
+            }
+            
+            .input-area {
+                flex-direction: column;
+            }
+            
+            #send {
+                width: 100%;
+            }
+            
+            .message {
+                max-width: 90%;
+                padding: 12px 16px;
+            }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 0;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 0;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-spa"></i> Elora Skincare Assistant</h1>
+            <p class="description">Your personal guide to skincare. Click on any question or type your own to get skincare advice!</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="faq-section">
+                <div class="section-header">
+                    <div>
+                        <i class="fas fa-question-circle"></i>
+                        Most Asked Skincare Questions
+                    </div>
+                    <button class="refresh-btn" id="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                </div>
+                <div class="faq-container" id="faq-container">
+                    <!-- FAQ items will be generated here -->
+                </div>
+            </div>
+            
+            <div class="chat-section">
+                <div class="chat-header">
+                    <i class="fas fa-comments"></i>
+                    Chat with Skincare Assistant
+                </div>
+                <div class="chat-box" id="chat-box">
+                    <div class="message bot-message">
+                        <i class="fas fa-robot"></i> Hi there! 👋 I'm your skincare assistant. Click on any question from the list or ask your own to get personalized skincare advice!
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+                
+                <div class="input-area">
+                    <input id="userInput" type="text" placeholder="Ask something about skincare..." autocomplete="off">
+                    <button id="send"><i class="fas fa-paper-plane"></i> Send</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="keyword-section">
+            <div class="keyword-title">
+                <i class="fas fa-lightbulb"></i>
+                Try asking about:
+            </div>
+            <div id="chips">
+                <!-- Chips will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqContainer = document.getElementById('faq-container');
+            const chatBox = document.getElementById('chat-box');
+            const refreshBtn = document.getElementById('refresh-btn');
+            const userInput = document.getElementById('userInput');
+            const sendBtn = document.getElementById('send');
+            const chipsContainer = document.getElementById('chips');
+            
+            // Sample skincare FAQs (you'll replace with your full database)
+            const allFAQs = [
+                { question: "What is the best basic skincare routine?", answer: "A basic skincare routine should include cleansing, moisturizing, and sun protection. In the morning: cleanser, moisturizer, sunscreen. At night: cleanser, treatment products (if needed), moisturizer." },
+                { question: "How many steps should a skincare routine have?", answer: "A skincare routine can range from 3 steps (cleanse, moisturize, sunscreen) to 10 steps. Start simple and add products based on your skin's needs." },
+                { question: "Should I wash my face in the morning and at night?", answer: "Yes, you should wash your face both morning and night. In the morning, it removes oil and sweat. At night, it removes dirt, oil, makeup, and pollutants." },
+                { question: "What order should I apply my skincare products in?", answer: "Apply products from thinnest to thickest consistency: cleanser, toner, serums, treatments, eye cream, moisturizer, oils, sunscreen (in the morning)." },
+                { question: "How do I know if a product suits my skin?", answer: "A product suits your skin if it doesn't cause irritation, redness, breakouts, or discomfort. It should leave your skin feeling balanced and comfortable." },
+                { question: "How long does it take to see results from skincare?", answer: "Most skincare products take 4-8 weeks to show visible results, as this is the skin's natural renewal cycle. Some active ingredients may take 3-6 months for full effects." },
+                { question: "Is it okay to mix different skincare brands?", answer: "Yes, it's generally fine to mix different skincare brands. Focus on ingredient compatibility rather than brand matching." },
+                { question: "How do I patch test a new skincare product?", answer: "Apply a small amount of product to a discreet area (like behind the ear) for several days. If no irritation occurs after 72 hours, it's likely safe for your face." },
+                { question: "Do men need skincare routines too?", answer: "Yes, men have skin with the same basic needs as women. The fundamentals of cleansing, moisturizing, and sun protection apply to everyone." },
+                { question: "Can I skip moisturizer if I have oily skin?", answer: "No, even oily skin needs moisturizer. Skipping moisturizer can actually cause your skin to produce more oil to compensate for dehydration." }
+            ];
+            
+            // Knowledge base for the chatbot
+            const knowledge = [
+                { keys: ["hello", "hi", "hey", "yo", "hola"], reply: "Hey there! 👋 How can I help you with your skincare questions today?" },
+                { keys: ["thank", "thanks", "appreciate"], reply: "You're welcome! 😊 Let me know if you have any other skincare questions." },
+                { keys: ["bye", "goodbye", "see you"], reply: "Goodbye! Remember to wear your sunscreen! 🌞" },
+                { keys: ["skin type", "what is my skin type", "how to know skin type"], reply: "To determine your skin type: wash your face, wait an hour, then observe. Oily skin appears shiny, dry feels tight/flaky, combination is oily in T-zone but normal/dry elsewhere." },
+                { keys: ["basic routine", "simple routine", "beginner routine"], reply: "A basic skincare routine includes: 1. Cleanser 2. Moisturizer 3. Sunscreen (AM). You can add treatments like serums based on your specific concerns." },
+                { keys: ["acne", "breakout", "pimple"], reply: "For acne, look for products with salicylic acid, benzoyl peroxide, or retinoids. Consistency is key, and avoid picking at your skin to prevent scarring." },
+                { keys: ["dry skin", "flaky skin", "dehydrated skin"], reply: "For dry skin, use gentle cream cleansers, hydrating toners, rich moisturizers with ceramides and hyaluronic acid, and facial oils. Avoid hot water and harsh scrubs." },
+                { keys: ["oily skin", "shiny skin", "greasy skin"], reply: "For oily skin, use gel or foam cleansers, oil-free moisturizers, and non-comedogenic products. Ingredients like niacinamide and salicylic acid can help regulate oil production." },
+                { keys: ["sunscreen", "spf", "sun protection"], reply: "Sunscreen is essential daily, even indoors! Apply 1/4 teaspoon for face and neck, reapply every 2 hours when outdoors. Look for broad spectrum protection with SPF 30+." },
+                { keys: ["anti aging", "wrinkles", "fine lines"], reply: "For anti-aging, use retinoids, vitamin C, peptides, and always wear sunscreen. Hydration and antioxidants also help maintain youthful skin." },
+                   { keys: ["sensitive skin", "irritated skin", "reactive skin"], reply: "For sensitive skin, choose fragrance-free, alcohol-free products with minimal ingredients. Look for soothing ingredients like oat, ceramides, and niacinamide." },
+                { keys: ["exfoliate", "exfoliation", "scrub"], reply: "Exfoliate 1-3 times weekly based on your skin type. Chemical exfoliants (AHAs/BHAs) are generally gentler than physical scrubs. Always follow with sunscreen." },
+                { keys: ["vitamin c", "l ascorbic acid", "ascorbic acid"], reply: "Vitamin C is a powerful antioxidant that brightens skin, fades dark spots, and boosts sunscreen protection. Use in the morning before moisturizer and sunscreen." },
+                { keys: ["retinol", "retinoid", "tretinoin"], reply: "Retinol promotes cell turnover, treats acne, and reduces signs of aging. Start with low concentration 2-3 times weekly at night, and always use sunscreen during the day." },
+                { keys: ["hyaluronic acid", "ha", "hydrating serum"], reply: "Hyaluronic acid is a humectant that holds up to 1000x its weight in water. Apply to damp skin and follow with moisturizer to seal in hydration." },
+                { keys: ["niacinamide", "vitamin b3", "nicotinamide"], reply: "Niacinamide improves skin barrier, reduces inflammation, minimizes pores, controls oil, and fades hyperpigmentation. It's suitable for most skin types." },
+                { keys: ["dark spots", "hyperpigmentation", "discoloration"], reply: "For dark spots, use ingredients like vitamin C, niacinamide, retinoids, azelaic acid, and hydroquinone (with dermatologist guidance). Consistent sunscreen use is crucial." },
+                { keys: ["redness", "rosacea", "inflamed skin"], reply: "To calm redness, use ingredients like centella asiatica, niacinamide, green tea, and azelaic acid. Avoid triggers like hot water, harsh products, and fragrances." },
+                { keys: ["pores", "large pores", "open pores"], reply: "While you can't change pore size, you can minimize their appearance with niacinamide, retinoids, salicylic acid, and clay masks. Keeping pores clean and skin hydrated helps." },
+                { keys: ["double cleanse", "oil cleanse", "cleansing balm"], reply: "Double cleansing involves using an oil-based cleanser first to remove makeup/sunscreen, followed by a water-based cleanser. It's especially beneficial if you wear makeup or sunscreen regularly." },{ keys: ["hello","hi","hey","yo"], reply: "Hey there! 👋 How can I help you today?" },
+     { keys: ["cleanser","face wash","wash face","best cleanser","cleaning skin"], reply: "A cleanser removes dirt, oil, and impurities from your skin. Choose a gentle, pH-balanced cleanser that matches your skin type (gel for oily, cream for dry, foaming for acne-prone)." },
+
+{ keys: ["toner","what is toner","use toner","skin toner","apply toner","what is the use of toner","why we use toner"], reply: "A toner balances your skin’s pH after cleansing and prepares it to absorb serums and moisturizers. Look for alcohol-free formulas with hydrating or soothing ingredients." },
+
+{ keys: ["serum","vitamin c serum","what is serum","apply serum","skin serum","why serum is needed","why do we use serum","why we use serum"], reply: "Serums deliver concentrated active ingredients such as Vitamin C, Hyaluronic Acid, or Retinol. They target concerns like pigmentation, hydration, or fine lines. Apply after toner, before moisturizer." },
+
+{ keys: ["moisturizer","cream","lotion","hydrating cream","best moisturizer","why moisturizer is needed","why do we use moisturizer","the use of moisturizer","the importance of moisturizer","when to apply moisturizer"], reply: "A moisturizer locks in hydration and strengthens the skin barrier. Choose lightweight gel-based moisturizers for oily skin, and richer creams for dry or mature skin." },
+
+{ keys: ["sunscreen","spf","sunblock","uv protection","sun cream","do we need to apply sunscreen indoor?","what is the importance of SPF","what is spf"], reply: "Sunscreen protects against UVA and UVB rays that cause aging and skin cancer. Apply SPF 30 or higher daily, even indoors. Reapply every 2 hours when outdoors." },
+
+{ keys: ["eye cream","dark circles","puffy eyes","eye serum","under eye"], reply: "Eye creams are formulated for the delicate under-eye area. They help reduce puffiness, dark circles, and fine lines with ingredients like caffeine, peptides, or hyaluronic acid." },
+
+{ keys: ["face mask","sheet mask","clay mask","masking","facial mask","why we need face masks"], reply: "Face masks provide an intensive boost — clay masks absorb oil, sheet masks hydrate, and exfoliating masks renew skin. Use 1–2 times a week depending on your skin type." },
+
+{ keys: ["exfoliate","scrub","peeling","dead skin","exfoliation"], reply: "Exfoliation removes dead skin cells and brightens complexion. Chemical exfoliants (AHA, BHA) are more gentle and effective than harsh scrubs. Limit to 1–2 times weekly." },
+
+{ keys: ["retinol","retinoid","anti aging","wrinkles","retinol cream"], reply: "Retinol is a Vitamin A derivative that boosts cell turnover, reduces wrinkles, and fades dark spots. Introduce gradually (2–3 nights per week) and always pair with sunscreen." },
+
+{ keys: ["hyaluronic acid","hydration","dry skin","HA serum","moisture"], reply: "Hyaluronic acid attracts and retains water in the skin, keeping it plump and hydrated. Best applied on slightly damp skin and sealed with moisturizer." },
+
+{ keys: ["acne","pimples","breakouts","blemishes","zit","how to treat acne"], reply: "For acne, use non-comedogenic products and actives like salicylic acid, benzoyl peroxide, or niacinamide. Avoid over-washing and never pick at pimples to prevent scarring." },
+      
+ { keys: ["why i got acne","acne cause","what causes acne"], reply: "Acne is primarily caused by a combination of excess oil production, dead skin cell buildup, and bacteria clogging pores, which triggers inflammation and leads to pimples, blackheads, or cysts. Hormonal changes, especially during puberty, menstrual cycles, or conditions like PCOS, play a major role in increasing oil production. External factors such as oily skincare or makeup, high humidity, friction from masks, and lifestyle habits like poor sleep, stress, or a high-sugar diet can also worsen acne. In short, acne develops when pores become blocked and inflamed due to internal hormonal shifts and external environmental or lifestyle triggers."},
+
+{ keys: ["sensitive skin","redness","irritation","allergic","gentle skincare","take care sensitive skin","how to treat sensitive skin"
+], reply: "For sensitive skin, avoid fragrances, alcohol, and harsh exfoliants. Look for calming ingredients like aloe vera, ceramides, and centella asiatica." },
+
+{ keys: ["oily skin","shine","greasy face","oil control","sebum","how to treat oily skin"], reply: "Oily skin benefits from lightweight, oil-free, and non-comedogenic products. Gel cleansers, niacinamide serums, and mattifying moisturizers help balance excess sebum." },
+
+{ keys: ["dry skin","flaky skin","tight skin","dehydrated","winter skin","how to treat dry skin"], reply: "Dry skin needs creamy cleansers, hydrating toners, and rich moisturizers with ceramides, glycerin, and shea butter. Avoid hot water and harsh soaps." },
+
+{ keys: ["combination skin","t zone","mixed skin","both oily dry","dual skin type"], reply: "Combination skin requires balancing care: use lightweight moisturizers for the T-zone and richer creams for drier areas. Multi-masking can target different zones effectively." },
+
+{ keys: ["aging skin","fine lines","wrinkles","mature skin","anti aging routine"], reply: "For aging skin, focus on retinol, peptides, antioxidants, and hydrating products. Sunscreen is crucial to prevent premature aging." },
+
+{ keys: ["brightening","dull skin","glow","radiance","even tone"], reply: "Brightening skincare often includes Vitamin C, niacinamide, and exfoliating acids. They help fade dark spots, even skin tone, and restore radiance." },
+
+{ keys: ["maskne","acne mask","breakout from mask","face mask pimples","mask skin issue"], reply: "Maskne (mask-related acne) is common. Wash reusable masks regularly, use gentle cleansers, and apply non-comedogenic moisturizer before wearing a mask." },
+
+{ keys: ["double cleanse","oil cleanse","two step cleanse","cleansing balm","cleansing oil"], reply: "Double cleansing involves using an oil-based cleanser to remove sunscreen/makeup, followed by a water-based cleanser to deeply clean pores." },
+
+{ keys: ["skin barrier","damaged skin","barrier repair","ceramides","barrier cream"], reply: "A healthy skin barrier keeps moisture in and irritants out. Repair it with ceramides, fatty acids, and gentle products. Avoid over-exfoliation until healed." },
+        { keys: ["does diet affect acne","does food cause acne","chocolate pimples","spicy food breakout","oily food acne"], reply: "Yes, diet can influence acne for some people. High-glycemic foods and dairy are common triggers, while a balanced diet rich in vegetables, fruits, and lean proteins may help improve skin health." },
+
+  { keys: ["difference dry and dehydrated skin","dry vs dehydrated","how to tell if skin dry or dehydrated"], reply: "Dry skin lacks oil (lipids), while dehydrated skin lacks water. Dry skin feels rough and flaky, while dehydrated skin looks dull and feels tight. Hydration and nourishing moisturizers can help both." },
+
+  { keys: ["best night cream","recommend night moisturizer","night skincare","what cream to use at night"], reply: "At night, use a nourishing moisturizer with ceramides, peptides, or hyaluronic acid. Night creams help skin repair and restore while you sleep." },
+
+  { keys: ["is toner necessary","do i need toner","what toner do","skip toner","toner purpose"], reply: "Toner isn’t always necessary, but it can help rebalance skin’s pH, remove leftover impurities, and prep your skin to absorb serums and moisturizers more effectively." },
+
+  { keys: ["can i use body lotion on face","face cream vs body lotion","is body lotion okay for face"], reply: "It’s best to avoid using body lotion on the face. Body lotions are often thicker, contain fragrances, and may clog pores. Choose products formulated specifically for facial skin." },
+
+  { keys: ["how often exfoliate","exfoliate everyday","scrub daily","when to exfoliate","exfoliate frequency"], reply: "Exfoliation 1–2 times per week is usually enough. Over-exfoliating can cause irritation, redness, and sensitivity. Adjust based on your skin type." },
+
+  { keys: ["best serum","what serum should i use","recommend serum","serum for glowing skin"], reply: "Popular serums include Vitamin C (brightening), Niacinamide (oil control), Hyaluronic Acid (hydration), and Retinol (anti-aging). Choose based on your main skin concerns." },
+
+  { keys: ["how to shrink pores","reduce pores","big pores fix","can pores close","how to reduce pores","smaller pores"], reply: "Pores can’t completely close, but their appearance can be minimized. Regular cleansing, exfoliation, retinoids, and using niacinamide or clay masks help reduce pore visibility." },
+
+  { keys: ["skin barrier repair","damaged skin barrier","how to heal skin barrier","why face burning","skin barrier cream"], reply: "A damaged skin barrier feels tight, itchy, or burns when applying products. Repair by using gentle cleansers, rich moisturizers with ceramides, avoiding harsh actives, and protecting with sunscreen." },
+
+  { keys: ["can skincare expire","expired cream","old skincare safe","does serum expire","does skin care expires"], reply: "Yes, skincare products expire. Using expired products can reduce effectiveness and cause irritation. Check the packaging for PAO (period-after-opening) symbol, usually 6–12 months for creams and serums." },
+
+  { keys: ["pregnancy safe skincare","what skincare avoid pregnant","retinol pregnancy safe","salicylic acid pregnancy"], reply: "During pregnancy, avoid retinoids, high-strength salicylic acid, and hydroquinone. Safer options include niacinamide, vitamin C, and gentle moisturizers. Always consult your doctor." },
+
+  { keys: ["difference essence and toner","essence vs toner","is essence necessary"], reply: "Toners rebalance skin and remove residue, while essences deliver hydration and prep for serums. Essences are common in Korean skincare routines but optional." },
+
+  { keys: ["how long skincare results","when will i see results","skincare not working","how fast skincare works"], reply: "Results vary by product: Hydration (immediate), Vitamin C (4–6 weeks), Retinol (3–6 months). Consistency and patience are key." },
+
+  { keys: ["eye cream necessary","can i skip eye cream","use moisturizer instead eye cream"], reply: "Eye creams are optional. A good moisturizer can often do the job, but dedicated eye creams may target dark circles, puffiness, or fine lines with specialized ingredients." },
+
+  { keys: ["does stress cause acne","stress pimples","breakout exam","anxiety skin"], reply: "Yes, stress can trigger hormonal changes that increase oil production, leading to breakouts. Stress management, sleep, and proper skincare help reduce stress-related acne." },
+
+  { keys: ["can i use multiple serums","serum layering","how to layer serum","mix serums"], reply: "Yes, you can layer serums, but avoid conflicting actives (e.g., Vitamin C + Niacinamide in some cases, or Retinol + AHA/BHA). Apply from thinnest to thickest texture." },
+
+  { keys: ["difference chemical and physical exfoliation","scrub vs acid exfoliant","chemical exfoliant good"], reply: "Physical exfoliation uses scrubs with particles, while chemical exfoliation uses acids like AHA/BHA. Chemical exfoliation is gentler and more effective for most people." },
+
+  { keys: ["does sunscreen darken skin","sunscreen make me darker","sunscreen cause tan"], reply: "No, sunscreen prevents tanning and dark spots. Some sunscreens may leave a temporary white or oily cast, but they do not darken skin." },
+
+  { keys: ["face mask everyday","daily mask use","can i mask daily"], reply: "Most masks should be used 1–3 times per week. Overuse can dry or irritate skin. Hydrating sheet masks can be used more frequently if your skin tolerates it." },
+
+  { keys: ["skincare order","what order skincare","right routine steps","sequence skincare"], reply: "The basic order is: Cleanser → Toner → Serum → Moisturizer → Sunscreen (morning). At night: Cleanser → Toner/Essence → Serum/Treatment → Moisturizer." },
+
+  { keys: ["why pimples appear","why i get pimples","cause of pimples","reason pimples come","pimple always come back","why breakout","breakouts reason","pimple cause","pimple","pimples"], 
+  reply: "Pimples are caused by clogged pores due to excess oil, dead skin cells, and bacteria. Hormonal changes, stress, and certain products can also trigger breakouts." },
+
+{ keys: ["how to treat acne","acne cure","remove acne","acne treatment","best way to clear pimples","how to fight acne","how get rid of acne"], 
+  reply: "Treat acne by cleansing gently twice daily, using non-comedogenic products, and applying acne treatments with salicylic acid or benzoyl peroxide. For severe cases, consult a dermatologist." },
+
+{ keys: ["best skincare for sensitive skin","sensitive skincare routine","how to care sensitive skin","products for sensitive skin","sensitive face routine"], 
+  reply: "Sensitive skin benefits from fragrance-free, alcohol-free, and hypoallergenic products. Use a gentle cleanser, hydrating moisturizer, and mineral sunscreen daily." },
+
+{ keys: ["oily skin routine","why my face oily","how to stop oily face","too much oil skin","reduce oil skin","oil control skincare"], 
+  reply: "Oily skin happens due to excess sebum production. Use foaming cleansers, lightweight moisturizers, and oil-free sunscreens. Avoid harsh stripping, as it may trigger more oil." },
+
+{ keys: ["dry skin care","how to treat dry skin","face too dry","skin peeling","very dry face","dry flaky skin solution"], 
+  reply: "For dry skin, use a hydrating cream cleanser, rich moisturizer with ceramides, and apply sunscreen daily. Avoid hot water and harsh scrubs." },
+
+{ keys: ["combination skin care","my skin oily and dry","mix skin type routine","care for combo skin"], 
+  reply: "Combination skin benefits from balancing routines: gentle cleansers, light moisturizers in oily areas, richer creams in dry areas, and sunscreen daily." },
+
+{ keys: ["skincare steps","correct skincare order","right way skincare","basic skincare routine","skincare layering","order products skincare"], 
+  reply: "The general skincare order: cleanser → toner (optional) → serum/treatment → moisturizer → sunscreen (morning only)." },
+
+{ keys: ["dark spots","hyperpigmentation","brown marks face","how fade dark spot","spot treatment skin"], 
+  reply: "Dark spots can be improved with ingredients like vitamin C, niacinamide, retinoids, and chemical exfoliants (AHAs/BHAs). Daily sunscreen is essential to prevent worsening." },
+
+{ keys: ["wrinkles","anti aging","fine lines","reduce wrinkles","anti aging skincare","how to look young skin"], 
+  reply: "Wrinkles are a natural part of aging. Use retinol, peptides, antioxidants, and sunscreen daily to reduce signs of aging and support healthy skin." },
+
+{ keys: ["sunscreen importance","why wear sunscreen","need sunscreen daily","skip sunscreen ok","do i need spf indoors"], 
+  reply: "Sunscreen protects against UV rays that cause premature aging, dark spots, and skin cancer. Use it daily, even indoors, as UVA penetrates windows." },
+
+{ keys: ["spf number meaning","spf 30 vs 50","how much spf","which spf better"], 
+  reply: "SPF measures protection against UVB rays. SPF 30 blocks ~97% and SPF 50 ~98%. Higher SPF gives longer protection, but reapplication every 2 hours is key." },
+
+{ keys: ["toner necessary","do i need toner","what toner does","is toner important"], 
+  reply: "Toners help rebalance skin pH, remove leftover residue, and prep skin for better absorption. They're optional but helpful for hydration or oil control." },
+
+{ keys: ["serum purpose","what serum does","do i need serum","serum important skincare"], 
+  reply: "Serums deliver concentrated active ingredients (like vitamin C, hyaluronic acid, or retinol) to target specific concerns such as hydration, brightening, or anti-aging." },
+
+{ keys: ["exfoliate skin","how often exfoliate","best exfoliator","chemical vs physical exfoliation","scrub face good or bad"], 
+  reply: "Exfoliation removes dead skin cells for smoother texture. Use chemical exfoliants (AHA/BHA) 1–3 times per week. Avoid harsh scrubs that can irritate skin." },
+
+{ keys: ["blackheads removal","how to remove blackheads","blackhead treatment","nose blackheads","how to remove blackhead","blackhead","blackheads"], 
+  reply: "Blackheads form when pores are clogged with oil and dead skin. Use salicylic acid cleansers, clay masks, or retinoids to clear them gently." },
+
+{ keys: ["whiteheads treatment","how to treat whiteheads","white bumps on face"], 
+  reply: "Whiteheads are closed clogged pores. Treat with gentle exfoliation (salicylic acid, retinoids) and avoid picking, which can worsen inflammation." },
+
+{ keys: ["large pores","minimize pores","shrink pores","reduce pores size"], 
+  reply: "Pore size is mostly genetic, but oil control, exfoliation, retinoids, and sunscreen can make them look smaller and less noticeable." },
+
+{ keys: ["skin barrier repair","damaged skin barrier","how to heal skin barrier"], 
+  reply: "A damaged skin barrier shows redness, sensitivity, or dryness. Repair with gentle cleansers, fragrance-free moisturizers, and avoid harsh actives until healed." },
+
+{ keys: ["hydration vs moisture","hydrating vs moisturizing","difference hydration and moisture"], 
+  reply: "Hydration means increasing water in the skin (via hyaluronic acid, aloe), while moisture locks water in (via oils, ceramides). Most skin types need both." },
+
+{ keys: ["double cleansing","what is double cleanse","do i need double cleansing"], 
+  reply: "Double cleansing uses an oil-based cleanser followed by a water-based one. It helps remove makeup, sunscreen, and impurities more effectively." },
+
+{ keys: ["skincare for men","men skincare routine","do guys need skincare"], 
+  reply: "Men also benefit from skincare: cleanse, moisturize, and apply sunscreen daily. Treatments for acne, shaving irritation, and oil control can be added if needed." },
+
+{ keys: ["teen skincare","best skincare for teenagers","simple skincare teen"], 
+  reply: "Teen skincare should stay simple: gentle cleanser, lightweight moisturizer, and sunscreen. For acne, add salicylic acid or benzoyl peroxide products if needed." },
+
+{ keys: ["pregnancy skincare","safe skincare during pregnancy","which skincare avoid pregnant"], 
+  reply: "During pregnancy, avoid retinoids and high-strength chemical peels. Safer options include vitamin C, niacinamide, hyaluronic acid, and mineral sunscreen." },
+
+{ keys: ["natural skincare","organic skincare good","is natural better","use diy skincare"], 
+  reply: "Natural or organic skincare can be good, but not always safer. Focus on proven ingredients and patch-test homemade products to avoid irritation." },
+
+{ keys: ["face masks","sheet mask use","clay mask purpose","how often use mask"], 
+  reply: "Masks provide targeted care: clay masks absorb oil, hydrating masks add moisture, and sheet masks boost radiance. Use 1–3 times per week as needed." },
+
+{ keys: ["eye cream","do i need eye cream","best eye cream","dark circles cream"], 
+  reply: "Eye creams help with hydration, puffiness, or dark circles. Look for caffeine, peptides, or hyaluronic acid. But a good moisturizer can often suffice." },
+
+{ keys: ["lip care","chapped lips remedy","best lip balm"], 
+  reply: "Chapped lips improve with balms containing shea butter, petroleum jelly, or lanolin. Avoid licking lips as it worsens dryness." },
+
+{ keys: ["acne scars","how to fade scars","best product for scars"], 
+  reply: "Acne scars fade with retinoids, chemical exfoliation, vitamin C, and professional treatments like microneedling or laser. Sunscreen prevents darkening." },
+
+{ keys: ["skin purging","what is purging","is purging normal"], 
+  reply: "Purging is a temporary breakout when starting actives like retinoids or acids. It usually clears within weeks and signals increased skin turnover." },
+
+{ keys: ["dehydrated skin","dry vs dehydrated skin","skin feels tight but oily"], 
+  reply: "Dehydrated skin lacks water, not oil. Signs include tightness, dullness, and fine lines. Use hydrating serums with hyaluronic acid and avoid harsh cleansers." },
+
+{ keys: ["skincare myths","common skincare myths","false skincare tips"], 
+  reply: "Common myths: oily skin doesn’t need moisturizer (it does), higher SPF doesn’t need reapplying (it does), natural = always safe (not true)." },
+
+{ keys: ["how long to see skincare results","when skincare works","time skincare effective"], 
+  reply: "Most products take 4–8 weeks to show results. Consistency and patience are key for visible improvements." },
+
+{ keys: ["is skincare necessary","do i need skincare","why skincare important"], 
+  reply: "Skincare keeps your skin healthy, prevents issues like acne or sun damage, and maintains a strong skin barrier for long-term health." },
+
+{ keys: ["can i use many products","too many skincare products","over skincare routine"], 
+  reply: "Overusing products may irritate the skin. Stick to essentials: cleanser, moisturizer, sunscreen, and 1–2 targeted treatments if needed." },
+
+{ keys: ["skincare for dark skin","best skincare black skin","melanin skin routine"], 
+  reply: "Melanin-rich skin benefits from daily sunscreen, gentle exfoliation, and brightening agents like vitamin C or niacinamide for hyperpigmentation." },
+
+{ keys: ["skincare mistakes","common skincare errors","why skincare not working"], 
+  reply: "Mistakes include skipping sunscreen, over-exfoliating, mixing too many actives, or not patch-testing new products." },
+
+{ keys: ["how much product use","skincare amount","pea size retinol","how many drops serum"], 
+  reply: "Follow recommended amounts: cleanser = coin size, serum = 2–3 drops, moisturizer = nickel size, retinol = pea size, sunscreen = 2 finger lengths." },
+
+{ keys: ["skin allergy","face itchy after skincare","rash from cream"], 
+  reply: "If you develop itching, redness, or rash after products, stop use immediately and patch-test future products on a small area first." },
+
+{ keys: ["is makeup bad","does makeup ruin skin","makeup everyday safe"], 
+  reply: "Makeup itself isn’t harmful if removed properly. Always cleanse thoroughly and avoid sleeping with makeup to keep skin healthy." },
+
+{ keys: ["skincare morning routine","skincare night routine","day vs night skincare"], 
+  reply: "Morning: cleanser, moisturizer, sunscreen. Night: cleanser, treatments (like retinol), moisturizer. Adjust depending on skin needs." },
+
+{ 
+  keys: ["do teens need skincare","does teen needs skin care","teenage skincare","is skincare necessary for teenagers","skincare for teens","teen skin care","do i need skincare as teen"], 
+  reply: "Yes, teens should start with a simple skincare routine: gentle cleanser, moisturizer, and sunscreen. This helps control oil, prevent acne, and build healthy habits early." 
+},
+
+{ 
+  keys: ["sensitive skin skincare routine","what skincare for sensitive skin","routine for sensitive skin","skincare tips sensitive","best routine for sensitive skin","what is the basic skincare for sensitive skin","gentle skincare routine","sensitive skin care"], 
+  reply: "For sensitive skin, use fragrance-free, alcohol-free products. A gentle cleanser, hydrating moisturizer, and mineral sunscreen are best. Avoid harsh scrubs and strong actives like high % acids." 
+},
+
+{ 
+  keys: ["avoid acne scar","how to prevent acne scars","no acne scar","stop acne scar","avoid pimple scars","how to reduce acne marks","acne scar prevention"], 
+  reply:"To avoid acne scars, don’t pick pimples, use sunscreen daily, and treat breakouts early with ingredients like salicylic acid or benzoyl peroxide. For persistent acne, consult a dermatologist." 
+},
+
+{ 
+  keys: ["oily skin can use alcohol","is alcohol good for oily skin","alcohol skincare oily face","can oily face use alcohol","alcohol toner for oily skin","does alcohol help oily skin"], 
+  reply:"Alcohol-based skincare can temporarily reduce oil but may cause irritation and dryness. It’s better to use oil-control cleansers, niacinamide, or clay masks instead of alcohol-heavy products." 
+},
+
+{ 
+  keys: ["sensitive skin can use alcohol","alcohol safe sensitive skin","can sensitive skin use alcohol","alcohol toner sensitive","is alcohol okay for sensitive skin","skincare alcohol sensitive","can sensitive skin use alcohol"], 
+  reply:"People with sensitive skin should avoid alcohol-based skincare. Alcohol can cause irritation, dryness, and redness. Instead, choose soothing ingredients like aloe vera, ceramides, or oat extract." 
+},
+{ 
+  keys: ["do i need facemask daily","does facemask needed daily","daily face mask good","use mask everyday","sheetmask everyday"], 
+  reply: "Face masks are not needed daily. Most masks are best 1–3 times a week depending on your skin type. Overuse can irritate your skin." 
+},
+{ 
+  "keys": ["why got blackhead","what causes blackheads","blackhead problem","black dot on nose","why my pores block"], 
+  "reply": "Blackheads form when excess oil and dead skin clog pores. When exposed to air, the clog oxidizes and turns dark." 
+},
+{ 
+  keys: ["why got darkspot","how darkspot form","how is darkspot formed","how are darkspots formed","dark spot cause","brown marks on skin","post acne mark","pigmentation issue"], 
+  reply: "Dark spots are usually caused by acne scars, sun exposure, or hormonal changes leading to excess melanin production." 
+},
+{ 
+  keys: ["why got skin barrier","what is skin barrier","skin barrier meaning","function of skin barrier","skin barrier role"], 
+  reply: "The skin barrier is your skin’s natural shield made of lipids and cells. It locks in moisture and protects from irritants, pollution, and bacteria." 
+},
+{ 
+  keys: ["how to repair skin barrier","fix damaged skin barrier","barrier repair tips","healing skin barrier","skin barrier damage solution"], 
+  reply: "To repair your skin barrier: use gentle cleansers, moisturizers with ceramides/fatty acids, avoid over-exfoliation, and apply sunscreen daily." 
+},
+{ 
+  keys: ["is blackhead removal strip safe","blackhead strip harm skin","pore strip safe","blackhead peel strip good or bad"], 
+  reply: "Blackhead strips give temporary results but can irritate and damage the skin if overused. They don’t fix the root cause of blackheads." 
+},
+{ 
+  keys: ["why we need sunscreen","do i need sunscreen","importance of sunscreen","skip sunscreen ok?","why sunblock"], 
+  reply: "Sunscreen protects from UV rays that cause premature aging, sunburn, dark spots, and skin cancer. It is the most essential step in skincare." 
+},
+{ 
+  keys: ["sensitive skin needs care","sensitive skin take note","what sensitive skin must avoid","how to protect sensitive skin","sensitive skin tips"], 
+  reply: "Sensitive skin needs gentle, fragrance-free, alcohol-free products. Avoid harsh exfoliation and patch test new products first." 
+},
+{ 
+  "keys": ["why pimples keep coming","pimples everyday","why my face always breakout","zit problem","daily acne cause","why i always got pimple"], 
+  "reply": "Recurring pimples can be caused by hormones, stress, oily skin, or clogged pores. Consistent gentle skincare and sunscreen help, but severe cases may need a dermatologist." 
+},
+  {
+    "keys": ["why got darkspot","dark spot cause","brown marks on skin","post acne mark","pigmentation issue"],
+    "reply": "Dark spots are usually caused by acne scars, sun exposure, or hormonal changes leading to excess melanin production."
+  },
+  {
+    "keys": ["why teen got acne","acne cause in teens","breakouts in youth","pimples in teenagers","hormonal acne"],
+    "reply": "Teen acne is often triggered by hormonal changes that increase oil production, clogging pores and leading to breakouts."
+  },
+  {
+    "keys": ["why skin dry","skin dehydration cause","tight feeling skin","flaky skin","dryness problem"],
+    "reply": "Dry skin can be caused by lack of moisture, harsh cleansers, cold weather, or a weakened skin barrier."
+  },
+  {
+    "keys": ["why oily skin","oily face cause","too much shine","greasy skin issue","excess sebum"],
+    "reply": "Oily skin occurs when sebaceous glands produce too much sebum, often influenced by hormones, genetics, or environment."
+  },
+  {
+    "keys": ["why blackheads form","blackhead cause","tiny dark dots on nose","clogged pore issue","black spot pore","why i got blackheads"],
+    "reply": "Blackheads form when pores get clogged with oil and dead skin cells, and the material oxidizes when exposed to air."
+  },
+  {
+    "keys": ["why wrinkles form","wrinkles cause","fine lines on skin","aging skin","loss of elasticity"],
+    "reply": "Wrinkles develop due to natural aging, sun exposure, reduced collagen, and repeated facial expressions."
+  },
+  {
+    "keys": ["why skin dull","skin looks tired","uneven glow","lack of radiance","why no brightness"],
+    "reply": "Dull skin can be caused by dead skin buildup, dehydration, lack of sleep, or poor circulation."
+  },
+  {
+    "keys": ["why dark circle under eye","eye bag cause","under eye shadow","tired eye look","pigmentation under eyes"],
+    "reply": "Dark circles often result from lack of sleep, genetics, thinning skin, or increased pigmentation around the eyes."
+  },
+  {
+    "keys": ["why sensitive skin","sensitive skin cause","easily irritated skin","redness problem","burning tingling"],
+    "reply": "Sensitive skin reacts easily due to a weak skin barrier, often triggered by harsh products, environment, or allergies."
+  },
+  {
+    "keys": ["why need sunscreen","uv damage skin","sun exposure cause","why apply sunblock daily","skin protection"],
+    "reply": "Sunscreen protects the skin from harmful UV rays that can cause sunburn, premature aging, and skin cancer."
+  },
+  {
+    "keys": ["why I always oily","why my face so oily","why I have oily skin","why I get shiny face","why I greasy face","why I too much oil on skin"],
+    "reply": "Your skin produces excess sebum due to overactive oil glands, influenced by hormones, genetics, diet, or stress."
+  },
+  {
+    "keys": ["why I always dry skin","why I have flaky skin","why I feel tight skin","why I skin peeling","why I dehydrated skin"],
+    "reply": "Dryness happens when your skin lacks water or natural oils, often caused by cold weather, harsh cleansers, or a weak skin barrier."
+  },
+  {
+    "keys": ["why I always acne","why I keep getting pimples","why I breakout often","why I have blemishes","why I skin congested"],
+    "reply": "Acne occurs when pores are clogged with oil, dead skin, and bacteria, often triggered by hormones, stress, or diet."
+  },
+  {
+    "keys": ["why I always blackhead","why I get black dots on nose","why I clogged pores","why I have rough texture","why I many black spots pores"],
+    "reply": "Blackheads form when oil and dead skin block pores and oxidize when exposed to air, turning dark in color."
+  },
+  {
+    "keys": ["why I dull skin","why I no glow","why I look tired","why I uneven skin tone","why I lack radiance"],
+    "reply": "Dullness is caused by dead skin buildup, dehydration, stress, or poor circulation that reduces your skin’s natural glow."
+  },
+  {
+    "keys": ["why I dark spot","why I brown marks","why I post acne mark","why I pigmentation issue","why I uneven tone"],
+    "reply": "Dark spots are usually caused by acne scars, sun exposure, or hormonal changes that increase melanin production."
+  },
+  {
+    "keys": ["why I wrinkles","why I fine lines","why I aging skin","why I skin sagging","why I lose firmness"],
+    "reply": "Wrinkles and loss of firmness happen due to collagen breakdown from aging, sun damage, and repeated facial movements."
+  },
+  {
+    "keys": ["why I dark circle","why I under eye shadow","why I eye bag","why I look tired eyes","why I puffiness"],
+    "reply": "Dark circles and puffiness can come from lack of sleep, genetics, fluid retention, or thinning skin under the eyes."
+  },
+  {
+    "keys": ["why I sensitive skin","why I get redness","why my face always red","why my skin red","why I feel itchy skin","why I burn after skincare","why I skin irritated easily"],
+    "reply": "Sensitive skin reacts easily due to a weakened barrier, often triggered by harsh ingredients, weather changes, or allergies."
+  },
+  {
+    "keys": ["why I need sunscreen","why I use sunblock daily","why I skin darken in sun","why I tanning easily","why I sun damage"],
+    "reply": "Sunscreen is essential to protect skin from UV rays that cause dark spots, premature aging, and skin cancer."
+  },
+  {
+    "keys": ["why my face always oily","why oily skin happens","why too much oil on skin","why my T-zone shiny","why greasy skin"],
+    "reply": "Oily skin occurs when sebaceous glands overproduce sebum, often influenced by hormones, diet, or genetics."
+  },
+  {
+    "keys": ["why I keep getting acne","why I breakout often","why pimples keep coming","why I blemishes","why my face always has spots"],
+    "reply": "Acne is caused by clogged pores with oil, dead cells, and bacteria, triggered by hormones, stress, or lifestyle factors."
+  },
+  {
+    "keys": ["I have dark spots why","why I brown marks","why I pigmentation issue","why my skin uneven tone","why acne leave marks"],
+    "reply": "Dark spots are usually from acne scars, UV damage, or hormonal changes leading to excess melanin."
+  },
+  {
+    "keys": ["could you tell me why my skin dry","why my skin flaky","why I always dehydrated skin","why I feel tight skin","I have dry patches why"],
+    "reply": "Dryness happens when skin lacks moisture or oils, often caused by weather, harsh cleansers, or a weak barrier."
+  },
+  {
+    "keys": ["why wrinkles appear","why fine lines","why I aging skin","why I lose firmness","why skin sagging"],
+    "reply": "Wrinkles appear as collagen and elastin decline with age, sun damage, or repeated expressions."
+  },
+  {
+    "keys": ["why my skin dull","why my face dull","why my face is dull","why no glow","I look tired why","why uneven texture","why lack of radiance"],
+    "reply": "Dull skin comes from dead cell buildup, dehydration, stress, or poor circulation."
+  },
+  {
+    "keys": ["why I blackheads","why small dots on nose","why pores clogged","why rough skin texture","why pore problem"],
+    "reply": "Blackheads form when oil and dead cells block pores and oxidize, turning dark."
+  },
+  {
+    "keys": ["why my under eye dark","why I eye bag","why puffy eyes","why shadow under eyes","could you tell me eye circle cause"],
+    "reply": "Dark circles are from genetics, lack of sleep, thin under-eye skin, or pigmentation."
+  },
+  {
+    "keys": ["why sensitive skin","why redness after skincare","why irritation","I feel itchy skin","why stinging feeling"],
+    "reply": "Sensitive skin reacts due to weak barrier, harsh products, or environmental triggers."
+  },
+  {
+    "keys": ["why sunscreen needed","why sunblock daily","why UV protection important","why skin tan fast","why sun damage"],
+    "reply": "Sunscreen shields skin from UV rays that cause sunburn, aging, dark spots, and cancer."
+  },
+  {
+    "keys": ["why pores large","why open pores","why I visible pores","why pores show","why skin not smooth"],
+    "reply": "Large pores are often due to genetics, excess oil, or loss of skin elasticity."
+  },
+  {
+    "keys": ["I get redness easily why","why my skin flush","why I sensitive to weather","why burning skin","why rashes appear"],
+    "reply": "Redness can come from sensitivity, allergies, rosacea, or environmental irritation."
+  },
+  {
+    "keys": ["why I need moisturizer","why my skin tight","why I flaky after washing","why hydration important","why skin cracked"],
+    "reply": "Moisturizer restores hydration, strengthens barrier, and prevents water loss."
+  },
+  {
+    "keys": ["could you tell me why I breakout after makeup","why foundation cause acne","why concealer clog pores","why I pimples after cosmetics","pimples after makeup","why I skin irritated with makeup"],
+    "reply": "Makeup can clog pores or irritate sensitive skin, especially without proper cleansing."
+  },
+  {
+    "keys": ["why anti-aging cream","why I need retinol","why firming products","why collagen loss","why skin sag"],
+    "reply": "Anti-aging products support collagen, renew skin, and reduce wrinkles and sagging."
+  },
+  {
+    "keys": ["I always oily in teens","why teenagers acne","why puberty pimples","why my teen skin breakout","why oily T-zone in youth"],
+    "reply": "Teen skin is oily due to hormonal changes that increase sebum production."
+  },
+  {
+    "keys": ["why 30s skin dull","why skin lose glow in 30s","why early wrinkles","why pigmentation in 30s","why pores bigger"],
+    "reply": "In the 30s, skin cell turnover slows, leading to dullness, uneven tone, and fine lines."
+  },
+  {
+    "keys": ["why 40s skin sag","why firmness loss in 40s","why deep wrinkles","why skin thin","why age spots appear"],
+    "reply": "In the 40s, collagen declines and sun damage accumulates, causing sagging and wrinkles."
+  },
+  {
+    "keys": ["could you tell me why 50s skin dry","why older skin fragile","why barrier weak","why deep lines","why age marks"],
+    "reply": "In the 50s+, estrogen decline reduces hydration and elasticity, leading to dryness and deep wrinkles."
+  },
+  {
+    "keys": ["why I clogged pores","why dirt stuck in pores","why rough skin","why small bumps","why pore congestion"],
+    "reply": "Clogged pores come from excess oil, dirt, makeup residue, or improper cleansing."
+  },
+  {
+    "keys": ["I always breakout before period","why hormonal acne","why cycle pimples","why chin acne","why period spots"],
+    "reply": "Hormonal fluctuations before periods increase oil, causing breakouts on the chin and jawline."
+  },
+  {
+    "keys": ["why mask cause acne","why maskne","why breakout with face mask","why pimples around mouth","why irritation from mask"],
+    "reply": "Wearing masks traps moisture and bacteria, leading to irritation and breakouts."
+  },
+  {
+    "keys": ["could you tell me why my skin itchy after shower","why I redness after hot water","why I dryness after bath","why I skin peel","why irritation post shower"],
+    "reply": "Hot water strips skin oils, causing dryness, redness, and irritation."
+  },
+  {
+    "keys": ["why my skincare not work","why no result after serum","why cream no effect","why toner not helping","why product useless"],
+    "reply": "Skincare takes time and consistency; wrong products for your skin type may also reduce results."
+  },
+  {
+    "keys": ["why I breakout after new product","why purging","why pimples after serum","why irritation new skincare","why flare up"],
+    "reply": "Some active ingredients speed up cell turnover, causing temporary purging before results."
+  },
+  {
+    "keys": ["why blackheads return fast","why clogged pores again","why pores reopen","why dirt come back","why nose dots"],
+    "reply": "Blackheads return if pores stay oily or skincare routine doesn’t control sebum production."
+  },
+  {
+    "keys": ["why fine lines under eye","why eye wrinkles","why crow feet","why tired eyes wrinkles","why skin thin under eye"],
+    "reply": "The under-eye area is delicate with little collagen, so it wrinkles earlier than other areas."
+  },
+  {
+    "keys": ["why skin barrier weak","why irritation often","why skin sensitive to everything","why redness no stop","why dry cracks"],
+    "reply": "A damaged skin barrier lets moisture escape and irritants enter, causing sensitivity and dryness."
+  },
+  {
+    "keys": ["I always breakout forehead","why forehead pimples","why small bumps head","why oily forehead","why acne on top face"],
+    "reply": "Forehead acne is often caused by hair products, oil buildup, or stress."
+  },
+  {
+    "keys": ["I breakout on cheeks why","why acne cheeks","why red marks cheeks","why sensitive cheeks","why pimples side face"],
+    "reply": "Cheek acne can be due to dirty pillowcases, phones, or hormonal imbalance."
+  },
+  {
+    "keys": ["why jawline acne","why chin pimples","why hormonal breakouts","why lower face acne","why cystic spots"],
+    "reply": "Jawline acne is strongly linked to hormones and stress, often cystic in nature."
+  },
+  {
+    "keys": ["could you tell me why my skin rough","why texture uneven","why small bumps no acne","why dull patches","why grainy skin"],
+    "reply": "Uneven texture comes from dead skin buildup, enlarged pores, or lack of exfoliation."
+  },
+  {
+    "keys": ["why lips dry","why cracked lips","why peeling lips","why chapped lips","why sore lips"],
+    "reply": "Dry lips result from dehydration, sun exposure, or lack of protective lip balm."
+  },
+  {
+    "keys": ["why sunscreen break me out","why SPF cause pimples","why heavy sunscreen","why greasy sunscreen","why irritation from sunblock"],
+    "reply": "Some sunscreens clog pores or irritate sensitive skin; lightweight formulas suit acne-prone types better."
+  },
+  {
+    "keys": ["why night cream important","why use cream before bed","why skincare at night","why sleep skincare","why overnight mask"],
+    "reply": "Night care supports skin repair while you sleep, boosting hydration and renewal."
+  },
+  {
+    "keys": ["why serum better","why I need serum","why not only cream","why active product","why use concentrated skincare"],
+    "reply": "Serums deliver concentrated active ingredients deeper into skin for targeted results."
+  },
+  {
+    "keys": ["why exfoliation needed","why scrub face","why peeling important","why dead skin removal","why smooth skin routine"],
+    "reply": "Exfoliation clears dead cells, brightens skin, and improves absorption of skincare."
+  },
+  {
+    "keys": ["why toner used","why apply after cleanse","why balancing water","why I need toner","why pre serum"],
+    "reply": "Toners balance pH, hydrate lightly, and prep skin for better absorption of products."
+  },
+  {
+    "keys": ["why cleanser important","why face wash","why remove dirt","why double cleansing","why not soap"],
+    "reply": "Cleansers remove dirt, oil, and makeup without stripping natural moisture, unlike soap."
+  },  {
+    "keys": ["elora hydrating cleanser", "what is hydrating cleanser for", "hydrating cleanser benefits"],
+    "reply": "The Hydrating Cleanser is a gentle formula designed for dry and sensitive skin. It effectively cleanses away dirt without stripping natural moisture, leaving your skin soft and refreshed."
+  },
+  {
+    "keys": ["hydrating cleanser sensitive skin", "cleanser for dry skin", "cleanser for sensitive skin"],
+    "reply": "Yes, the Hydrating Cleanser is formulated to be gentle and is suitable for both dry and sensitive skin types."
+  },
+  {
+    "keys": ["hydrating cleanser ingredients", "does hydrating cleanser have hyaluronic acid", "hydrating cleanser with ceramides"],
+    "reply": "The Hydrating Cleanser contains key ingredients like Hyaluronic Acid, Aloe Vera, and Ceramides to help cleanse and soothe your skin."
+  },
+  {
+    "keys": ["purifying cleanser for oily skin", "cleanser for clogged pores", "deep cleansing oily skin", "purifying cleanser benefits"],
+    "reply": "Our Purifying Cleanser is a deep pore-cleansing solution that targets impurities, excess oil, and buildup. It's perfect for congested skin and helps you achieve a clearer, healthier look."
+  },
+  {
+    "keys": ["salicylic acid cleanser", "cleanser for acne prone skin", "does purifying cleanser have salicylic acid"],
+    "reply": "Yes, the Purifying Cleanser contains Salicylic Acid, making it a great choice for combination, oily, and acne-prone skin types."
+  },
+  {
+    "keys": ["foaming cleanser for acne", "cleanser for oily skin", "foaming cleanser benefits"],
+    "reply": "The Foaming Cleanser has a lightweight, foaming texture that removes excess oil and helps control acne breakouts. It is ideal for oily and acne-prone skin, leaving it fresh and shine-free."
+  },
+  {
+    "keys": ["foaming cleanser ingredients", "salicylic acid foaming cleanser", "what's in foaming cleanser"],
+    "reply": "The Foaming Cleanser contains Salicylic Acid, which helps with oil control and pore care."
+  },
+  {
+    "keys": ["exfoliating cleanser for dull skin", "brighten skin with cleanser", "scrub for uneven skin tone"],
+    "reply": "The Exfoliating Cleanser is a mild scrub with fruit acids that gently removes dead skin cells. It helps to reveal brighter, smoother skin and is suitable for normal, dry, oily, and combination skin types."
+  },
+  {
+    "keys": ["exfoliating cleanser ingredients", "cleanser with AHA", "fruit acid scrub"],
+    "reply": "The Exfoliating Cleanser is infused with fruit acids (AHA) to provide a gentle, chemical exfoliation."
+  },
+  {
+    "keys": ["cleansing milk for sensitive skin", "cleansing milk benefits", "mild makeup remover"],
+    "reply": "The Cleansing Milk is a creamy, mild cleanser that effectively removes makeup and impurities without irritation, making it suitable for sensitive skin."
+  },
+  {
+    "keys": ["cleansing milk with ceramides", "ingredients cleansing milk", "does cleansing milk have ceramides"],
+    "reply": "The Cleansing Milk contains Ceramides, which help to soothe and nourish the skin."
+  },
+  {
+    "keys": ["refreshing toner", "what is toner for", "how to use refreshing toner"],
+    "reply": "The Refreshing Toner balances your skin's pH level and delivers essential hydration, preparing your skin to better absorb serums and moisturizers."
+  },
+  {
+    "keys": ["hydrating toner for dry skin", "toner with hyaluronic acid", "best toner for dry skin"],
+    "reply": "Our Refreshing Toner contains Hyaluronic Acid, making it an excellent choice for hydrating normal, dry, and combination skin types."
+  },
+  {
+    "keys": ["clarifying toner for acne", "toner for oily skin", "clarifying toner benefits"],
+    "reply": "The Clarifying Toner is specially formulated for oily and acne-prone skin. It helps to unclog pores, reduce excess oil, and prevent breakouts."
+  },
+  {
+    "keys": ["clarifying toner with niacinamide", "salicylic acid toner", "toner for pores"],
+    "reply": "Yes, the Clarifying Toner contains both Niacinamide and Salicylic Acid to help with pore care and balancing the skin."
+  },
+  {
+    "keys": ["vitamin c serum", "brightening serum benefits", "best serum for dull skin"],
+    "reply": "The Brightening Serum with Vitamin C is a powerful antioxidant serum that enhances your natural radiance, fades dark spots, and evens out skin tone."
+  },
+  {
+    "keys": ["hyaluronic acid serum", "hydrating serum benefits", "serum for fine lines from dryness"],
+    "reply": "Our Hydrating Serum with Hyaluronic Acid is a lightweight serum that locks in moisture, plumps the skin, and reduces the appearance of fine lines caused by dehydration."
+  },
+  {
+    "keys": ["retinol serum", "anti-aging serum benefits", "serum for wrinkles"],
+    "reply": "The Anti-Aging Serum targets fine lines and wrinkles. It contains Retinol and Peptides to promote skin renewal and boost firmness."
+  },
+  {
+    "keys": ["acne control serum", "serum for blemishes", "how to treat acne with serum"],
+    "reply": "The Acne-Control Serum is designed to combat blemishes, reduce redness, and help control excess oil for a clearer complexion."
+  },
+  {
+    "keys": ["niacinamide serum for acne", "salicylic acid serum for oily skin", "acne serum ingredients"],
+    "reply": "The Acne-Control Serum contains Niacinamide and Salicylic Acid, which are effective for treating acne and controlling oil."
+  },
+  {
+    "keys": ["moisturizer for all skin types", "daily moisturizer benefits", "basic daily cream"],
+    "reply": "The Daily Hydrating Cream is a lightweight, non-greasy moisturizer that provides long-lasting hydration for all skin types. It helps strengthen the skin's barrier."
+  },
+  {
+    "keys": ["daily hydrating cream with ceramides", "moisturizer for sensitive skin", "ceramide cream"],
+    "reply": "The Daily Hydrating Cream contains Ceramides and is suitable for sensitive skin."
+  },
+  {
+    "keys": ["gel moisturizer for oily skin", "lightweight gel cream", "moisturizer for summer"],
+    "reply": "The Oil-Free Gel Moisturizer has a cooling gel texture that absorbs quickly and provides hydration without leaving a greasy feel, making it perfect for oily and combination skin."
+  },
+  {
+    "keys": ["eye cream for dark circles", "under-eye puffiness treatment", "best eye cream"],
+    "reply": "Our Brightening Eye Cream targets dark circles and puffiness with a powerful blend of Vitamin C, Peptides, and Caffeine, leaving your eyes looking refreshed."
+  },
+  {
+    "keys": ["collagen eye cream", "eye cream for wrinkles", "firming eye cream"],
+    "reply": "The Anti-Aging Eye Cream contains Collagen and Retinol to improve skin elasticity and reduce the appearance of fine lines and wrinkles around the eyes."
+  },
+  {
+    "keys": ["face mask for dryness", "hydrating face mask", "face mask with hyaluronic acid"],
+    "reply": "The Hydrating Sheet Mask is a single-use mask infused with Hyaluronic Acid to provide an intensive hydration boost, leaving your skin plump and dewy."
+  },
+  {
+    "keys": ["clay mask for pores", "detox mask for acne", "charcoal mask"],
+    "reply": "The Purifying Clay Mask uses Activated Charcoal to draw out impurities and detoxify pores, helping to reduce blackheads and clogged pores."
+  },
+  {
+    "keys": ["soothing face mask", "mask for redness", "calming green tea mask"],
+    "reply": "Our Soothing Gel Mask is formulated with Green Tea to calm redness and irritation, providing a cooling sensation for sensitive and inflamed skin."
+  },
+  {
+    "keys": ["face oil for dry skin", "how to use face oil", "best face oil for skin"],
+    "reply": "The Nourishing Face Oil is a blend of Rosehip and Argan oils that deeply moisturizes dry skin and restores the skin barrier."
+  },
+  {
+    "keys": ["sunscreen for face", "daily uv protector", "does uv protector feel greasy"],
+    "reply": "Our Daily UV Protector is a lightweight, non-greasy sunscreen with SPF 50+ that protects your skin from harmful UV rays without a white cast."
+  },
+  {
+    "keys": ["exfoliating body wash", "body scrub with AHA", "how to get smooth body skin"],
+    "reply": "The Exfoliating Body Wash contains AHA to gently buff away dead skin cells, revealing softer and smoother skin."
+  },
+  {
+    "keys": ["moisturizing body lotion", "body lotion for dry skin", "body lotion with ceramides"],
+    "reply": "Our Hydrating Body Lotion is formulated with Ceramides and Shea Butter to provide long-lasting moisture and soothe dry, flaky skin."
+  },
+  {
+    "keys": ["body oil for skin elasticity", "body oil benefits", "firming body oil"],
+    "reply": "The Firming Body Oil with Marula Oil and Peptides helps to improve skin elasticity and firmness, leaving your body feeling toned and supple."
+  },
+  {
+    "keys": ["hydrating cleanser for teens", "cleanser for teenage skin", "face wash for teens"],
+    "reply": "Yes, our Hydrating Cleanser is suitable for teens. It's gentle and effective for young, sensitive skin."
+  },
+  {
+    "keys": ["purifying cleanser for 20s", "cleanser for young adult skin", "best cleanser for twenties"],
+    "reply": "The Purifying Cleanser is a great choice for your 20s, especially if you have issues with oiliness or clogged pores."
+  },
+  {
+    "keys": ["anti-aging serum for 30s", "what serum to use in my 30s", "retinol for beginners"],
+    "reply": "The Anti-Aging Serum with Retinol is ideal for those in their 30s and older to target early signs of aging like fine lines and loss of firmness."
+  },
+  {
+    "keys": ["moisturizer for 50+", "best moisturizer for mature skin", "cream for aging skin"],
+    "reply": "Our Daily Hydrating Cream is perfect for mature skin. It helps strengthen the skin barrier and provides deep hydration to combat dryness associated with aging."
+  },
+  {
+    "keys": ["skincare for oily and acne prone skin", "oily skin care routine", "acne treatment products"],
+    "reply": "For oily and acne-prone skin, we recommend the Purifying Cleanser, Clarifying Toner, and Acne-Control Serum to help with pore care, oil control, and reducing breakouts."
+  },
+  {
+    "keys": ["skincare for dry skin", "dry skin care routine", "how to hydrate my face"],
+    "reply": "For dry skin, consider our Hydrating Cleanser, Refreshing Toner, Hydrating Serum, and Daily Hydrating Cream to lock in moisture and soothe your skin."
+  },
+  {
+    "keys": ["skincare for sensitive skin", "sensitive skin care routine", "products for sensitive skin"],
+    "reply": "Our Hydrating Cleanser, Cleansing Milk, and Daily Hydrating Cream are excellent choices for sensitive skin as they are gentle and formulated to avoid irritation."
+  },
+  {
+    "keys": ["skincare for combination skin", "combination skin routine", "best products for combo skin"],
+    "reply": "For combination skin, you can use our Purifying Cleanser on oily areas and our Hydrating Cleanser on drier areas. Follow with the Refreshing Toner and a balanced moisturizer like the Daily Hydrating Cream."
+  },
+  {
+    "keys": ["how to use face wash", "how to cleanse face", "what is a cleanser"],
+    "reply": "A cleanser is the first step in your skincare routine, used to wash away dirt, makeup, and impurities. Apply a small amount to your damp face, massage gently, and rinse with water."
+  },
+  {
+    "keys": ["how to use toner", "what does toner do", "when to apply toner"],
+    "reply": "After cleansing, pat a small amount of toner onto your face with a cotton pad or your hands. This balances your skin's pH and prepares it for the next steps."
+  },
+  {
+    "keys": ["how to use serum", "serum application tips", "when to apply serum"],
+    "reply": "Serums are applied after toning and before moisturizing. Use a few drops and gently pat onto your face and neck to allow for full absorption of the active ingredients."
+  },
+  {
+    "keys": ["how to use moisturizer", "when to use face cream", "what does moisturizer do"],
+    "reply": "Apply moisturizer as the final step in your skincare routine. It helps to lock in hydration and create a protective barrier for your skin."
+  },
+  {
+    "keys": ["cleanser for blackheads", "how to remove blackheads", "blackhead treatment"],
+    "reply": "Our Purifying Clay Mask and Purifying Cleanser are excellent for targeting blackheads and clogged pores."
+  },
+  {
+    "keys": ["redness on face treatment", "what to use for redness", "soothe red skin"],
+    "reply": "For redness, our Hydrating Cleanser and Soothing Gel Mask are great options as they contain calming ingredients like Aloe Vera and Green Tea."
+  },
+  {
+    "keys": ["dull skin solutions", "how to get brighter skin", "uneven skin tone treatment"],
+    "reply": "To combat dullness and uneven skin tone, we recommend our Exfoliating Cleanser and Brightening Serum with Vitamin C."
+  },
+  {
+    "keys": ["what is hyaluronic acid", "hyaluronic acid benefits", "is hyaluronic acid good for skin"],
+    "reply": "Hyaluronic Acid is a powerful hydrating ingredient found in our Hydrating Cleanser, Refreshing Toner, and Hydrating Serum. It helps the skin retain moisture, making it appear plump and smooth."
+  },
+  {
+    "keys": ["what is salicylic acid", "salicylic acid for acne", "is salicylic acid good for oily skin"],
+    "reply": "Salicylic Acid is a beta-hydroxy acid (BHA) that helps to exfoliate inside pores, making it effective for treating acne, blackheads, and oiliness. It's in our Purifying Cleanser and Clarifying Toner."
+  },
+  {
+    "keys": ["what is retinol", "retinol for wrinkles", "retinol benefits"],
+    "reply": "Retinol is a form of Vitamin A that promotes skin cell turnover and helps reduce the appearance of fine lines and wrinkles. You can find it in our Anti-Aging Serum."
+  },
+  {
+    "keys": ["what is niacinamide", "niacinamide benefits", "niacinamide for pores"],
+    "reply": "Niacinamide, or Vitamin B3, helps to improve skin tone, reduce pores, and strengthen the skin barrier. It is a key ingredient in our Clarifying Toner and Acne-Control Serum."
+  },
+  {
+    "keys": ["is vitamin c good for skin", "vitamin c benefits", "what is vitamin c serum for"],
+    "reply": "Vitamin C is a potent antioxidant that brightens the skin, fades dark spots, and protects against environmental damage. It's the main ingredient in our Brightening Serum."
+  },
+  {
+    "keys": ["moisturizer for dry and sensitive skin", "ceramides moisturizer", "best cream for dry skin"],
+    "reply": "Our Daily Hydrating Cream is formulated with Ceramides and is suitable for dry and sensitive skin types."
+  },
+  {
+    "keys": ["can i use the anti-aging serum for my 20s", "when to start anti-aging", "retinol for young skin"],
+    "reply": "While the Anti-Aging Serum is targeted for those in their 30s and up, you can start using it in your late 20s to prevent early signs of aging. It's always best to start with a small amount and build up usage."
+  },
+  {
+    "keys": ["cleanser for daily use", "can i use a cleanser every day", "how often to cleanse"],
+    "reply": "All of our cleansers are formulated for daily use, typically in the morning and at night, to keep your skin clean and healthy."
+  },
+  {
+    "keys": ["is sunscreen necessary", "daily UV protector SPF", "sunscreen benefits"],
+    "reply": "Yes, it is crucial to use sunscreen every day, regardless of the weather. Our Daily UV Protector with SPF 50+ protects your skin from harmful UV rays that can cause premature aging and sun damage."
+  },
+  {
+    "keys": ["makeup primer for oily skin", "mattifying primer", "best primer"],
+    "reply": "Our Mattifying Primer is a great choice for oily skin. It helps to control shine and create a smooth base for your makeup."
+  },
+  {
+    "keys": ["how to apply makeup primer", "when to put on primer", "primer before foundation"],
+    "reply": "Primer should be applied after your moisturizer and before your foundation to create a long-lasting base for your makeup."
+  },
+  {
+    "keys": ["setting spray benefits", "makeup setting spray", "does setting spray work"],
+    "reply": "Our Hydrating Setting Spray helps lock your makeup in place for hours, while also providing a refreshing boost of hydration."
+  },
+  {
+    "keys": ["eyeshadow for sensitive eyes", "hypoallergenic eyeshadow", "eyeshadow ingredients"],
+    "reply": "Our Mineral Eyeshadow Palette is formulated with natural minerals, making it a great option for sensitive eyes."
+  },
+  {
+    "keys": ["face wash for teens with oily skin", "teenage oily skin routine", "best face care for teen oily skin"],
+    "reply": "For teenage oily skin, we recommend the Foaming Cleanser or Purifying Cleanser to help control oil and prevent breakouts."
+  },
+  {
+    "keys": ["what is the difference between a gel and cream moisturizer", "gel vs cream moisturizer", "texture of moisturizer"],
+    "reply": "A gel moisturizer, like our Oil-Free Gel Moisturizer, is lightweight and absorbs quickly, while a cream moisturizer, like our Daily Hydrating Cream, is richer and provides more intense hydration."
+  },
+  {
+    "keys": ["cleanser for dry skin and redness", "gentle cleanser for red skin", "best face wash for sensitive skin with redness"],
+    "reply": "Our Hydrating Cleanser and Cleansing Milk are both suitable for dry and sensitive skin, and can help soothe redness."
+  },
+  {
+    "keys": ["serum for combination skin", "what serum should i use on combo skin", "best serum for combination skin"],
+    "reply": "For combination skin, you can use our Hydrating Serum to address dryness and our Acne-Control Serum on areas with breakouts or oiliness."
+  },
+  {
+    "keys": ["how often to exfoliate", "exfoliating cleanser frequency", "can I use exfoliating cleanser everyday"],
+    "reply": "The Exfoliating Cleanser is a mild scrub. We recommend using it 2-3 times a week, depending on your skin's sensitivity, to avoid over-exfoliation."
+  },
+  {
+    "keys": ["is a toner necessary", "why use toner", "do i need to use a toner"],
+    "reply": "Using a toner helps to balance your skin's pH and ensures that your skin is prepared to absorb the benefits of your serums and moisturizers more effectively."
+  },
+  {
+    "keys": ["what is a sheet mask for", "sheet mask benefits", "how to use sheet mask"],
+    "reply": "A sheet mask, like our Hydrating Sheet Mask, is a single-use mask that delivers a high concentration of ingredients to your skin in a short amount of time. It is great for a quick boost of hydration."
+  },
+  {
+    "keys": ["how to use face mask", "how often to use face mask", "face mask tips"],
+    "reply": "Apply a face mask to clean skin, leave it on for 10-15 minutes, then rinse off (or remove the sheet mask). You can use a mask 1-3 times a week depending on your skin's needs."
+  },
+  {
+    "keys": ["moisturizer for dehydrated skin", "cream for dehydrated skin", "what helps with dehydrated skin"],
+    "reply": "Our Daily Hydrating Cream is designed to provide long-lasting hydration and strengthen the skin's barrier, making it an excellent choice for dehydrated skin."
+  },
+  {
+    "keys": ["face oil vs serum", "face oil or serum first", "difference between face oil and serum"],
+    "reply": "Face oils, like our Nourishing Face Oil, are typically used to moisturize and seal in hydration. Serums, like our Brightening Serum, are concentrated treatments that target specific skin concerns. You should apply serums before face oils."
+  },
+  {
+    "keys": ["best product for dark spots", "how to fade dark spots", "dark spots on face"],
+    "reply": "Our Brightening Serum, which contains Vitamin C, is highly effective at fading dark spots and evening out skin tone."
+  },
+  {
+    "keys": ["skincare for redness and dryness", "products for red dry skin", "how to calm red skin"],
+    "reply": "The Hydrating Cleanser is a gentle formula that helps to soothe redness and provide moisture for dry skin."
+  },
+  {
+    "keys": ["sunscreen for all skin types", "sunscreen with no white cast", "lightweight sunscreen"],
+    "reply": "Our Daily UV Protector is a lightweight, non-greasy formula that works for all skin types and won't leave a white cast."
+  },
+  {
+    "keys": ["best products for oily skin", "oil control products", "skincare for excess oil"],
+    "reply": "For oily skin, we recommend the Foaming Cleanser for oil control, the Clarifying Toner to help with pores, and the Oil-Free Gel Moisturizer for lightweight hydration."
+  },
+  {
+    "keys": ["face wash for clogged pores", "deep cleansing face wash", "pore cleansing products"],
+    "reply": "Our Purifying Cleanser is a deep pore-cleansing solution that is great for targeting clogged pores and excess oil."
+  },
+  {
+    "keys": ["best products for dull skin", "how to get radiant skin", "glowing skin products"],
+    "reply": "For dullness, you can use our Exfoliating Cleanser and our Brightening Serum to reveal brighter, more radiant skin."
+  },
+  {
+    "keys": ["face care routine for 40s", "skincare for 40s", "anti-aging for 40s"],
+    "reply": "For your 40s, focus on anti-aging with products like our Anti-Aging Serum with Retinol and our firming moisturizers to address wrinkles and loss of firmness."
+  },
+  {
+    "keys": ["face care routine for 20s", "skincare for 20s", "best products for twenties"],
+    "reply": "In your 20s, you can focus on a routine that includes a good cleanser and toner, and incorporate serums like our Brightening or Hydrating serum."
+  },
+  {
+    "keys": ["face wash for sensitive and dry skin", "hydrating cleanser benefits", "cleanser for delicate skin"],
+    "reply": "Our Hydrating Cleanser is specifically designed to gently cleanse dry and sensitive skin without stripping its natural moisture."
+  },
+  {
+    "keys": ["gel cleanser for oily skin", "lightweight cleanser for oily skin", "best cleanser to control oil"],
+    "reply": "The Foaming Cleanser is a lightweight gel-to-foam texture that is great for controlling excess oil and shine on oily skin."
+  },
+  {
+    "keys": ["serum for fine lines", "serum for wrinkles", "anti-aging serum"],
+    "reply": "The Anti-Aging Serum with Retinol and Peptides is specifically formulated to reduce the appearance of fine lines and wrinkles."
+  },
+  {
+    "keys": ["serum for hydration", "hydrating serum", "serum for dry skin"],
+    "reply": "Our Hydrating Serum with Hyaluronic Acid is perfect for providing deep, lasting hydration to the skin."
+  },
+  {
+    "keys": ["moisturizer for combination skin", "balancing moisturizer", "cream for combination skin"],
+    "reply": "Our Oil-Free Gel Moisturizer is a good option for combination skin because it provides hydration without adding extra oiliness to the T-zone."
+  },
+  {
+    "keys": ["how to use face oil", "face oil for dry skin", "best way to apply face oil"],
+    "reply": "After cleansing and applying your serum and moisturizer, you can press a few drops of our Nourishing Face Oil into your skin to lock in moisture."
+  },
+  {
+    "keys": ["best products for acne", "how to treat acne", "acne skincare routine"],
+    "reply": "Our Purifying Cleanser, Clarifying Toner, and Acne-Control Serum are the best products in our line for managing acne, controlling oil, and reducing breakouts."
+  },
+  {
+    "keys": ["benefits of vitamin c", "vitamin c for glowing skin", "why use vitamin c serum"],
+    "reply": "Vitamin C is an antioxidant that brightens the complexion, evens skin tone, and helps protect the skin from damage, leading to a more radiant appearance."
+  },
+  {
+    "keys": ["best face mask for oily skin", "mask for oil control", "purifying face mask"],
+    "reply": "The Purifying Clay Mask with Activated Charcoal is great for oily skin as it helps to draw out impurities and detoxify pores."
+  },
+  {
+    "keys": ["best face mask for dry skin", "hydrating mask", "mask for hydration"],
+    "reply": "The Hydrating Sheet Mask is an excellent choice for a quick and intensive boost of hydration for dry skin."
+  },
+  {
+    "keys": ["what is a toner", "toner for skin", "toner definition"],
+    "reply": "A toner is a liquid that helps to rebalance the skin's pH after cleansing and prepares it for the rest of your skincare routine."
+  },
+  {
+    "keys": ["exfoliator for blackheads", "how to get rid of blackheads", "blackhead removal"],
+    "reply": "Our Exfoliating Cleanser with fruit acids can help to gently remove the dead skin cells that contribute to blackheads."
+  },
+  {
+    "keys": ["serum for dark circles", "eye serum for dark circles", "best eye product for dark circles"],
+    "reply": "Our Brightening Eye Cream contains Vitamin C and Caffeine to effectively target dark circles and make the under-eye area look brighter."
+  },
+  {
+    "keys": ["best cleanser", "which cleanser to choose", "cleanser recommendations"],
+    "reply": "We have several cleansers depending on your skin type. The Hydrating Cleanser is for dry/sensitive skin, the Purifying Cleanser for oily/congested skin, and the Foaming Cleanser for oily/acne-prone skin."
+  },
+  {
+    "keys": ["best serum", "which serum to choose", "serum recommendations"],
+    "reply": "Our serum line includes options for various concerns: Brightening Serum for dullness, Hydrating Serum for dryness, and Anti-Aging Serum for wrinkles."
+  },
+  {
+    "keys": ["best moisturizer", "which moisturizer to choose", "moisturizer recommendations"],
+    "reply": "The Daily Hydrating Cream is for all skin types, while the Oil-Free Gel Moisturizer is best for oily and combination skin."
+  },
+  {
+    "keys": ["skincare for teens", "teen skincare routine", "face products for teens"],
+    "reply": "For teens, a simple routine with our Hydrating Cleanser and Oil-Free Gel Moisturizer is a great starting point. They can also use our Foaming Cleanser if they have acne."
+  },
+  {
+    "keys": ["firming products for skin", "loss of firmness", "how to get firmer skin"],
+    "reply": "The Anti-Aging Serum with Retinol and Peptides can help improve firmness and skin elasticity."
+  },
+  {
+    "keys": ["why does my face feel tight", "my face feels dry and tight", "how to fix tight skin"],
+    "reply": "A tight feeling after cleansing often means your skin's natural oils have been stripped. The Hydrating Cleanser or Cleansing Milk will cleanse without leaving this feeling."
+  },
+  {
+    "keys": ["is your sunscreen mineral or chemical", "type of sunscreen", "mineral vs chemical sunscreen"],
+    "reply": "Our Daily UV Protector is a physical sunscreen, using ingredients like Iron Oxides to create a physical barrier against the sun."
+  },
+  {
+    "keys": ["what is an antioxidant", "antioxidant benefits for skin", "antioxidant serum"],
+    "reply": "Antioxidants help protect the skin from damage caused by free radicals and environmental stressors. Our Brightening Serum with Vitamin C is rich in antioxidants."
+  },
+  {
+    "keys": ["best products for uneven skin tone", "how to even out skin tone", "uneven complexion"],
+    "reply": "To even out your skin tone, use the Exfoliating Cleanser and the Brightening Serum with Vitamin C."
+  },
+  {
+    "keys": ["how to use face mask for oily skin", "mask for oily skin tips", "clay mask routine"],
+    "reply": "Apply the Purifying Clay Mask to clean, dry skin. Leave on for 10-15 minutes, or until it starts to dry, then rinse thoroughly."
+  },
+  {
+    "keys": ["how to use gel moisturizer", "gel moisturizer for beginners", "is gel moisturizer good"],
+    "reply": "Our Oil-Free Gel Moisturizer is lightweight and absorbs quickly. Apply a small amount after your serum and gently massage into your skin."
+  },
+  {
+    "keys": ["face products for teens with dry skin", "teen dry skin routine", "how to hydrate teen skin"],
+    "reply": "For a teen with dry skin, we recommend the Hydrating Cleanser and the Daily Hydrating Cream to keep their skin moisturized and healthy."
+  },
+  {
+    "keys": ["can you use face oil in the morning", "when to apply face oil", "morning routine with face oil"],
+    "reply": "Yes, our Nourishing Face Oil can be used in the morning, but we recommend following it with a sunscreen like our Daily UV Protector."
+  },
+  {
+    "keys": ["eye cream for puffy eyes", "what helps with puffy eyes", "best product for puffy eyes"],
+    "reply": "Our Brightening Eye Cream contains Caffeine, an ingredient known to help reduce puffiness."
+  },
+  {
+    "keys": ["how to layer serums", "can i mix serums", "serum layering guide"],
+    "reply": "We recommend applying our serums one at a time, from the thinnest to the thickest texture, to ensure proper absorption."
+  },
+  {
+    "keys": ["skincare for sensitive and oily skin", "sensitive oily skin products", "how to care for sensitive oily skin"],
+    "reply": "Our Foaming Cleanser is a good choice for sensitive and oily skin as it helps control oil without being too harsh."
+  },
+  {
+    "keys": ["best products for combination skin", "combination skin essentials", "routine for combination skin"],
+    "reply": "For combination skin, try a gentle cleanser and our Oil-Free Gel Moisturizer to keep your skin balanced."
+  },
+  {
+    "keys": ["is face oil good for acne", "will face oil cause breakouts", "acne prone skin face oil"],
+    "reply": "While face oils can be nourishing, if you are prone to acne, it's best to use them sparingly and test a small area first. We recommend our Acne-Control Serum instead."
+  },
+  {
+    "keys": ["best face wash for all skin types", "gentle face cleanser", "universal face wash"],
+    "reply": "Our Hydrating Cleanser is a gentle formula that is suitable for a wide range of skin types, from dry to sensitive."
+  },
+  {
+    "keys": ["blackhead removal", "how to get rid of blackheads", "pore strips for blackheads"],
+    "reply": "To reduce blackheads, use our Purifying Clay Mask with Activated Charcoal, which helps to draw out impurities from the pores."
+  },
+  {
+    "keys": ["what is an emulsion", "emulsion vs lotion", "how to use emulsion"],
+    "reply": "An emulsion is a lightweight, lotion-like product that provides hydration. Our Cleansing Milk has a milky emulsion texture."
+  },
+  {
+    "keys": ["skin barrier repair", "how to repair skin barrier", "strengthen skin barrier"],
+    "reply": "Our Daily Hydrating Cream contains Ceramides, which are essential for strengthening and repairing the skin's natural moisture barrier."
+  },
+  {
+    "keys": ["dull skin remedies", "how to treat dull skin", "bring back skin glow"],
+    "reply": "To treat dull skin, use our Exfoliating Cleanser and Brightening Serum to get rid of dead skin cells and reveal a healthier glow."
+  },
+  {
+    "keys": ["face care for normal skin", "normal skin routine", "products for normal skin"],
+    "reply": "For normal skin, you can use a variety of our products. A simple routine would be the Hydrating Cleanser, Refreshing Toner, and Daily Hydrating Cream."
+  },
+  {
+    "keys": ["do i need to use a toner", "toner benefits", "why use a toner"],
+    "reply": "While not strictly essential for everyone, a toner can help remove any remaining impurities after cleansing and prepare your skin for the next steps in your routine."
+  },
+  {
+    "keys": ["vitamin e benefits", "is vitamin e good for skin", "vitamin e antioxidant"],
+    "reply": "Vitamin E is an antioxidant that helps protect your skin from damage. It is a key ingredient in many of our moisturizing products."
+  },
+  {
+    "keys": ["how to apply eye cream", "when to use eye cream", "eye cream application"],
+    "reply": "Gently pat a small amount of eye cream around your orbital bone with your ring finger after applying your serums and before your moisturizer."
+  },
+  {
+    "keys": ["best cleanser for sensitive skin", "cleanser that doesn't irritate", "gentle face wash for sensitive skin"],
+    "reply": "Our Hydrating Cleanser and Cleansing Milk are both formulated to be gentle and non-irritating, making them perfect for sensitive skin."
+  },
+  {
+    "keys": ["makeup for oily skin", "makeup products for oily skin", "oil control makeup"],
+    "reply": "For oily skin, start with our Mattifying Primer to control shine and ensure your makeup lasts all day."
+  },
+  {
+    "keys": ["makeup for dry skin", "makeup for dry flaky skin", "hydrating makeup"],
+    "reply": "Prep your dry skin with our Hydrating Serum and a rich moisturizer before applying makeup to prevent flakiness and ensure a smooth application."
+  },
+  {
+    "keys": ["lip makeup for dry lips", "lip product for dry lips", "hydrating lip gloss"],
+    "reply": "Our Hydrating Lip Gloss is formulated with Shea Butter and Vitamin E to provide both color and moisture, perfect for dry lips."
+  },
+  {
+    "keys": ["skincare for redness", "calm red skin", "products for sensitive redness"],
+    "reply": "The Soothing Gel Mask with Green Tea and the Hydrating Cleanser with Aloe Vera are great for calming redness and soothing irritated skin."
+  },
+  {
+    "keys": ["sunscreen for acne prone skin", "does sunscreen clog pores", "non-comedogenic sunscreen"],
+    "reply": "Our Daily UV Protector is a lightweight, non-comedogenic formula that won't clog pores, making it suitable for acne-prone skin."
+  },
+  {
+    "keys": ["moisturizer for all ages", "all age moisturizer", "is this moisturizer for me"],
+    "reply": "Our Daily Hydrating Cream is suitable for all ages as it provides essential hydration and barrier support for any skin type."
+  },
+  {
+    "keys": ["hydrating cleanser price", "how much is hydrating cleanser", "price of elora hydrating cleanser"],
+    "reply": "The Hydrating Cleanser is priced at $20.00."
+  },
+  {
+    "keys": ["purifying cleanser price", "cost of purifying cleanser", "how much is elora purifying cleanser"],
+    "reply": "The Purifying Cleanser is priced at $20.00."
+  },
+  {
+    "keys": ["foaming cleanser price", "how much is foaming cleanser", "cost of elora foaming cleanser"],
+    "reply": "The Foaming Cleanser is priced at $15.50."
+  },
+  {
+    "keys": ["exfoliating cleanser price", "cost of exfoliating cleanser", "elora exfoliating cleanser price"],
+    "reply": "The Exfoliating Cleanser is priced at $22.00."
+  },
+  {
+    "keys": ["cleansing milk price", "cost of cleansing milk", "elora cleansing milk price"],
+    "reply": "The Cleansing Milk is priced at $20.00."
+  },
+  {
+    "keys": ["refreshing toner price", "cost of refreshing toner", "elora refreshing toner price"],
+    "reply": "The Refreshing Toner is priced at $15.00."
+  },
+  {
+    "keys": ["clarifying toner price", "cost of clarifying toner", "elora clarifying toner price"],
+    "reply": "The Clarifying Toner is priced at $16.50."
+  },
+  {
+    "keys": ["brightening serum price", "cost of brightening serum", "elora vitamin c serum price"],
+    "reply": "The Brightening Serum is priced at $25.00."
+  },
+  {
+    "keys": ["hydrating serum price", "cost of hydrating serum", "elora hyaluronic acid serum price"],
+    "reply": "The Hydrating Serum is priced at $22.00."
+  },
+  {
+    "keys": ["anti-aging serum price", "cost of anti-aging serum", "elora retinol serum price"],
+    "reply": "The Anti-Aging Serum is priced at $30.00."
+  },
+  {
+    "keys": ["acne control serum price", "cost of acne control serum", "elora acne serum price"],
+    "reply": "The Acne-Control Serum is priced at $24.50."
+  },
+  {
+    "keys": ["daily hydrating cream price", "cost of daily hydrating cream", "elora moisturizer price"],
+    "reply": "The Daily Hydrating Cream is priced at $25.00."
+  },
+  {
+    "keys": ["oil free gel moisturizer price", "cost of oil free gel moisturizer", "elora gel moisturizer price"],
+    "reply": "The Oil-Free Gel Moisturizer is priced at $25.00."
+  },
+  {
+    "keys": ["eye cream price", "cost of eye cream", "elora eye cream price"],
+    "reply": "The Brightening Eye Cream is priced at $18.00."
+  },
+  {
+    "keys": ["hydrating sheet mask price", "cost of sheet mask", "elora mask price"],
+    "reply": "The Hydrating Sheet Mask is priced at $5.50."
+  },
+  {
+    "keys": ["purifying clay mask price", "cost of clay mask", "elora purifying mask price"],
+    "reply": "The Purifying Clay Mask is priced at $16.00."
+  },
+  {
+    "keys": ["soothing gel mask price", "cost of gel mask", "elora soothing mask price"],
+    "reply": "The Soothing Gel Mask is priced at $17.50."
+  },
+  {
+    "keys": ["nourishing face oil price", "cost of face oil", "elora face oil price"],
+    "reply": "The Nourishing Face Oil is priced at $28.00."
+  },
+  {
+    "keys": ["daily uv protector price", "cost of sunscreen", "elora sunscreen price"],
+    "reply": "The Daily UV Protector is priced at $20.00."
+  },
+  {
+    "keys": ["exfoliating body wash price", "cost of body wash", "elora body wash price"],
+    "reply": "The Exfoliating Body Wash is priced at $18.00."
+  },
+  {
+    "keys": ["hydrating body lotion price", "cost of body lotion", "elora body lotion price"],
+    "reply": "The Hydrating Body Lotion is priced at $15.00."
+  },
+  {
+    "keys": ["firming body oil price", "cost of body oil", "elora firming oil price"],
+    "reply": "The Firming Body Oil is priced at $25.00."
+  },
+  {
+    "keys": ["hydrating cleanser for all ages", "all age cleanser", "is hydrating cleanser for me"],
+    "reply": "Yes, the Hydrating Cleanser is a suitable product for people of all ages who have dry or sensitive skin."
+  },
+  {
+    "keys": ["purifying cleanser for teens", "cleanser for teen acne", "is purifying cleanser for me"],
+    "reply": "The Purifying Cleanser is a great choice for teens and young adults dealing with clogged pores and excess oil."
+  },
+  {
+    "keys": ["foaming cleanser for all ages", "all age foaming cleanser", "is foaming cleanser for me"],
+    "reply": "The Foaming Cleanser is perfect for teens and those in their 20s who have oily and acne-prone skin."
+  },
+  {
+    "keys": ["exfoliating cleanser for 20s", "exfoliating cleanser for 30s", "is exfoliating cleanser for me"],
+    "reply": "The Exfoliating Cleanser is suitable for people in their 20s, 30s, and 40s who want to brighten their skin and address uneven tone."
+  },
+  {
+    "keys": ["cleansing milk for any age", "is cleansing milk for me", "all age cleansing milk"],
+    "reply": "The Cleansing Milk is a great choice for all ages, especially for those with sensitive or dry skin."
+  },
+  {
+    "keys": ["cleanser for teens", "best cleanser for teenage skin", "face wash for teens","what cleanser is popular for teens"],
+    "reply": "For teenagers, we recommend the Hydrating Cleanser for dry/sensitive skin or the Purifying/Foaming Cleanser if they have oily/acne-prone skin. It is important to start with a gentle, effective cleanser."
+  },
+  {
+    "keys": ["toner for teens", "best toner for teenage skin", "toner for young skin","what toner is popular for teens"],
+    "reply": "Our Refreshing Toner is a great choice for teens to help balance their skin's pH, and for teens with oily skin, the Clarifying Toner can help with breakouts and oil control."
+  },
+  {
+    "keys": ["moisturizer for teens", "best moisturizer for teenage skin", "teen moisturizer"],
+    "reply": "We recommend the Daily Hydrating Cream for teens with dry skin and the Oil-Free Gel Moisturizer for teens with oily or combination skin. Both are lightweight and non-greasy."
+  },
+  {
+    "keys": ["skincare for 20s", "best products for 20s", "routine for twenties"],
+    "reply": "In your 20s, you can focus on building a strong foundation. A routine with a daily cleanser, toner, and moisturizer is a great start. You can also incorporate our Brightening Serum to address uneven skin tone or the Hydrating Serum for added moisture."
+  },
+  {
+    "keys": ["anti-aging for 20s", "when to start anti-aging", "retinol for young adults"],
+    "reply": "It's never too early to start anti-aging. While our Anti-Aging Serum is targeted for those in their 30s and up, you can start using it in your late 20s to prevent early signs of aging."
+  },
+  {
+    "keys": ["skincare for 30s", "best products for 30s", "routine for thirties"],
+    "reply": "For your 30s, we recommend adding an anti-aging product to your routine. Our Anti-Aging Serum with Retinol is designed to target fine lines and wrinkles, and our Eye Cream can help with the delicate skin around the eyes."
+  },
+  {
+    "keys": ["skincare for 40s", "best products for 40s", "routine for forties"],
+    "reply": "In your 40s, focus on hydration and firmness. Our Hydrating Serum and Daily Hydrating Cream can provide intense moisture, while the Anti-Aging Serum helps to improve skin elasticity and reduce the appearance of wrinkles."
+  },
+  {
+    "keys": ["skincare for 50s and up", "best products for mature skin", "routine for fifties and up"],
+    "reply": "For mature skin, products that provide deep nourishment and moisture are key. We recommend our Nourishing Face Oil and rich Daily Hydrating Cream to combat dryness and improve the skin's barrier. The Anti-Aging Serum is also a great option to address deeper wrinkles."
+  },
+  {
+    "keys": ["best cleanser for mature skin", "cleanser for aging skin", "face wash for mature skin"],
+    "reply": "Our Hydrating Cleanser and Cleansing Milk are excellent choices for mature skin as they are gentle and do not strip the skin of its natural moisture, helping to maintain a healthy barrier."
+  },
+  {
+    "keys": ["best moisturizer for mature skin", "cream for aging skin", "hydrating cream for mature skin"],
+    "reply": "The Daily Hydrating Cream is an excellent choice for mature skin. It contains ceramides to help strengthen the skin's barrier and provides long-lasting hydration."
+  },
+  {
+    "keys": ["acne for teens", "teen acne products", "best products for teen acne"],
+    "reply": "For teen acne, we suggest a routine including the Purifying Cleanser or Foaming Cleanser, followed by the Clarifying Toner and the Acne-Control Serum. These products are formulated to target excess oil and breakouts."
+  },
+  {
+    "keys": ["serum for teens", "best serum for teenage skin", "teen serum"],
+    "reply": "Teens don't always need a serum, but if they have specific concerns, the Acne-Control Serum can help with breakouts or the Hydrating Serum can add extra moisture for dry skin."
+  },
+  {
+    "keys": ["what is the best product for my age", "skincare for my age", "products for my age"],
+    "reply": "To give you the best recommendation, please let us know your age group (e.g., teen, 20s, 30s, etc.) and your skin type (e.g., oily, dry, combination, sensitive)."
+  },
+  {
+    "keys": ["is Elora for teens", "can teens use Elora products", "are Elora products safe for teens"],
+    "reply": "Yes, many of our products are suitable for teens. We have specific cleansers and moisturizers designed to be gentle and effective for young skin, especially our Foaming Cleanser and Oil-Free Gel Moisturizer."
+  },
+  {
+    "keys": ["is Elora for mature skin", "can older people use Elora products", "are Elora products good for mature skin"],
+    "reply": "Yes, we have products that are excellent for mature skin, such as our Anti-Aging Serum, Daily Hydrating Cream, and Nourishing Face Oil, which are formulated to address concerns like fine lines, dryness, and loss of firmness."
+  },
+  {
+    "keys": ["skincare for young adults", "products for young adults", "routine for young adults"],
+    "reply": "For young adults, we have a range of products to suit different needs. You can start with our Hydrating Cleanser and Daily Hydrating Cream, then add a serum like the Brightening Serum to target specific concerns."
+  },
+  {
+    "keys": ["best products for 20s and acne", "acne products for 20s", "20s skincare for breakouts"],
+    "reply": "For acne in your 20s, the combination of our Purifying Cleanser, Clarifying Toner, and Acne-Control Serum is an effective routine to help clear up your skin."
+  },
+  {
+    "keys": ["eye cream for 20s", "when to start eye cream", "best eye cream for young adults"],
+    "reply": "You can start using an eye cream in your 20s to prevent early signs of aging. Our Brightening Eye Cream can help with dark circles and puffiness."
+  },
+  {
+    "keys": ["best products for 30s and sensitive skin", "sensitive skin in 30s", "skincare for sensitive aging skin"],
+    "reply": "For sensitive skin in your 30s, we recommend a gentle routine. Use our Cleansing Milk, followed by the Daily Hydrating Cream and our Anti-Aging Serum, which is gentle enough to start with."
+  },
+  {
+    "keys": ["night routine for 40s", "night skincare for 40s", "40s night routine"],
+    "reply": "For your night routine in your 40s, we suggest cleansing with our Hydrating Cleanser, applying the Anti-Aging Serum to target wrinkles, and finishing with our Daily Hydrating Cream for deep nourishment."
+  },{
+    "keys": ["products for sensitive skin", "best products for sensitive skin", "skincare routine for sensitive skin", "gentle skincare", "elora products sensitive skin"],
+    "reply": "Our Hydrating Cleanser and Cleansing Milk are both popular choices for sensitive skin. They are formulated to cleanse gently without causing irritation. For moisturizing, the Daily Hydrating Cream is excellent as it contains ceramides to soothe and strengthen the skin barrier."
+  },
+  {
+    "keys": ["cleanser for sensitive skin", "best face wash for sensitive skin", "gentle cleanser"],
+    "reply": "The Hydrating Cleanser is a gentle, soothing face wash for sensitive skin, and the Cleansing Milk is a creamy, non-irritating option that also effectively removes makeup."
+  },
+  {
+    "keys": ["moisturizer for sensitive skin", "best cream for sensitive skin", "gentle moisturizer"],
+    "reply": "The Daily Hydrating Cream is highly recommended for sensitive skin as it provides long-lasting hydration with Ceramides to help calm and protect the skin's barrier."
+  },
+  {
+    "keys": ["toner for sensitive skin", "best toner for sensitive skin", "toner that won't irritate"],
+    "reply": "While we don't have a toner specifically for sensitive skin, our Refreshing Toner is generally well-tolerated and helps balance the skin's pH without harsh ingredients."
+  },
+  {
+    "keys": ["products for dry skin", "best products for dry skin", "skincare routine for dry skin", "dry skin solutions", "elora products for dry skin"],
+    "reply": "For dry skin, we recommend a routine focused on hydration. The Hydrating Cleanser is a great starting point, followed by the Hydrating Serum to lock in moisture. For a rich moisturizer, the Daily Hydrating Cream is an excellent choice, and the Nourishing Face Oil can be added for extra moisture."
+  },
+  {
+    "keys": ["serum for dry skin", "best serum for dry skin", "hydrating serum", "serum for dehydrated skin"],
+    "reply": "The Hydrating Serum is our most popular product for dry skin. It contains Hyaluronic Acid to provide a moisture boost, making your skin feel plump and dewy."
+  },
+  {
+    "keys": ["moisturizer for dry skin", "best cream for dry skin", "dry skin moisturizer", "cream for dehydrated skin"],
+    "reply": "The Daily Hydrating Cream is formulated to provide long-lasting hydration. For a richer, more intensive treatment, the Nourishing Face Oil can be used to seal in moisture."
+  },
+  {
+    "keys": ["face mask for dry skin", "best mask for dry skin", "hydrating mask"],
+    "reply": "The Hydrating Sheet Mask provides an intensive boost of hydration, making it a perfect weekly treatment for dry skin."
+  },
+  {
+    "keys": ["products for acne skin", "best products for acne prone skin", "skincare routine for acne", "acne solutions", "elora products for acne skin"],
+    "reply": "To combat acne, we suggest the Purifying Cleanser and Acne-Control Serum. The cleanser helps to deeply cleanse pores and the serum targets blemishes to reduce breakouts and redness."
+  },
+  {
+    "keys": ["cleanser for acne", "best face wash for acne", "acne face wash", "face wash for breakouts"],
+    "reply": "Our Purifying Cleanser is a deep pore-cleansing solution for congested skin, and the Foaming Cleanser is great for oily and acne-prone skin to control excess oil and shine."
+  },
+  {
+    "keys": ["serum for acne", "best serum for acne prone skin", "acne treatment serum", "serum for blemishes"],
+    "reply": "The Acne-Control Serum is a powerful product designed to combat breakouts with key ingredients like Niacinamide and Salicylic Acid."
+  },
+  {
+    "keys": ["products for oily skin", "best products for oily skin", "skincare routine for oily skin", "oil control products", "elora products for oily skin"],
+    "reply": "For oily skin, we recommend the Foaming Cleanser to help control shine and the Clarifying Toner to minimize the appearance of pores. The Oil-Free Gel Moisturizer is a must-have for lightweight, non-greasy hydration."
+  },
+  {
+    "keys": ["cleanser for oily skin", "best face wash for oily skin", "oil control face wash", "face wash for shine"],
+    "reply": "The Foaming Cleanser is lightweight and helps remove excess oil, while the Purifying Cleanser is great for deep cleansing and reducing congestion in oily skin."
+  },
+  {
+    "keys": ["moisturizer for oily skin", "best cream for oily skin", "oil-free moisturizer", "gel moisturizer for oily skin"],
+    "reply": "Our Oil-Free Gel Moisturizer is a favorite for oily skin. Its cooling gel texture absorbs quickly and provides hydration without leaving a greasy feel."
+  },
+  {
+    "keys": ["products for combination skin", "best products for combination skin", "skincare routine for combination skin", "combo skin products", "elora products for combination skin"],
+    "reply": "For combination skin, you can mix and match products. We suggest using a deep-cleansing product like the Purifying Cleanser on your T-zone and a gentler one like the Hydrating Cleanser on drier areas. The Oil-Free Gel Moisturizer is also a great option as it provides balanced hydration."
+  },
+  {
+    "keys": ["moisturizer for combination skin", "best moisturizer for combination skin", "combo skin cream", "balancing moisturizer"],
+    "reply": "The Oil-Free Gel Moisturizer is a popular choice for combination skin. It's lightweight and hydrating enough for dry areas, but won't add excess oil to the T-zone."
+  },
+  {
+    "keys": ["general skincare tips", "how to choose products", "skincare routine order", "products for my skin type", "how do I know my skin type"],
+    "reply": "Choosing the right products depends on your skin type. Our cleansers, serums, and moisturizers are specifically formulated to address common concerns for sensitive, dry, oily, and acne-prone skin. Start with a cleanser, followed by toner, serum, and then moisturizer to get the best results."
+  },
+  {
+    "keys": ["best products for dull skin", "how to get brighter skin", "glowing skin routine", "products for radiance", "elora products for glow"],
+    "reply": "For dull skin, we recommend the Exfoliating Cleanser with fruit acids to gently remove dead skin cells and the Brightening Serum with Vitamin C to even out skin tone and enhance your natural radiance."
+  },
+  {
+    "keys": ["anti-aging products", "best products for wrinkles", "firming products", "anti-aging routine", "elora products for anti-aging"],
+    "reply": "Our Anti-Aging Serum is a powerful product for targeting fine lines and wrinkles. You can also use the Firming Body Oil to improve skin elasticity and firmness on your body."
+  },
+  {
+    "keys": ["products for sun protection", "best sunscreen", "sunscreen for face", "elora sunscreen"],
+    "reply": "The Daily UV Protector with SPF 50+ is a lightweight, non-greasy sunscreen that protects your skin from harmful UV rays without leaving a white cast."
+  },
+  {
+    "keys": ["best body care products", "elora body care", "body wash", "body lotion", "body oil"],
+    "reply": "Our body care line includes the Exfoliating Body Wash to smooth skin, the Hydrating Body Lotion to moisturize, and the Firming Body Oil to improve elasticity."
+  },
+  {
+    "keys": ["exfoliator for dry skin", "best exfoliator for dry skin", "exfoliating dry skin"],
+    "reply": "The Exfoliating Cleanser is a mild scrub with fruit acids that gently removes dead skin cells without over-drying, making it suitable for dry skin."
+  },
+  {
+    "keys": ["exfoliator for oily skin", "best exfoliator for oily skin", "exfoliating oily skin"],
+    "reply": "The Exfoliating Cleanser is a good option for oily skin. It helps to unclog pores and reveal a clearer complexion."
+  },
+  {
+    "keys": ["serum for combination skin", "best serum for combination skin", "balancing serum"],
+    "reply": "For combination skin, you can use our Hydrating Serum on drier areas and the Acne-Control Serum on oily, blemish-prone areas like the T-zone."
+  },
+  {
+    "keys": ["eye cream for dark circles", "best eye cream for dark circles", "eye cream for tired eyes"],
+    "reply": "Our Brightening Eye Cream contains Vitamin C and Caffeine to help reduce the appearance of dark circles and puffiness."
+  },
+  {
+    "keys": ["eye cream for wrinkles", "best eye cream for fine lines", "anti-aging eye cream"],
+    "reply": "The Anti-Aging Eye Cream contains Collagen and Retinol, which are effective ingredients for reducing fine lines and improving the firmness around the eyes."
+  },
+  {
+    "keys": ["face mask for oily skin", "best mask for oily skin", "pore cleansing mask"],
+    "reply": "The Purifying Clay Mask is a popular choice for oily skin. Its Activated Charcoal helps to draw out impurities and detoxify pores."
+  },
+  {
+    "keys": ["face mask for redness", "soothing mask", "calming face mask"],
+    "reply": "The Soothing Gel Mask with Green Tea is designed to calm redness and irritation, providing a cooling sensation for inflamed or sensitive skin."
+  },
+  {
+    "keys": ["face oil for dry skin", "best face oil for dry skin", "face oil for moisture"],
+    "reply": "The Nourishing Face Oil is a blend of Rosehip and Argan oils that deeply moisturizes and restores the skin's barrier, making it ideal for dry skin."
+  },
+  {
+    "keys": ["face oil for combination skin", "best face oil for combo skin", "face oil that won't clog pores"],
+    "reply": "While face oils are generally best for dry skin, a small amount of our Nourishing Face Oil can be used on drier patches of combination skin. We recommend testing on a small area first."
+  },
+  {
+    "keys": ["sunscreen for face", "best face sunscreen", "lightweight sunscreen"],
+    "reply": "Our Daily UV Protector is a lightweight, non-greasy sunscreen with SPF 50+ that is suitable for daily use under makeup or on its own."
+  },
+  {
+    "keys": ["sunscreen for all skin types", "sunscreen without white cast", "daily sunscreen"],
+    "reply": "The Daily UV Protector is a physical sunscreen that is suitable for all skin types and doesn't leave a heavy, white residue."
+  },
+  {
+    "keys": ["body wash for dry skin", "best body wash for dry skin", "moisturizing body wash"],
+    "reply": "Our Exfoliating Body Wash is a great choice for dry skin because it removes dead skin cells, allowing your moisturizer to absorb better, resulting in smoother skin."
+  },
+  {
+    "keys": ["body lotion for dry skin", "best body lotion for dry skin", "lotion for rough skin"],
+    "reply": "The Hydrating Body Lotion is a rich formula with Ceramides and Shea Butter that provides long-lasting moisture and soothes dry, flaky skin."
+  },
+  {
+    "keys": ["body oil for skin elasticity", "best body oil for firming", "firming body oil"],
+    "reply": "The Firming Body Oil contains Marula Oil and Peptides to improve skin elasticity and leave your body feeling toned and supple."
+  },
+  {
+    "keys": ["makeup primer for oily skin", "best primer for oily skin", "mattifying primer"],
+    "reply": "Our Mattifying Primer is specifically designed to control shine and create a smooth, long-lasting base for makeup on oily skin."
+  },
+  {
+    "keys": ["makeup primer for dry skin", "best primer for dry skin", "hydrating primer"],
+    "reply": "For dry skin, we recommend preparing with our Hydrating Serum and a rich moisturizer before applying makeup to prevent a flaky or dry finish."
+  },
+  {
+    "keys": ["setting spray benefits", "makeup setting spray", "does setting spray work"],
+    "reply": "Our Hydrating Setting Spray helps to lock your makeup in place, extending its wear time and providing a refreshing burst of hydration throughout the day."
+  },
+  {
+    "keys": ["eyeshadow for sensitive eyes", "hypoallergenic eyeshadow", "eyeshadow ingredients"],
+    "reply": "Our Mineral Eyeshadow Palette is formulated with natural minerals, making it a great, gentle option for sensitive eyes."
+  },
+  {
+    "keys": ["lip makeup for dry lips", "best lip product for dry lips", "hydrating lip gloss"],
+    "reply": "Our Hydrating Lip Gloss is formulated with Shea Butter and Vitamin E to provide both color and moisture, making it perfect for dry or chapped lips."
+  },
+  {
+    "keys": ["how to apply toner", "how to use toner", "when to use toner"],
+    "reply": "After cleansing, you can apply toner with a cotton pad or your hands. Gently pat or swipe the product over your face to prepare your skin for serums and moisturizers."
+  },
+  {
+    "keys": ["how to use serum", "how to apply serum", "when to use serum"],
+    "reply": "Serums are applied after cleansing and toning. Use a few drops and gently pat them into your face and neck until fully absorbed. You can layer multiple serums from thinnest to thickest consistency."
+  },
+  {
+    "keys": ["how to use moisturizer", "how to apply moisturizer", "when to use moisturizer"],
+    "reply": "Moisturizer is the final step in your skincare routine. Apply a generous amount to your face and neck to lock in hydration and create a protective barrier."
+  },
+  {
+    "keys": ["how to use face mask", "how to apply face mask", "when to use face mask"],
+    "reply": "Apply a face mask to clean, dry skin. Leave it on for the recommended time (usually 10-15 minutes), then rinse thoroughly. Use a mask 1-3 times a week as needed."
+  },
+  {
+    "keys": ["what is hyaluronic acid", "hyaluronic acid benefits", "is hyaluronic acid good for skin"],
+    "reply": "Hyaluronic Acid is a powerful humectant that attracts and holds moisture, making it a key ingredient in our Hydrating Cleanser, Refreshing Toner, and Hydrating Serum to keep your skin plump and hydrated."
+  },
+  {
+    "keys": ["what is salicylic acid", "salicylic acid for acne", "is salicylic acid good for oily skin"],
+    "reply": "Salicylic Acid is a beta-hydroxy acid (BHA) that exfoliates inside the pores, helping to remove dead skin cells and oil buildup. It is in our Purifying Cleanser, Clarifying Toner, and Acne-Control Serum."
+  },
+  {
+    "keys": ["what is retinol", "retinol benefits", "retinol for wrinkles"],
+    "reply": "Retinol is a form of Vitamin A that promotes cell turnover and helps reduce the appearance of fine lines, wrinkles, and uneven skin texture. It is a key ingredient in our Anti-Aging Serum and Anti-Aging Eye Cream."
+  },
+  {
+    "keys": ["what is niacinamide", "niacinamide benefits", "niacinamide for pores"],
+    "reply": "Niacinamide, or Vitamin B3, is a versatile ingredient that helps to improve skin tone, minimize the look of pores, and strengthen the skin's barrier. It's in our Clarifying Toner and Acne-Control Serum."
+  },
+  {
+    "keys": ["what is vitamin c", "vitamin c benefits", "vitamin c for brightening"],
+    "reply": "Vitamin C is a powerful antioxidant that protects the skin from environmental damage, brightens the complexion, and helps fade dark spots. You can find it in our Brightening Serum and Brightening Eye Cream."
+  },
+  {
+    "keys": ["what are ceramides", "ceramides benefits", "ceramides for skin barrier"],
+    "reply": "Ceramides are lipids that help to form the skin's barrier and retain moisture. They are crucial for maintaining healthy skin and are found in our Hydrating Cleanser, Cleansing Milk, and Daily Hydrating Cream."
+  },
+  {
+    "keys": ["how to build a skincare routine", "skincare routine steps", "product layering"],
+    "reply": "A basic skincare routine involves cleansing, toning, and moisturizing. You can add a serum to target specific concerns after toning and before moisturizing. Sunscreen should always be the last step in your morning routine."
+  },
+  {
+    "keys": ["what is the difference between a gel and cream moisturizer", "gel vs cream moisturizer", "texture of moisturizer"],
+    "reply": "A gel moisturizer, like our Oil-Free Gel Moisturizer, is lightweight and absorbs quickly. A cream moisturizer, like our Daily Hydrating Cream, is richer and provides more intense, long-lasting hydration."
+  },
+  {
+    "keys": ["is face oil good for acne", "will face oil cause breakouts", "acne prone skin face oil"],
+    "reply": "Our Nourishing Face Oil is best suited for dry skin. If you have acne-prone skin, we recommend our Acne-Control Serum, which is specifically formulated to treat breakouts without clogging pores."
+  },
+  {
+    "keys": ["what is a physical sunscreen", "physical vs chemical sunscreen", "mineral sunscreen"],
+    "reply": "A physical sunscreen, like our Daily UV Protector, uses mineral filters to create a barrier on the skin's surface that blocks UV rays. It is generally a good option for sensitive skin."
+  },
+  {
+    "keys": ["what is a chemical exfoliant", "chemical vs physical exfoliant", "fruit acid exfoliant"],
+    "reply": "Chemical exfoliants use acids like AHA (fruit acids) or BHA to dissolve dead skin cells. Our Exfoliating Cleanser uses mild fruit acids for a gentle chemical exfoliation."
+  },
+  {
+    "keys": ["is Elora cruelty-free", "are Elora products tested on animals", "vegan products"],
+    "reply": "Information on our cruelty-free status is available on our website. Please check our official page or contact our customer service for details on our testing policies."
+  },
+  {
+    "keys": ["does Elora have fragrance-free products", "fragrance in skincare", "unscented products"],
+    "reply": "Please check the ingredients list on each product page for fragrance information. Many of our products are formulated to be gentle and suitable for sensitive skin."
+  },
+  {
+    "keys": ["how to store Elora products", "product storage tips", "where to keep skincare"],
+    "reply": "For best results, store your skincare products in a cool, dry place away from direct sunlight and extreme temperatures. This helps maintain the stability and effectiveness of the ingredients."
+  },
+  {
+    "keys": ["can I use multiple serums", "layering serums", "how to layer serums"],
+    "reply": "Yes, you can layer serums. We recommend applying them from the thinnest to the thickest texture and allowing each to absorb before applying the next."
+  },
+  {
+    "keys": ["what is the best seller", "most popular Elora product", "popular product recommendation"],
+    "reply": "Some of our most popular products include the Daily Hydrating Cream for its universal appeal and the Brightening Serum for its effective results in evening out skin tone."
+  },
+  {
+    "keys": ["what is the best product for me", "product recommendation", "help me choose skincare"],
+    "reply": "To find the best product for you, we recommend identifying your primary skin type (dry, oily, sensitive, combination) and your main concerns (acne, dullness, fine lines, etc.). You can then select a product that targets those needs."
+  },
+  {
+    "keys": ["how to get rid of blackheads", "blackhead removal", "products for blackheads"],
+    "reply": "To target blackheads, we recommend using our Purifying Clay Mask with Activated Charcoal to draw out impurities and the Purifying Cleanser to keep pores clean."
+  },
+  {
+    "keys": ["how to treat fine lines", "best products for fine lines", "reduce wrinkles"],
+    "reply": "Our Anti-Aging Serum with Retinol is a key product for treating fine lines and wrinkles. Consistent use can help improve the skin's texture and reduce their appearance."
+  },
+  {
+    "keys": ["how to deal with redness", "calm redness on face", "products for red skin"],
+    "reply": "Our Soothing Gel Mask with Green Tea and our Hydrating Cleanser with Aloe Vera are both excellent choices for calming and soothing redness and irritation."
+  },
+  {
+    "keys": ["how to handle oily t-zone", "oily forehead and nose", "products for oily t-zone"],
+    "reply": "For an oily T-zone, you can use our Purifying Cleanser on that area and a more gentle cleanser on drier parts of your face. Follow with our Oil-Free Gel Moisturizer for balanced hydration."
+  },
+  {
+    "keys": ["what are the ingredients in the hydrating cleanser", "hydrating cleanser ingredients list", "is hydrating cleanser safe"],
+    "reply": "The Hydrating Cleanser contains Hyaluronic Acid, Aloe Vera, and Ceramides to cleanse and soothe without stripping moisture."
+  },
+  {
+    "keys": ["what are the ingredients in the brightening serum", "brightening serum ingredients list", "is brightening serum safe"],
+    "reply": "The Brightening Serum is formulated with Vitamin C, which is a powerful antioxidant for evening out skin tone and promoting radiance."
+  },
+  {
+    "keys": ["is the oil free gel moisturizer good for summer", "summer moisturizer", "lightweight moisturizer for summer"],
+    "reply": "Yes, the Oil-Free Gel Moisturizer has a lightweight, cooling texture that absorbs quickly, making it a perfect choice for hot and humid weather."
+  },
+  {
+    "keys": ["what is the best product for travel", "travel size skincare", "skincare for travel"],
+    "reply": "Most of our products come in sizes that are suitable for travel. We recommend a simple routine with a cleanser, moisturizer, and our Daily UV Protector."
+  },
+  {
+    "keys": ["what is the difference between a cleanser and a face wash", "cleanser vs face wash", "face wash vs cleanser"],
+    "reply": "The terms are often used interchangeably, but a cleanser can be a milky or cream-based product (like our Cleansing Milk), while a face wash can be a gel or foam (like our Foaming Cleanser)."
+  },
+  {
+    "keys": ["how to get rid of acne scars", "products for acne scars", "acne scar treatment"],
+    "reply": "While our Acne-Control Serum helps prevent new breakouts, the Brightening Serum with Vitamin C can help to fade and minimize the appearance of post-acne dark spots."
+  },
+  {
+    "keys": ["is Elora suitable for men", "skincare for men", "men's grooming products"],
+    "reply": "Yes, our products are unisex and can be used by anyone, regardless of gender. Many of our products, especially the Oil-Free Gel Moisturizer and Foaming Cleanser, are popular with men."
+  },
+  {
+    "keys": ["how to get glowing skin", "glowing skin routine", "products for radiant skin"],
+    "reply": "For a glowing complexion, a routine that includes exfoliation with our Exfoliating Cleanser and brightening with our Brightening Serum is highly effective."
+  },
+  {
+    "keys": ["best products for clogged pores", "clogged pores solutions", "unclogging pores"],
+    "reply": "Our Purifying Cleanser and Purifying Clay Mask are designed to help unclog pores and remove impurities, leading to a clearer complexion."
+  },
+  {
+    "keys": ["what is a chemical peel", "chemical peel vs exfoliation", "at home chemical peel"],
+    "reply": "A chemical peel uses a higher concentration of acids to exfoliate the skin. While our Exfoliating Cleanser uses a mild form of chemical exfoliation, it is not a full-strength chemical peel."
+  },
+  {
+    "keys": ["how to use body wash", "how to use body lotion", "how to use body oil"],
+    "reply": "Use the Exfoliating Body Wash in the shower. After towel-drying, apply the Hydrating Body Lotion, and for extra moisture and firmness, you can massage in the Firming Body Oil."
+  },
+  {
+    "keys": ["is the hydrating body lotion good for cracked heels", "lotion for cracked skin", "heel care"],
+    "reply": "Our Hydrating Body Lotion contains Ceramides and Shea Butter which are excellent for soothing and moisturizing dry, cracked skin, including on the heels."
+  },
+  {
+    "keys": ["does the sunscreen work for all skin tones", "sunscreen for dark skin", "no white cast sunscreen"],
+    "reply": "Yes, our Daily UV Protector is formulated to be lightweight and to not leave a white cast, making it suitable for all skin tones."
+  },
+  {
+    "keys": ["how to use a hydrating mask", "hydrating sheet mask instructions", "sheet mask tips"],
+    "reply": "Apply the Hydrating Sheet Mask to a clean, dry face. Leave it on for 15-20 minutes, then remove and gently pat the remaining serum into your skin. No need to rinse."
+  },
+  {
+    "keys": ["how to use a clay mask", "clay mask routine", "how to use purifying clay mask"],
+    "reply": "Apply the Purifying Clay Mask to a clean face, avoiding the eye and mouth areas. Let it sit for 10-15 minutes or until it begins to dry, then rinse thoroughly with warm water."
+  },
+  {
+    "keys": ["is Elora an organic brand", "natural skincare", "organic products"],
+    "reply": "We focus on using a combination of beneficial natural and scientific ingredients. Please check the individual product pages for specific ingredient details."
+  },
+  {
+    "keys": ["is the anti-aging serum for all skin types", "anti-aging serum for sensitive skin", "anti-aging serum for oily skin"],
+    "reply": "The Anti-Aging Serum is suitable for most skin types, but if you have very sensitive skin, we recommend a patch test first due to the Retinol content."
+  },
+  {
+    "keys": ["what is the best product for a beginner", "beginner skincare routine", "basic skincare products"],
+    "reply": "For a beginner, a simple routine is best. We recommend our Hydrating Cleanser, followed by the Daily Hydrating Cream to establish a solid foundation."
+  },
+  {
+    "keys": ["do you have a product for hyperpigmentation", "hyperpigmentation treatment", "products for dark spots"],
+    "reply": "Our Brightening Serum with Vitamin C is excellent for addressing hyperpigmentation and dark spots, helping to create a more even skin tone."
+  },
+  {
+    "keys": ["what is the shelf life of your products", "product expiration date", "how long do products last"],
+    "reply": "The shelf life of our products varies. Check the product packaging for a 'period after opening' (PAO) symbol, which indicates how long the product is good for after it's been opened."
+  },
+  {
+    "keys": ["can I use the hydrating serum with the anti-aging serum", "layering anti-aging and hydrating serums", "can i mix serums"],
+    "reply": "Yes, you can layer the Hydrating Serum and the Anti-Aging Serum. Apply the Hydrating Serum first, followed by the Anti-Aging Serum, and then your moisturizer."
+  },
+  {
+    "keys": ["is the daily hydrating cream non-comedogenic", "does the daily hydrating cream clog pores", "non-comedogenic moisturizer"],
+    "reply": "Our Daily Hydrating Cream is formulated to be lightweight and should not clog pores for most people."
+  },
+  {
+    "keys": ["best products for uneven skin tone", "how to even out skin tone", "uneven complexion"],
+    "reply": "To address uneven skin tone, we suggest using our Exfoliating Cleanser and the Brightening Serum with Vitamin C, as these products work together to reveal a more balanced and radiant complexion."
+  },
+  {
+    "keys": ["does the purifying clay mask dry out skin", "clay mask for dry skin", "can I use clay mask if my skin is dry"],
+    "reply": "The Purifying Clay Mask is best for oily and combination skin. If you have dry skin, we recommend our Hydrating Sheet Mask instead to avoid over-drying."
+  },
+  {
+    "keys": ["what is a serum", "what does a serum do", "serum definition"],
+    "reply": "A serum is a concentrated treatment with a high percentage of active ingredients designed to target specific skin concerns, such as hydration, brightening, or anti-aging."
+  },
+  {
+    "keys": ["how to use cleansing milk", "cleansing milk benefits", "is cleansing milk a makeup remover"],
+    "reply": "Our Cleansing Milk is a creamy, mild cleanser that can be used to gently remove makeup and impurities from your face. It is ideal for sensitive or dry skin."
+  },
+  {
+    "keys": ["can i use the exfoliating cleanser with other exfoliators", "over-exfoliation", "exfoliating too much"],
+    "reply": "To avoid over-exfoliation, we recommend using the Exfoliating Cleanser on its own and not combining it with other exfoliating products like scrubs or stronger acid treatments."
+  },
+  {
+    "keys": ["how to use lip gloss", "lip gloss benefits", "hydrating lip gloss"],
+    "reply": "Our Hydrating Lip Gloss can be applied directly to your lips for a glossy finish and a boost of moisture from the Shea Butter and Vitamin E."
+  },
+  {
+    "keys": ["does the acne control serum dry out skin", "acne serum for dry skin", "is acne control serum drying"],
+    "reply": "The Acne-Control Serum is designed to be effective without being overly drying. However, if you have dry skin, we recommend following up with our Daily Hydrating Cream to maintain moisture balance."
+  },
+  {
+    "keys": ["how to deal with body acne", "body acne products", "products for body breakouts"],
+    "reply": "For body acne, our Exfoliating Body Wash can help to remove dead skin cells and keep pores clear, which can help prevent breakouts on your body."
+  }
+            
+            ];
+            
+            let usedIndices = new Set();
+            
+            // Function to get random FAQs
+            function getRandomFAQs(count) {
+                const availableIndices = allFAQs.map((_, index) => index)
+                    .filter(index => !usedIndices.has(index));
+                
+                // If we've used most questions, reset
+                if (availableIndices.length < count) {
+                    usedIndices.clear();
+                    return getRandomFAQs(count);
+                }
+                
+                // Select random indices
+                const selectedIndices = [];
+                while (selectedIndices.length < count && availableIndices.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * availableIndices.length);
+                    selectedIndices.push(availableIndices[randomIndex]);
+                    usedIndices.add(availableIndices[randomIndex]);
+                    availableIndices.splice(randomIndex, 1);
+                }
+                
+                return selectedIndices.map(index => allFAQs[index]);
+            }
+            
+            // Function to display FAQs
+            function displayFAQs() {
+                const randomFAQs = getRandomFAQs(10);
+                faqContainer.innerHTML = '';
+                
+                randomFAQs.forEach((faq, index) => {
+                    const faqItem = document.createElement('div');
+                    faqItem.className = 'faq-item';
+                    faqItem.innerHTML = `<i class="fas fa-question-circle" style="margin-right: 8px; color: var(--color-accent);"></i> ${faq.question}`;
+                    faqItem.dataset.answer = faq.answer;
+                    
+                    faqItem.addEventListener('click', function() {
+                        // Add user message to chat
+                        addMessage(this.textContent, true);
+                        
+                        // Show typing indicator
+                        showTypingIndicator();
+                        
+                        // Simulate bot thinking
+                        setTimeout(() => {
+                            document.getElementById('typing-indicator').remove();
+                            addMessage(this.dataset.answer, false);
+                        }, 1000);
+                    });
+                    
+                    faqContainer.appendChild(faqItem);
+                });
+            }
+            
+            // Function to add message to chat
+            function addMessage(message, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+                
+                const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                if (isUser) {
+                    messageDiv.innerHTML = `${message}<div class="message-time">${time}</div>`;
+                } else {
+                    messageDiv.innerHTML = `<i class="fas fa-robot" style="margin-right: 5px;"></i> ${message}<div class="message-time">${time}</div>`;
+                }
+                
+                chatBox.appendChild(messageDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+            
+            // Function to show typing indicator
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.classList.add('message', 'bot-message', 'typing-indicator');
+                typingDiv.id = 'typing-indicator';
+                
+                typingDiv.innerHTML = '<i class="fas fa-robot" style="margin-right: 5px;"></i> ';
+                
+                for (let i = 0; i < 3; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('typing-dot');
+                    typingDiv.appendChild(dot);
+                }
+                
+                chatBox.appendChild(typingDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                
+                return typingDiv;
+            }
+            
+            // Function to detect response based on user input
+            function detectResponse(message) {
+                const msg = message.toLowerCase().trim();
+                if (msg.length === 0) return { type: 'none' };
+                
+                let bestMatch = { score: 0, entry: null, matchedKey: '' };
+                
+                for (const entry of knowledge) {
+                    let entryScore = 0;
+                    let bestKeyForEntry = '';
+                    
+                    for (const key of entry.keys) {
+                        const k = key.toLowerCase();
+                        const pattern = new RegExp('\\b' + k + '\\b', 'i');
+                        
+                        if (pattern.test(msg)) {
+                            entryScore += 2;
+                            if (k.length > bestKeyForEntry.length) bestKeyForEntry = k;
+                        } else if (msg.includes(k)) {
+                            entryScore += 1;
+                            if (k.length > bestKeyForEntry.length) bestKeyForEntry = k;
+                        }
+                    }
+                    
+                    if (msg.split(/\s+/).length <= 3 && entryScore > 0) entryScore += 1;
+                    
+                    if (entryScore > bestMatch.score || 
+                        (entryScore === bestMatch.score && bestKeyForEntry.length > bestMatch.matchedKey.length)) {
+                        bestMatch.score = entryScore;
+                        bestMatch.entry = entry;
+                        bestMatch.matchedKey = bestKeyForEntry;
+                    }
+                }
+                
+                return { 
+                    type: bestMatch.entry ? 'found' : 'fallback', 
+                    entry: bestMatch.entry, 
+                    matchedKey: bestMatch.matchedKey, 
+                    score: bestMatch.score 
+                };
+            }
+            
+            // Function to handle user messages
+            function handleUserMessage() {
+                const message = userInput.value.trim();
+                if (!message) return;
+                
+                userInput.value = '';
+                addMessage(message, true);
+                
+                // Show typing indicator
+                showTypingIndicator();
+                
+                // Check if it's a direct FAQ match first
+                const faqItems = document.querySelectorAll('.faq-item');
+                let faqMatch = null;
+                
+                faqItems.forEach(item => {
+                    if (item.textContent.toLowerCase().includes(message.toLowerCase())) {
+                        faqMatch = item.dataset.answer;
+                    }
+                });
+                
+                setTimeout(() => {
+                    document.getElementById('typing-indicator').remove();
+                    
+                    if (faqMatch) {
+                        addMessage(faqMatch, false);
+                    } else {
+                        // Use the knowledge base
+                        const response = detectResponse(message);
+                        
+                        if (response.type === 'found') {
+                            addMessage(response.entry.reply, false);
+                        } else {
+                            // Fallback response
+                            const fallbackResponses = [
+                                "I'm not sure I understand. Could you try asking in a different way?",
+                                "That's an interesting question! Could you provide more details?",
+                                "I'm still learning about skincare. Try asking about routines, products, or specific concerns!",
+                                "Hmm, I don't have information about that yet. Try asking about common skincare topics like acne, aging, or moisturizers."
+                            ];
+                            
+                            const randomResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+                            addMessage(randomResponse, false);
+                        }
+                    }
+                }, 1000);
+            }
+            
+            // Function to create keyword chips
+            function createKeywordChips() {
+                const allKeys = knowledge.flatMap(k => k.keys);
+                const uniqueKeys = Array.from(new Set(allKeys)).slice(0, 15);
+                
+                chipsContainer.innerHTML = '';
+                
+                uniqueKeys.forEach(key => {
+                    const chip = document.createElement('div');
+                    chip.className = 'chip';
+                    chip.textContent = key;
+                    chip.addEventListener('click', () => {
+                        userInput.value = key;
+                        userInput.focus();
+                    });
+                    chipsContainer.appendChild(chip);
+                });
+            }
+            
+            // Initial display
+            displayFAQs();
+            createKeywordChips();
+            
+            // Event listeners
+            refreshBtn.addEventListener('click', displayFAQs);
+            sendBtn.addEventListener('click', handleUserMessage);
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

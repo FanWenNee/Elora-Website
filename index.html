@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elora Skincare - Login/Sign Up</title>
+  <style>
+    :root {
+      /* Color Palette - Matching Elora's homepage */
+      --color-primary: #333333;
+      --color-secondary: #5e5e5e;
+      --color-accent: #8a7356;
+      --color-background: #f7f7f7;
+      --color-surface: #ffffff;
+      --color-border: #e0e0e0;
+      --color-text: #2a2a2a;
+      --color-text-light: #757575;
+      
+      /* Spacing */
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 1.5rem;
+      --spacing-lg: 2.5rem;
+      --spacing-xl: 4rem;
+      
+      /* Border Radius */
+      --radius-sm: 0; /* Aesop uses minimal rounding */
+      --radius-md: 0;
+      
+      /* Typography */
+      --font-heading: 'Georgia', serif;
+      --font-body: 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    * { 
+      margin:0; 
+      padding:0; 
+      box-sizing:border-box; 
+      font-family: 'Karla', sans-serif; 
+    }
+
+    body { 
+      background: var(--color-background);
+      display:flex; 
+      justify-content:center; 
+      align-items:center; 
+      min-height:100vh;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      font-family: 'Georgia', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--spacing-md);
+      text-transform: lowercase;
+    }
+
+    .tagline {
+      color: var(--color-text-light);
+      margin-bottom: var(--spacing-xl);
+      text-align: center;
+      font-size: 1.1rem;
+      font-family: 'Karla', sans-serif;
+    }
+
+    .auth-container { 
+      background: var(--color-surface);
+      padding: var(--spacing-xl); 
+      border-radius: var(--radius-sm); 
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+      width:100%; 
+      max-width:450px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      border: 1px solid var(--color-border);
+    }
+
+    .auth-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--color-accent);
+    }
+
+    .tab-buttons { 
+      display:flex; 
+      justify-content:space-around; 
+      margin-bottom: var(--spacing-xl); 
+      background: var(--color-background);
+      padding: var(--spacing-xs);
+      border-radius: 0;
+    }
+
+    .tab-buttons button { 
+      background: transparent; 
+      border:none; 
+      padding: var(--spacing-sm) var(--spacing-md); 
+      border-radius:0; 
+      cursor:pointer; 
+      font-weight:500; 
+      transition: all 0.3s;
+      flex: 1;
+      font-family: 'Karla', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+    }
+
+    .tab-buttons button.active { 
+      background: var(--color-surface); 
+      color: rgb(194, 132, 142);
+      border-bottom: 2px solid var(--color-accent);
+    }
+
+    form { 
+      display:none; 
+      flex-direction:column; 
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    form.active { 
+      display:flex; 
+    }
+
+    .input-group { 
+      margin-bottom: var(--spacing-lg); 
+      position:relative; 
+    }
+
+    .input-group input { 
+      width:100%; 
+      padding: var(--spacing-md); 
+      padding-right: 45px;
+      border-radius: var(--radius-sm); 
+      border: 1px solid var(--color-border);
+      font-size:1rem;
+      transition: all 0.3s;
+      background: var(--color-surface);
+      font-family: 'Karla', sans-serif;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .input-group i { 
+      position:absolute; 
+      top:50%; 
+      right:20px; 
+      transform:translateY(-50%); 
+      color: var(--color-accent); 
+    }
+
+    .auth-btn { 
+      width:100%; 
+      padding: var(--spacing-md); 
+      border:none; 
+      border-radius: var(--radius-sm); 
+      background: var(--color-text);
+      color: var(--color-surface); 
+      font-size:1rem; 
+      font-weight:500; 
+      cursor:pointer; 
+      transition: all 0.3s;
+      margin-top: var(--spacing-sm);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Karla', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .auth-btn:hover { 
+      background-color: rgb(194, 132, 142);
+    }
+
+    .auth-btn .btn-text {
+      transition: opacity 0.3s ease;
+    }
+
+    .auth-btn .loading-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .auth-btn.loading .btn-text {
+      opacity: 0;
+    }
+
+    .auth-btn.loading .loading-spinner {
+      opacity: 1;
+    }
+
+    .auth-links { 
+      text-align:center; 
+      margin-top: var(--spacing-lg); 
+    }
+
+    .auth-links a { 
+      color: var(--color-accent); 
+      text-decoration:none; 
+      font-size:0.9rem; 
+      margin:0 10px; 
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+
+    .auth-links a:hover { 
+      color: var(--color-text); 
+      text-decoration: underline;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: var(--spacing-xl) 0;
+      color: var(--color-text-light);
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+    }
+
+    .divider span {
+      padding: 0 var(--spacing-md);
+      font-size: 0.9rem;
+    }
+
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-accent);
+    }
+
+    .social-btn i {
+      color: rgb(194, 132, 142);
+      font-size: 1.2rem;
+    }
+
+    .terms {
+      font-size: 0.8rem;
+      margin-top: var(--spacing-lg);
+      text-align: center;
+      color: var(--color-text-light);
+    }
+
+    .terms a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    .terms a:hover {
+      text-decoration: underline;
+      color: var(--color-text);
+    }
+
+    /* Welcome message styles */
+    .welcome-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-background);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .welcome-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .welcome-content {
+      text-align: center;
+      color: var(--color-text);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .welcome-overlay.active .welcome-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .welcome-icon {
+      font-size: 4rem;
+      margin-bottom: var(--spacing-lg);
+      animation: pulse 1.5s infinite;
+      color: rgb(245, 196, 204);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .welcome-text {
+      font-family: 'Georgia', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .welcome-subtext {
+      font-size: 1.1rem;
+      color: var(--color-text-light);
+      font-family: 'Karla', sans-serif;
+    }
+
+    /* Loading overlay styles */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+
+    .loading-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .loading-content {
+      text-align: center;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid var(--color-background);
+      border-top: 5px solid var(--color-accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    .loading-text {
+      margin-top: var(--spacing-lg);
+      color: var(--color-accent);
+      font-weight: 500;
+      font-size: 1.1rem;
+      font-family: 'Karla', sans-serif;
+    }
+
+    @media(max-width:480px){
+      .auth-container{
+        padding: var(--spacing-lg) var(--spacing-md);
+      }
+      
+      .tab-buttons button {
+        padding: var(--spacing-sm);
+        font-size: 0.8rem;
+      }
+      
+      .welcome-text {
+        font-size: 1.8rem;
+      }
+      
+      .welcome-subtext {
+        font-size: 1rem;
+      }
+      
+      .logo {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <span>elora</span>
+    </div>
+    
+    <p class="tagline">Natural, sustainable skincare for all skin types</p>
+
+    <div class="auth-container" id="auth-container">
+        <div class="tab-buttons">
+            <button class="active" id="login-tab">Log In</button>
+            <button id="signup-tab">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="active">
+            <div class="input-group">
+                <input list="email-suggestions-login" id="login-email" placeholder="Email Address" required>
+                <datalist id="email-suggestions-login"></datalist>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" placeholder="Password" required>
+                <i class="fas fa-lock"></i>
+            </div>
+            <button type="submit" class="auth-btn" id="login-btn">
+                <span class="btn-text">Log In</span>
+                <div class="loading-spinner"></div>
+            </button>
+            
+            <div class="auth-links">
+                <a href="#">Forgot Password?</a>
+            </div>
+            
+            <div class="divider">
+                <span>Or continue with</span>
+            </div>
+            
+            <div class="social-login">
+                <div class="social-btn">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-apple"></i>
+                </div>
+            </div>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signup-form">
+            <div class="input-group">
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="input-group">
+                <input list="email-suggestions-signup" id="signup-email" placeholder="Email Address" required>
+                <datalist id="email-suggestions-signup"></datalist>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="signup-confirm" placeholder="Confirm Password" required>
+                <i class="fas fa-lock"></i>
+            </div>
+            <button type="submit" class="auth-btn" id="signup-btn">
+                <span class="btn-text">Create Account</span>
+                <div class="loading-spinner"></div>
+            </button>
+            
+            <div class="divider">
+                <span>Or sign up with</span>
+            </div>
+            
+            <div class="social-login">
+                <div class="social-btn">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-apple"></i>
+                </div>
+            </div>
+            
+            <div class="terms">
+                By creating an account, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Welcome Message Overlay -->
+<div class="welcome-overlay" id="welcome-overlay">
+    <div class="welcome-content">
+        <div class="welcome-icon">
+            <i class="fas fa-spa"></i>
+        </div>
+        <h1 class="welcome-text" id="welcome-text">Welcome back!</h1>
+        <p class="welcome-subtext">Logging in to Elora...</p>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loading-overlay">
+    <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Logging you in...</div>
+    </div>
+</div>
+
+<script>
+const loginTab = document.getElementById('login-tab');
+const signupTab = document.getElementById('signup-tab');
+const loginForm = document.getElementById('login-form');
+const signupForm = document.getElementById('signup-form');
+const authContainer = document.getElementById('auth-container');
+const welcomeOverlay = document.getElementById('welcome-overlay');
+const welcomeText = document.getElementById('welcome-text');
+const loadingOverlay = document.getElementById('loading-overlay');
+const loginBtn = document.getElementById('login-btn');
+const signupBtn = document.getElementById('signup-btn');
+
+loginTab.addEventListener('click', () => {
+    loginTab.classList.add('active');
+    signupTab.classList.remove('active');
+    loginForm.classList.add('active');
+    signupForm.classList.remove('active');
+});
+
+signupTab.addEventListener('click', () => {
+    signupTab.classList.add('active');
+    loginTab.classList.remove('active');
+    signupForm.classList.add('active');
+    loginForm.classList.remove('active');
+});
+
+// Email autocomplete function
+const domains = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com","icloud.com","live.com"];
+
+function setupEmailAutocomplete(inputId, datalistId) {
+    const input = document.getElementById(inputId);
+    const datalist = document.getElementById(datalistId);
+
+    input.addEventListener('input', () => {
+        const value = input.value;
+        const atIndex = value.indexOf("@");
+
+        // Clear previous suggestions
+        datalist.innerHTML = "";
+
+        if (atIndex === -1 && value.length > 0) {
+            domains.forEach(domain => {
+                const option = document.createElement("option");
+                option.value = value + "@" + domain;
+                datalist.appendChild(option);
+            });
+        }
+    });
+}
+
+setupEmailAutocomplete("login-email", "email-suggestions-login");
+setupEmailAutocomplete("signup-email", "email-suggestions-signup");
+
+// Function to extract username from email
+function getUsernameFromEmail(email) {
+    return email.split('@')[0];
+}
+
+// Form submission
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get the email value
+    const email = document.getElementById('login-email').value;
+    const username = getUsernameFromEmail(email);
+    
+    // Show loading state on button
+    loginBtn.classList.add('loading');
+    
+    // In a real application, you would send this data to your server
+    // Simulate a login process with a timeout
+    setTimeout(function() {
+        // Hide login form
+        authContainer.style.transform = 'translateY(20px)';
+        authContainer.style.opacity = '0';
+        
+        // Show welcome message with username
+        welcomeText.textContent = `Welcome back, ${username}!`;
+        welcomeOverlay.classList.add('active');
+        
+        // Redirect to the Elora website after 3 seconds
+        setTimeout(function() {
+            window.location.href = 'elora2.html';
+        }, 3000);
+    }, 1500);
+});
+
+document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get the email value
+    const email = document.getElementById('signup-email').value;
+    const username = getUsernameFromEmail(email);
+    
+    // Show loading state on button
+    signupBtn.classList.add('loading');
+    
+    // In a real application, you would send this data to your server
+    // Simulate a signup process with a timeout
+    setTimeout(function() {
+        // Hide signup form
+        authContainer.style.transform = 'translateY(20px)';
+        authContainer.style.opacity = '0';
+        
+        // Show welcome message with username
+        welcomeText.textContent = `Welcome, ${username}!`;
+        welcomeOverlay.classList.add('active');
+        
+        // Redirect to the Elora website after 3 seconds
+        setTimeout(function() {
+            window.location.href = 'elora2.html';
+        }, 3000);
+    }, 1500);
+});
+</script>
+
+</body>
+</html>

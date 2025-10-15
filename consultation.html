@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elora Skincare - Consultation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables & Base Styles */
+        :root {
+            --color-primary: #333333;
+            --color-secondary: #5e5e5e;
+            --color-accent: #8a7356;
+            --color-background: #f7f7f7;
+            --color-surface: #ffffff;
+            --color-border: #e0e0e0;
+            --color-text: #2a2a2a;
+            --color-text-light: #757575;
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Helvetica Neue', Arial, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-md: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 6rem;
+            --container-width: 1280px;
+            --border-radius: 0;
+            --primary-pink: #f8e2e7;
+            --primary-pink-dark: #e8c6cf;
+            --accent-pink: #d4afb7;
+            --dark-gray: #2a2a2a;
+            --medium-gray: #444444;
+            --white: #ffffff;
+            --transition-medium: 0.3s ease;
+            --transition-fast: 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background-color: var(--color-background);
+            color: var(--medium-gray);
+            line-height: 1.6;
+            font-size: var(--font-size-md);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.01em;
+            color: var(--color-primary);
+        }
+
+        a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: color var(--transition-medium);
+        }
+
+        a:hover {
+            color: var(--accent-pink);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header & Navigation - FIXED HEIGHT */
+        header {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+            height:110px;
+            align-items: center;       
+            justify-content: center;
+            display: flex;
+        }
+
+        .logo {
+            font-size: var(--font-size-xxl);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+            margin: 0;   
+            line-height:1; 
+            font-family: "Lucida Handwriting", cursive;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            height: 60px; /* Fixed height for nav container */
+        }
+
+        .nav-item {
+              position: relative;
+            padding: 0.95rem 1.6rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+        }
+
+        .nav-item a {
+            font-weight: 500;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 12px;
+            transition: color var(--transition-medium);
+            font-family: "FS Kim", serif;
+        }
+
+        .nav-item:hover a {
+            color: rgb(194, 132, 142);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 180px;
+            z-index: 10;
+            padding: var(--spacing-md) 0;
+            text-align: center;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: normal;
+            transition: all 0.2s ease;
+            font-family: 'Karla', sans-serif;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--primary-pink);
+            color: var(--dark-gray);
+        }
+        
+        /* Search, Cart & User Icons */
+        .search-cart-container {
+            margin-left: auto;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding: 0 var(--spacing-md);
+            height: 100%;
+        }
+
+        .cart-icon, .profile-icon, .settings-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+
+        .profile-icon:hover, .settings-icon:hover {
+            color: var(--accent-pink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: rgb(194, 132, 142);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Consultation Page Styles */
+        .consultation-hero {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--white) 100%);
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .consultation-hero h1 {
+            font-size: 3rem;
+            color: var(--accent-pink);
+            margin-bottom: var(--spacing-md);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .consultation-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--color-text-light);
+        }
+
+        .consultation-container {
+            display: flex;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .consultation-info {
+            flex: 1;
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-border);
+        }
+
+        .consultation-info h2 {
+            color: var(--accent-pink);
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--primary-pink);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .benefits-list li {
+            padding: var(--spacing-sm) 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .benefits-list i {
+            color: var(--accent-pink);
+            margin-right: var(--spacing-sm);
+            font-size: 1.2rem;
+            margin-top: 4px;
+        }
+
+        .consultation-form {
+            flex: 2;
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-border);
+        }
+
+        .form-title {
+            color: var(--accent-pink);
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--primary-pink);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 2px rgba(212, 175, 183, 0.2);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+
+        .time-slot {
+            padding: var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .time-slot:hover {
+            background-color: var(--primary-pink);
+            border-color: var(--accent-pink);
+        }
+
+        .time-slot.selected {
+            background-color: var(--accent-pink);
+            color: var(--white);
+            border-color: var(--accent-pink);
+        }
+
+        .time-slot.unavailable {
+            background-color: var(--color-background);
+            color: var(--color-text-light);
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-pink);
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            width: 100%;
+            font-family: 'Karla', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-pink-dark);
+        }
+
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-content h2 {
+            color: var(--accent-pink);
+            margin-bottom: var(--spacing-md);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .modal-content p {
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+
+        .btn-close {
+            background-color: var(--primary-pink);
+            color: var(--accent-pink);
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-close:hover {
+            background-color: var(--primary-pink-dark);
+            color: var(--white);
+        }
+
+    .main-footer {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--spacing-xl);
+}
+
+.main-footer .footer p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.main-footer .footer p:last-child {
+    margin-bottom: 0;
+}
+        
+        /* Email Suggestions Styles */
+        .email-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .email-suggestion {
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .email-suggestion:hover {
+            background-color: var(--primary-pink);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .consultation-container {
+                flex-direction: column;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .consultation-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+                height: auto;
+            }
+            
+            .nav-item {
+                padding: 0.6rem 0.8rem;
+            }
+            
+            .time-slots {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-cart-container {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                padding: var(--spacing-sm) 0;
+                border-top: 1px solid var(--color-border);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .consultation-hero {
+                padding: var(--spacing-xl) 0;
+            }
+            
+            .consultation-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .consultation-info, .consultation-form {
+                padding: var(--spacing-lg);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p class="logo">Elora</p>
+    </header>
+    <nav class="nav-container">
+         <div class="nav-item">
+            <a href="about-us.html">About Elora</a>
+        </div>
+        <div class="nav-item"><a href="elora2.html">Home</a></div>
+        <div class="nav-item">
+            <a href="elora2.html#whats-new-sec">What's New</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#new-arrival-sec">New Arrival</a>
+                <a href="elora2.html#best-seller-sec">Best Seller</a>
+                <a href="elora2.html#limited-deal-sec">Limited Deal</a>
+                <a href="elora2.html#gift-set-sec">Gift Set</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html#face-care-sec">Face Care</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#c-and-t-sec">Cleanser & Toner</a>
+                <a href="elora2.html#face-serum-sec">Face Serum</a>
+                <a href="elora2.html#moisturizer-sec">Moisturizer</a>
+                <a href="elora2.html#eye-care-sec">Eye Care</a>
+                <a href="elora2.html#mask-sec">Face Mask</a>
+                <a href="elora2.html#face-treatment-oil-sec">Face Treatment Oil</a>
+                <a href="elora2.html#uv-sec">Daily UV Protector</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html#make-up-sec">Make-up</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#face-sec">Face</a>
+                <a href="elora2.html#eye-make-up-sec">Eye make-up</a>
+                <a href="elora2.html#lip-sec">Lip</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="membership.html">Membership</a>
+        </div>
+        <div class="nav-item">
+            <a href="faq.html">FAQ</a>
+        </div>
+        <div class="nav-item">
+            <a href="consultation.html" style="color: rgb(194, 132, 142);">Consultation</a>
+        </div>
+        <div class="search-cart-container">
+            <div class="profile-icon" id="profileIcon">
+                <i class="far fa-user"></i>
+            </div>
+            <div class="settings-icon" id="settingsIcon">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="consultation-hero">
+            <div class="container">
+                <h1>Personal Skincare Consultation</h1>
+                <p>Book a one-on-one session with our skincare experts to find the perfect routine for your unique skin needs.</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="consultation-container">
+                <div class="consultation-info">
+                    <h2>Why Book a Consultation?</h2>
+                    <ul class="benefits-list">
+                        <li><i class="fas fa-check-circle"></i> Personalized skincare analysis</li>
+                        <li><i class="fas fa-check-circle"></i> Expert recommendations for your skin type</li>
+                        <li><i class="fas fa-check-circle"></i> Customized routine planning</li>
+                        <li><i class="fas fa-check-circle"></i> Answers to your specific skin concerns</li>
+                        <li><i class="fas fa-check-circle"></i> Product demonstrations and samples</li>
+                        <li><i class="fas fa-check-circle"></i> Follow-up support after your consultation</li>
+                    </ul>
+                    
+                    <h2>What to Expect</h2>
+                    <p>Our 30-minute virtual consultations are conducted by certified skincare specialists. We'll discuss your skin concerns, lifestyle, and goals to create a personalized plan just for you.</p>
+                </div>
+                
+                <div class="consultation-form">
+                    <h2 class="form-title">Book Your Consultation</h2>
+                    <form id="consultationForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" required autocomplete="email">
+                            <div class="email-suggestions" id="emailSuggestions"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="concern">Primary Skin Concern *</label>
+                            <select id="concern" class="form-control" required>
+                                <option value="">Select your main concern</option>
+                                <option value="acne">Acne & Blemishes</option>
+                                <option value="aging">Wrinkles & Finelines</option>
+                                <option value="dryness">Dryness & Dehydration</option>
+                                <option value="sensitivity">Sensitivity & Redness</option>
+                                <option value="hyperpigmentation">Hyperpigmentation & Dark Spots</option>
+                                <option value="oiliness">Oiliness & Shine</option>
+                                <option value="blackheads">Blackheads</option>
+                                <option value="eye">Dark Circle / Puffiness</option>
+                                <option value="other">Other Concerns</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Preferred Date *</label>
+                            <input type="date" id="date" class="form-control" required min="">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Available Time Slots *</label>
+                            <div class="time-slots" id="timeSlots">
+                                <div class="time-slot" data-time="09:00">9:00 AM</div>
+                                <div class="time-slot" data-time="10:00">10:00 AM</div>
+                                <div class="time-slot" data-time="11:00">11:00 AM</div>
+                                <div class="time-slot" data-time="13:00">1:00 PM</div>
+                                <div class="time-slot" data-time="14:00">2:00 PM</div>
+                                <div class="time-slot unavailable" data-time="15:00">3:00 PM</div>
+                                <div class="time-slot" data-time="16:00">4:00 PM</div>
+                                <div class="time-slot" data-time="17:00">5:00 PM</div>
+                                <div class="time-slot unavailable" data-time="18:00">6:00 PM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Additional Notes</label>
+                            <textarea id="notes" class="form-control" rows="4" placeholder="Tell us more about your skin concerns or any specific questions you have..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Schedule Consultation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Confirmation Modal -->
+        <div class="confirmation-modal" id="confirmationModal">
+            <div class="modal-content">
+                <h2>Consultation Request Received!</h2>
+                <p>Thank you for booking a skincare consultation with Elora. We've received your request and will send a confirmation email to your address shortly.</p>
+                <p>Our team will review your information and get in touch within 24 hours to finalize your appointment details.</p>
+                <button class="btn-close" id="closeModal">Close</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer">
+            <p>&copy; 2023 Elora Skincare. All rights reserved.</p>
+            <p>Natural, sustainable skincare for all skin types</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date to today
+            const dateInput = document.getElementById('date');
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const todayStr = `${yyyy}-${mm}-${dd}`;
+            dateInput.min = todayStr;
+            
+            // Time slot selection
+            const timeSlots = document.querySelectorAll('.time-slot:not(.unavailable)');
+            timeSlots.forEach(slot => {
+                slot.addEventListener('click', function() {
+                    // Remove selected class from all slots
+                    timeSlots.forEach(s => s.classList.remove('selected'));
+                    // Add selected class to clicked slot
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Form submission
+            const consultationForm = document.getElementById('consultationForm');
+            const confirmationModal = document.getElementById('confirmationModal');
+            const closeModal = document.getElementById('closeModal');
+            
+            consultationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic validation
+                const selectedTime = document.querySelector('.time-slot.selected');
+                if (!selectedTime) {
+                    alert('Please select a time slot for your consultation');
+                    return;
+                }
+                
+                // Show confirmation modal
+                confirmationModal.style.display = 'flex';
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                confirmationModal.style.display = 'none';
+            });
+            
+            // Close modal if clicked outside
+            window.addEventListener('click', function(e) {
+                if (e.target === confirmationModal) {
+                    confirmationModal.style.display = 'none';
+                }
+            });
+            
+            // Email auto-completion functionality
+            const emailInput = document.getElementById('email');
+            const emailSuggestions = document.getElementById('emailSuggestions');
+            const emailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com','live.com'];
+            
+            emailInput.addEventListener('input', function() {
+                const value = emailInput.value;
+                const atPosition = value.indexOf('@');
+                
+                // Clear previous suggestions
+                emailSuggestions.innerHTML = '';
+                
+                // Show suggestions only if there's text before @
+                if (atPosition === -1 && value.length > 0) {
+                    // Show domain suggestions
+                    const suggestions = emailDomains.map(domain => {
+                        return `${value}@${domain}`;
+                    });
+                    
+                    displaySuggestions(suggestions);
+                } 
+                // If there's text after @, show matching domain suggestions
+                else if (atPosition > -1) {
+                    const prefix = value.substring(0, atPosition + 1);
+                    const domainPart = value.substring(atPosition + 1);
+                    
+                    if (domainPart.length > 0) {
+                        const matchingDomains = emailDomains.filter(domain => 
+                            domain.startsWith(domainPart)
+                        );
+                        
+                        const suggestions = matchingDomains.map(domain => {
+                            return `${prefix}${domain}`;
+                        });
+                        
+                        displaySuggestions(suggestions);
+                    } else {
+                        const suggestions = emailDomains.map(domain => {
+                            return `${prefix}${domain}`;
+                        });
+                        
+                        displaySuggestions(suggestions);
+                    }
+                } else {
+                    emailSuggestions.style.display = 'none';
+                }
+            });
+            
+            function displaySuggestions(suggestions) {
+                if (suggestions.length === 0) {
+                    emailSuggestions.style.display = 'none';
+                    return;
+                }
+                
+                suggestions.forEach(suggestion => {
+                    const div = document.createElement('div');
+                    div.className = 'email-suggestion';
+                    div.textContent = suggestion;
+                    div.addEventListener('click', function() {
+                        emailInput.value = suggestion;
+                        emailSuggestions.style.display = 'none';
+                    });
+                    emailSuggestions.appendChild(div);
+                });
+                
+                emailSuggestions.style.display = 'block';
+            }
+            
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (e.target !== emailInput) {
+                    emailSuggestions.style.display = 'none';
+                }
+            });
+            
+            // Keyboard navigation for email suggestions
+            emailInput.addEventListener('keydown', function(e) {
+                if (emailSuggestions.style.display === 'block') {
+                    const suggestions = emailSuggestions.querySelectorAll('.email-suggestion');
+                    let activeSuggestion = emailSuggestions.querySelector('.suggestion-active');
+                    
+                    // Down arrow
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        
+                        if (!activeSuggestion) {
+                            // First suggestion
+                            suggestions[0].classList.add('suggestion-active');
+                        } else {
+                            activeSuggestion.classList.remove('suggestion-active');
+                            const next = activeSuggestion.nextElementSibling;
+                            
+                            if (next) {
+                                next.classList.add('suggestion-active');
+                            } else {
+                                suggestions[0].classList.add('suggestion-active');
+                            }
+                        }
+                    }
+                    // Up arrow
+                    else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        
+                        if (activeSuggestion) {
+                            activeSuggestion.classList.remove('suggestion-active');
+                            const prev = activeSuggestion.previousElementSibling;
+                            
+                            if (prev) {
+                                prev.classList.add('suggestion-active');
+                            } else {
+                                suggestions[suggestions.length - 1].classList.add('suggestion-active');
+                            }
+                        } else {
+                            suggestions[suggestions.length - 1].classList.add('suggestion-active');
+                        }
+                    }
+                    // Enter key
+                    else if (e.key === 'Enter' && activeSuggestion) {
+                        e.preventDefault();
+                        emailInput.value = activeSuggestion.textContent;
+                        emailSuggestions.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,3619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elora | Skincare & Beauty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Aesop-inspired CSS Variables */
+        :root {
+            /* Color Palette - Aesop's muted, natural tones */
+            --color-primary: #333333;
+            --color-secondary: #5e5e5e;
+            --color-accent: #8a7356;
+            --color-background: #f7f7f7;
+            --color-surface: #ffffff;
+            --color-border: #e0e0e0;
+            --color-text: #2a2a2a;
+            --color-text-light: #757575;
+            
+            /* Typography - Aesop uses elegant serif fonts */
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Helvetica Neue', Arial, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-md: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            
+            /* Spacing - Generous white space */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 6rem;
+            
+            /* Layout */
+            --container-width: 1280px;
+            --border-radius: 0; /* Aesop uses minimal rounding */
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: var(--font-size-md);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.01em;
+            color: var(--color-primary);
+        }
+
+        h1 {
+            font-size: var(--font-size-xxl);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header */
+        header {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+            height:110px;
+              align-items: center;       
+  justify-content: center;
+  display:flex;
+
+        }
+
+        .logo {
+            font-size: var(--font-size-xxl);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+            margin: 0;       
+            line-height:1;
+            font-family: "Lucida Handwriting", cursive;         
+        }
+
+        /* Navigation - Aesop's clean, minimal navigation */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter:blur(10px);
+            height:60px;
+        }
+
+        .nav-item {
+          position: relative;
+        padding: 0.95rem 1.6rem;
+        cursor: pointer;
+        height:100%;
+        }
+
+     .nav-item a {
+            font-weight: 500;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 12px;
+            transition: color var(--transition-medium);
+            font-family: "FS Kim", serif;
+
+        }
+
+
+        .nav-item:hover a {
+            color: rgb(194, 132, 142);
+        }
+
+      .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 180px;
+            z-index: 10;
+            padding: var(--spacing-md) 0;
+            text-align:center;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        
+        }
+
+         .dropdown-menu a {
+            display: block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: normal;
+            transition: all 0.2s ease;
+            font-family: 'Karla', sans-serif;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--primary-pink);
+            color: var(--dark-gray);
+        }
+
+        /* Search and Cart Container */
+        .search-cart-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-left: auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            width: 160px;
+            font-family: var(--font-body);
+            font-size: 12px;
+            transition: all 0.3s ease;
+            background: var(--color-surface);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-sm);
+            border-bottom: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background-color: var(--color-background);
+        }
+
+        .search-result-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: var(--spacing-sm);
+        }
+
+        .search-result-info h4 {
+            margin: 0;
+            font-size: var(--font-size-sm);
+            font-family: var(--font-body);
+        }
+
+        .search-result-info .price {
+            font-size: var(--font-size-xs);
+            color: var(--color-accent);
+        }
+
+        .cart-icon, .profile-icon, .settings-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+
+        .cart-icon:hover, .profile-icon:hover, .settings-icon:hover {
+              color: var(--accent-pink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: rgb(194, 132, 142);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Main Content Sections */
+        .content-section {
+            padding: var(--spacing-xl) 0;
+            text-align:center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* Product Grid - Aesop's clean product displays */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: 20px;
+            margin-bottom:20px;
+        }
+
+        .product-item {
+            background-color: var(--color-surface);
+            padding: var(--spacing-md);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: var(--spacing-md);
+            transition: transform 0.3s ease;
+        }
+
+        .product-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .product-item h3 {
+            font-size: var(--font-size-md);
+            margin: var(--spacing-xs) 0;
+        }
+
+        .product-item p {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+            font-family: 'Karla', sans-serif;
+        }
+
+        .price {
+            font-weight: 400;
+            color: var(--color-text);
+            font-size: var(--font-size-md);
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .add-to-cart-btn {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-text);
+            padding: var(--spacing-xs) var(--spacing-md);
+            cursor: pointer;
+            font-weight: 400;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: var(--font-size-sm);
+            margin-bottom:20px;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--color-text);
+            color: var(--color-surface);
+        }
+
+        /* Filter Styles - Aesop's minimal filtering */
+        .filter-buttons {
+            margin-bottom: var(--spacing-xl);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-xs);
+            flex-wrap: wrap;
+        }
+
+        .filter-buttons button {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            padding: var(--spacing-xs) var(--spacing-md);
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .filter-buttons button:hover,
+        .filter-buttons button.active {
+            background-color: var(--color-text);
+            color: var(--color-surface);
+            border-color: var(--color-text);
+        }
+
+        /* Face Care Filters */
+        .face-care-filters {
+            background-color: var(--color-surface);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            border: 1px solid var(--color-border);
+        }
+
+        .filter-group {
+            margin-bottom: var(--spacing-lg);
+            text-align: left;
+        }
+
+        .filter-group h4 {
+            margin-bottom: var(--spacing-sm);
+            font-size: var(--font-size-sm);
+            font-family: var(--font-body);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .filter-options label {
+            display: flex;
+            align-items: center;
+            margin-right: var(--spacing-md);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        .filter-options input[type="checkbox"] {
+            margin-right: var(--spacing-xs);
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: var(--spacing-xs);
+            border: 1px solid var(--color-border);
+            font-family: var(--font-body);
+            background-color: var(--color-surface);
+            font-size: var(--font-size-sm);
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .price-range input {
+            width: 100px;
+            padding: var(--spacing-xs);
+            border: 1px solid var(--color-border);
+            font-family: var(--font-body);
+        }
+
+        .filter-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--spacing-lg);
+        }
+
+        .filter-actions button {
+            padding: var(--spacing-xs) var(--spacing-md);
+            cursor: pointer;
+            font-weight: 400;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: var(--font-size-sm);
+        }
+
+        .apply-filters {
+            background-color: var(--color-text);
+            color: var(--color-surface);
+            border: 1px solid var(--color-text);
+        }
+
+        .apply-filters:hover {
+            background-color: transparent;
+            color: var(--color-text);
+        }
+
+        .reset-filters {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .reset-filters:hover {
+            background-color: var(--color-text);
+            color: var(--color-surface);
+            border-color: var(--color-text);
+        }
+
+        /* Modal Styles */
+        .ad-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .ad-modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .ad-modal-content {
+            background-color: var(--color-surface);
+            padding: var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--color-border);
+        }
+
+        .ad-modal.show .ad-modal-content {
+            transform: scale(1);
+        }
+
+        .ad-modal-content h2 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .ad-modal-content p {
+            margin: var(--spacing-md) 0;
+        }
+
+        .ad-modal-content a {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-lg);
+            background-color: var(--color-text);
+            color: var(--color-surface);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            font-weight: 400;
+            border: 1px solid var(--color-text);
+        }
+
+        .ad-modal-content a:hover {
+            background-color: transparent;
+            color: var(--color-text);
+        }
+        
+        .product-item.hidden {
+    display: none;
+}
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background-color: var(--color-surface);
+            border-left: 1px solid var(--color-border);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: var(--spacing-lg);
+        }
+
+        .cart-modal.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .cart-header h2 {
+            margin: 0;
+            font-size: var(--font-size-lg);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text);
+        }
+
+        .cart-items {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: var(--spacing-sm);
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: var(--font-size-sm);
+            font-family: var(--font-body);
+        }
+
+        .cart-item-price {
+            color: var(--color-text);
+            margin-bottom: var(--spacing-xs);
+            font-size: var(--font-size-sm);
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            background-color: transparent;
+            border: 1px solid var(--color-border);
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--color-background);
+        }
+
+        .quantity-input {
+            width: 30px;
+            height: 25px;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            margin: 0 var(--spacing-xs);
+            font-family: var(--font-body);
+        }
+
+        .remove-item {
+            color: var(--color-text-light);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: var(--font-size-xs);
+            margin-top: var(--spacing-xs);
+            transition: color 0.2s ease;
+            text-decoration: underline;
+        }
+
+        .remove-item:hover {
+            color: var(--color-text);
+        }
+
+        .cart-summary {
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-md);
+            font-weight: 500;
+            color: var(--color-text);
+        }
+      
+      
+
+        .checkout-btn {
+            background-color: var(--color-text);
+            color: var(--color-surface);
+            border: none;
+            padding: var(--spacing-md);
+            width: 100%;
+            cursor: pointer;
+            font-weight: 400;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .checkout-btn:hover {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-text);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--color-text-light);
+            padding: var(--spacing-lg) 0;
+        }
+
+        /* Chatbot Styles */
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            border: 1px solid var(--color-border);
+            z-index: 9999;
+            background: var(--color-surface);
+            display: none;
+        }
+
+        #chatbot-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--color-text);
+            color: var(--color-surface);
+            border: none;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-toggle:hover {
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            border: 1px solid var(--color-text);
+        }
+
+        /* Floating Skincare Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 90px;
+            width: 50px;
+            height: 50px;
+            background: var(--color-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-surface);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .floating-btn:hover {
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            border: 1px solid var(--color-text);
+        }
+        
+        .floating-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .tooltip {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            background: var(--color-surface);
+            color: var(--color-text);
+            padding: var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            width: 180px;
+            text-align: center;
+            pointer-events: none;
+            font-size: var(--font-size-sm);
+        }
+        
+        .floating-btn:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* Profile and Settings Modals */
+        .profile-modal, .settings-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background-color: var(--color-surface);
+            border-left: 1px solid var(--color-border);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: var(--spacing-lg);
+        }
+
+        .profile-modal.open, .settings-modal.open {
+            right: 0;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: var(--font-size-lg);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text);
+        }
+
+        .modal-content {
+            padding: var(--spacing-md) 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-cart-container {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                padding: var(--spacing-sm) 0;
+                border-top: 1px solid var(--color-border);
+            }
+        }
+
+        :root {
+    /* Aesop-inspired Color Palette */
+    --primary-pink: #f8e2e7;
+    --primary-pink-dark: #e8c6cf;
+    --accent-pink: #d4afb7;
+    --dark-gray: #2a2a2a;
+    --medium-gray: #444444;
+    --white: #ffffff;
+    
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    
+    /* Transitions */
+    --transition-medium: 0.3s ease;
+    --transition-fast: 0.2s ease;
+}
+
+/* Global Styles for the ad content */
+h2, p, a {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.01em;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    color: var(--medium-gray);
+}
+
+a {
+    color: var(--dark-gray);
+    text-decoration: none;
+    transition: color var(--transition-medium);
+}
+
+a:hover {
+    color: var(--accent-pink);
+}
+
+/* Hero Section with Advertisement */
+.hero-section {
+    position: relative;
+    height: 420px;
+    margin-top:0px;
+    overflow: hidden;
+}
+
+.ad-slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.ad-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 420px;
+    opacity: 0;
+    transition: opacity 1s ease;
+    background-size: 100%;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    background-repeat: no-repeat;
+    
+}
+
+.ad-slide.active {
+    opacity: 1;
+   
+
+}
+
+.ad-content {
+    background-color: rgba(255, 255, 255, 0.37);
+    padding: var(--spacing-xl);
+    max-width: 500px;
+    text-align: center;
+}
+
+.ad-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--dark-gray);
+}
+
+.ad-content p {
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.1rem;
+    font-family: 'Karla', sans-serif;
+    color:rgb(87, 87, 87);
+
+}
+
+.ad-cta {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--accent-pink);
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+    transition: background-color var(--transition-medium);
+}
+
+.ad-cta:hover {
+    background-color: var(--primary-pink-dark);
+    color: var(--white);
+}
+
+.ad-controls {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.ad-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color var(--transition-medium);
+}
+
+.ad-control.active {
+    background-color: var(--white);
+}
+
+   .main-footer {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--spacing-xl);
+}
+
+.main-footer .footer p {
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Karla', sans-serif;
+    color:#757575;
+}
+
+.main-footer .footer p:last-child {
+    margin-bottom: 0;
+}
+     
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-section { height: 60vh; }
+}
+
+@media (max-width: 768px) {
+    .hero-section { height: 50vh; margin-top: 60px; }
+    .ad-content { padding: var(--spacing-md); max-width: 80%; }
+    .ad-content h2 { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    .hero-section { height: 40vh; }
+    .ad-content { max-width: 90%; padding: var(--spacing-md); }
+    .ad-content h2 { font-size: 1.2rem; }
+    .ad-content p { font-size: 0.9rem; }
+}
+        @media (max-width: 640px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: var(--font-size-xl);
+            }
+            
+            h2 {
+                font-size: var(--font-size-lg);
+            }
+            
+            .logo {
+                font-size: var(--font-size-xl);
+            }
+            
+            .nav-item {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .cart-modal, .profile-modal, .settings-modal {
+                width: 100%;
+                right: -100%;
+            }
+            
+            #chatbot-container {
+                width: 100%;
+                height: 100%;
+                bottom: 0;
+                right: 0;
+            }
+            
+            .floating-btn {
+                right: 70px;
+            }
+        }
+
+        .sort-by{
+            font-family:'Karla', sans-serif;
+        }
+
+        .ingredients{
+            font-family: 'Karla', sans-serif;
+        }
+      
+      /* Profile Modal Styles */
+.profile-section {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.profile-section:last-child {
+    border-bottom: none;
+}
+
+/* Settings Modal Styles */
+.settings-section {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.settings-section:last-child {
+    border-bottom: none;
+}
+
+/* Order History & Wishlist Styles */
+.order-item, .wishlist-item {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-sm);
+    border-radius: 4px;
+}
+
+.wishlist-item {
+    display: flex;
+    align-items: center;
+}
+
+.wishlist-item img {
+    margin-right: var(--spacing-sm);
+}
+
+.wishlist-info {
+    flex: 1;
+}
+
+.remove-wishlist {
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.empty-message {
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .wishlist-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .wishlist-item img {
+        margin-bottom: var(--spacing-xs);
+    }
+}
+      
+      /* Review System Styles */
+.review-section {
+    margin-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-md);
+    display: none;
+}
+
+.review-section.active {
+    display: block;
+}
+
+.review-form {
+    margin-bottom: var(--spacing-lg);
+}
+
+.rating-stars {
+    display: flex;
+    margin-bottom: var(--spacing-sm);
+    gap: 5px;
+}
+
+.rating-stars span {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #ddd;
+    transition: color 0.2s;
+}
+
+.rating-stars span.active,
+.rating-stars span:hover {
+    color: #ffc107;
+}
+
+.review-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.review-item {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xs);
+}
+
+.review-author {
+    font-weight: 500;
+}
+
+.review-rating {
+    color: #ffc107;
+}
+
+.review-date {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+}
+
+.sales-count {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border);
+    background-color: transparent;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.btn-primary {
+    background-color: var(--color-text);
+    color: var(--color-surface);
+    border-color: var(--color-text);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--color-text);
+}
+
+.btn:hover {
+    background-color: var(--color-text);
+    color: var(--color-surface);
+    border-color: var(--color-text);
+}
+
+/* Form Navigation Buttons */
+.form-navigation {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+/* Specific Button Styles */
+#editProfileBtn {
+    margin-top: var(--spacing-md);
+    width: 100%;
+}
+
+#editProfileBtn:hover {
+    background-color: transparent;
+    color: var(--color-text);
+
+}
+
+
+#saveProfileBtn {
+    flex: 2;
+}
+
+#saveProfileBtn:hover{
+        background-color: transparent;
+    color: var(--color-text);
+}
+#cancelEditBtn {
+    flex: 1;
+}
+
+#cancelEditBtn:hover{
+        background-color: transparent;
+    color: var(--color-text);
+}
+
+#contactBtn {
+    margin-top: var(--spacing-sm);
+    width: 100%;
+}
+
+#contactBtn:hover{
+        background-color: transparent;
+    color: var(--color-text);
+}
+
+.submit-review-btn {
+    background-color: var(--color-text);
+    color: var(--color-surface);
+    border: 1px solid var(--color-text);
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.submit-review-btn:hover {
+    background-color: transparent;
+    color: var(--color-text);
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-xs);
+    border: 1px solid var(--color-border);
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    background-color: var(--color-surface);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-xs);
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-option input {
+    width: auto;
+    margin-right: var(--spacing-xs);
+}
+    </style>
+</head>
+<body>
+    <!-- Ad Modal -->
+    <div id="adModal" class="ad-modal">
+        <div class="ad-modal-content">
+            <button id="closeAdBtn">×</button>
+            <div class="text-center">
+                <h2>Special Offer</h2>
+                <p>New customers enjoy 20% off their first order. Click to learn more!</p>
+                <a href="#" target="_self" id="adLink">Claim Offer</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">Your cart is empty</div>
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+        </div>
+    </div>
+    <header>
+        <p class="logo">Elora</p>
+    </header>
+    <nav class="nav-container">
+          <div class="nav-item">
+            <a href="about-us.html">About Elora</a>
+        </div>
+   <div class="nav-item">
+            <a href="elora2.html" style="color: rgb(194, 132, 142);">Home</a>
+            
+            </div>        
+            <div class="nav-item">
+            <a href="elora2.html#whats-new-sec">What's New</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#new-arrival-sec">New Arrival</a>
+                <a href="elora2.html#best-seller-sec">Best Seller</a>
+                <a href="elora2.html#limited-deal-sec">Limited Deal</a>
+                <a href="elora2.html#gift-set-sec">Gift Set</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html#face-care-sec">Face Care</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#c-and-t-sec">Cleanser & Toner</a>
+                <a href="elora2.html#face-serum-sec">Face Serum</a>
+                <a href="elora2.html#moisturizer-sec">Moisturizer</a>
+                <a href="elora2.html#eye-care-sec">Eye Care</a>
+                <a href="elora2.html#mask-sec">Face Mask</a>
+                <a href="elora2.html#face-treatment-oil-sec">Face Treatment Oil</a>
+                <a href="elora2.html#uv-sec">Daily UV Protector</a>
+
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <a href="elora2.html#make-up-sec">Make-up</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#face-sec">Face</a>
+                <a href="elora2.html#eye-make-up-sec">Eye Make-up</a>
+                <a href="elora2.html#lip-sec">Lip</a>
+            </div>
+        </div>
+
+         <div class="nav-item">
+            <a href='membership.html'>Membership</a>
+        </div>
+
+        <div class="nav-item">
+            <a href='faq.html'>FAQ</a>
+        </div>
+      
+       <div class="nav-item">
+            <a href='consultation.html'>Consultation</a>
+        </div>
+      
+      <div class="search-cart-container">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search products..." id="searchInput">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+        <div class="profile-icon" id="profileIcon">
+            <i class="far fa-user"></i>
+        </div>
+        <div class="settings-icon" id="settingsIcon">
+                <i class="fas fa-cog"></i>
+        </div>
+        <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </div>
+    </nav>
+    <section class="hero-section" id="home">
+    <div class="ad-slideshow">
+        <div class="ad-slide active" style="background-image: url('https://i.imgur.com/TOB4ML9.png');">
+            <div class="ad-content">
+                <h2>New Arrival</h2>
+                <p>The perfect kiss of tint and comfort.</p>
+                <a href="#" class="ad-cta">Shop Now</a>
+            </div>
+        </div>
+        <div class="ad-slide" style="background-image: url('https://i.imgur.com/V6mk6b4.png');">
+            <div class="ad-content">
+                <h2>Special Limited Time Offer</h2>
+                <p>Enjoy 20% off on all products with code: ELORA20</p>
+                <a href="#" class="ad-cta">Claim Offer</a>
+            </div>
+        </div>
+        <div class="ad-slide" style="background-image: url('https://i.imgur.com/8bm5UcH.png');">
+                <div class="ad-content">
+                    <h2>Moonlight Glow Gift Sets</h2>
+                    <p>Glow softly, like moonlight.</p>
+                    <a href="#" class="ad-cta">Explore Gifts</a>
+                </div>
+            </div>
+        <div class="ad-slide" style="background-image: url('https://i.imgur.com/FVvroKo.png');">
+            <div class="ad-content">
+                <h2>Our Promise</h2>
+                <p>We commit to sustainable practices, using natural ingredients to deliver results that are always gentle on your skin.</p>
+                <a href="#" class="ad-cta">Learn More</a>
+            </div>
+        </div>
+    </div>
+    <div class="ad-controls">
+        <div class="ad-control active" data-index="0"></div>
+        <div class="ad-control" data-index="1"></div>
+        <div class="ad-control" data-index="2"></div>
+        <div class="ad-control" data-index="3"></div>
+    </div>
+</section>
+    <main>
+        <section id="whats-new-sec" class="content-section">
+            <h2>What's New</h2>
+                <div id="new-arrival-sec">
+                    <h3>New Arrival</h3>
+                    <div class="product-grid">
+                      <div class="product-item" data-category="lip-balm" data-sales="320">
+                        <img src="https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbb64f80e/Candy%20Glow/3614274128260/3614274128260.jpg" alt="Tinted Balm">
+                        <h3>Tinted Balm</h3>
+                        <p>Sheer wash of color combined with soothing hydration.</p>
+                        <span class="price">$38.50</span>
+                        <button class="add-to-cart-btn" data-id="57" data-name="Tinted Balm" data-price="38.50" data-image="https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbb64f80e/Candy%20Glow/3614274128260/3614274128260.jpg">Add to Cart</button>
+                    </div>
+
+                    <div class="product-item" data-category="mascara" data-sales="190">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwa3bce531/Makeup/Eyes/Mascara_Volume_Effet_Faux_Cils/1012YSL/New_3365440225305_1_mascara-volume-effet-faux-cils-waterproof_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85" alt="Volumizing Mascara">
+                        <h3>Volumizing Mascara</h3>
+                        <p>Adds dramatic volume and thickness to lashes.</p>
+                        <span class="price">$16.00</span>
+                        <button class="add-to-cart-btn" data-id="42" data-name="Volumizing Mascara" data-price="16.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwa3bce531/Makeup/Eyes/Mascara_Volume_Effet_Faux_Cils/1012YSL/New_3365440225305_1_mascara-volume-effet-faux-cils-waterproof_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85">Add to Cart</button>
+
+                    </div>
+                    </div>
+                    </div>
+                <div id="best-seller-sec">
+                    <h3>Best Seller</h3>
+                    <div class="product-grid">
+                        <div class="product-item" data-age="20s,30s,40s" data-skin-concern="dullness,uneven-skin-tone,dark-spots" data-price="25.00" data-texture="serum" data-skin-type="combination,dry,normal,oily,all" data-usage="brightening,even-tone" data-ingredients="vitamin-c" data-sales="300">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw895a6bbe/original/80096667_original_original_A.jpg?sw=680&sh=680" alt="Brightening Serum">
+                        <h3>Brightening Serum (Vitamin C)</h3>
+                        <p>Fades dark spots, evens tone, enhances natural radiance.</p>
+                        <span class="price">$25.00</span>
+                        <button class="add-to-cart-btn" data-id="8" data-name="Brightening Serum (Vitamin C)" data-price="25.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw895a6bbe/original/80096667_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+
+
+    <div class="product-item" data-age="any" data-skin-concern="dryness,dullness" data-price="10.00" data-texture="mask" data-skin-type="all" data-usage="hydration,soothing" data-ingredients="hyaluronic-acid,aloe-vera" data-sales="400">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.3D_6dAvGli6_mm4pwbVK8QHaHa?pid=Api&P=0&h=180" alt="Sheet Mask">
+            <h3>Sheet Mask</h3>
+            <p>Single-use mask; hydrates, calms, plumps dull skin.</p>
+            <span class="price">$10.00</span>
+            <button class="add-to-cart-btn" data-id="21" data-name="Sheet Mask" data-price="10.00" data-image="https://tse2.mm.bing.net/th/id/OIP.3D_6dAvGli6_mm4pwbVK8QHaHa?pid=Api&P=0&h=180">Add to Cart</button>
+
+        </div>
+
+
+
+ <div class="product-item" data-age="teens,20s,30s" data-skin-concern="blackhead,clogged-pores,oiliness,acne" data-price="20.00" data-texture="clay,mask" data-skin-type="oily,acne" data-usage="pore-care,blackhead-removal" data-ingredients="activated-charcoal" data-sales="300">
+            <img src="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_3378872142522-Sephora_20Collection-Hero_20Mask_20The_20Charcoal_20Face_20Mask_a4ae733385ceeebf8cd2123586c9460aa1d61421_1661273955.png" alt="Charcoal Mask">
+            <h3>Charcoal Mask</h3>
+            <p>Detoxifying treatment that draws out dirt, toxins, and blackheads for a deep clean.</p>
+            <span class="price">$20.00</span>
+            <button class="add-to-cart-btn" data-id="24" data-name="Charcoal Mask" data-price="20.00" data-image="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_3378872142522-Sephora_20Collection-Hero_20Mask_20The_20Charcoal_20Face_20Mask_a4ae733385ceeebf8cd2123586c9460aa1d61421_1661273955.png">Add to Cart</button>
+
+        </div>
+
+
+
+<div class="product-item" data-category="lipstick"  data-sales="310">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbc66637e/square/Makeup/Lips/RougePurCoutureTheSlim/3614272140004_11_rouge-pur-couture-the-slim_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85" alt="Matte Lipstick">
+                        <h3>Matte Lipstick</h3>
+                        <p>Long-lasting, richly pigmented formula with a velvety matte finish.</p>
+                        <span class="price">$40.00</span>
+                        <button class="add-to-cart-btn" data-id="51" data-name="Matte Lipstick" data-price="40.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbc66637e/square/Makeup/Lips/RougePurCoutureTheSlim/3614272140004_11_rouge-pur-couture-the-slim_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85">Add to Cart</button>
+
+                    </div>
+
+
+
+ <div class="product-item" data-category="lip-balm" data-sales="320">
+                        <img src="https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbb64f80e/Candy%20Glow/3614274128260/3614274128260.jpg" alt="Tinted Balm">
+                        <h3>Tinted Balm</h3>
+                        <p>Sheer wash of color combined with soothing hydration.</p>
+                        <span class="price">$38.50</span>
+                        <button class="add-to-cart-btn" data-id="57" data-name="Tinted Balm" data-price="38.50" data-image="https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbb64f80e/Candy%20Glow/3614274128260/3614274128260.jpg">Add to Cart</button>
+
+                    </div>                   
+                    </div>
+
+                </div>
+                <div id="limited-deal-sec">
+                    <h3>Limited Deal</h3>
+                    <div class="product-grid">
+                     <div class="product-item" data-age="teens,20s" data-skin-concern="acne,oiliness" data-price="15.50"  data-texture="foam,gel" data-skin-type="oily,acne" data-usage="balancing,cleansing,soothing,oil-control,pore-care" data-ingredients="salicylic" data-sales="180">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwf5284ba6/original/80104490_original_original_A.jpg?sw=680&sh=680" alt="Foaming Cleanser">
+                        <h3>Foaming Cleanser</h3>
+                        <p>Lightweight foam for oily, acne-prone skin; removes oil, prevents breakouts.</p>
+                        <span class="price">$15.50</span>
+                        <button class="add-to-cart-btn" data-id="3" data-name="Foaming Cleanser" data-price="15.50" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwf5284ba6/original/80104490_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+                    </div>
+
+                     <div class="product-item" data-age="30s,40s,50+" data-skin-concern="wrinkles,loss-of-firmness" data-price="30.00" data-texture="serum" data-skin-type="combination,dry,normal" data-usage="anti-aging,firming" data-ingredients="retinol" data-sales="250">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw230da189/original/80087952_original_original_A.jpg?sw=680&sh=680" alt="Anti-Aging Serum">
+                        <h3>Anti-Aging Serum (Retinol/Peptides)</h3>
+                        <p>Targets fine lines; renews skin, improves firmness.</p>
+                        <span class="price">$30.00</span>                        
+                        <button class="add-to-cart-btn" data-id="10" data-name="Anti-Aging Serum (Retinol/Peptides)" data-price="30.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw230da189/original/80087952_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    </div>
+                    </div>
+                <div id="gift-set-sec">
+                    <h3>Gift Set</h3>
+                <div class="product-grid">
+                    <div class="product-item" data-sales="110">
+                        <img src="https://i.imgur.com/BG05t3F.png" alt="Moonlight Glow Gift Set">
+                        <h3>Moonlight Glow Gift Set</h3>
+                        <p>Exfoliating Cleanser + Brightening Serum + Deep Hydration Cream</p>
+                        <span class="price">$65.00</span>
+                        <button class="add-to-cart-btn" data-id="58" data-name="Moonlight Glow Gift Set" data-price="65.00" data-image="https://i.imgur.com/BG05t3F.png">Add to Cart</button>
+                        </div>
+
+                    <div class="product-item" data-sales="320">
+                        <img src="https://i.imgur.com/yeiyJln.png" alt="Love Potion No. 14">
+                        <h3>Love Potion No. 14</h3>
+                        <p>Cream Blush + Shimmer Palette + Matte Lipstick</p>
+                        <span class="price">$98.00</span>
+                        <button class="add-to-cart-btn" data-id="59" data-name="Love Potion No. 14" data-price="98.00" data-image="https://i.imgur.com/yeiyJln.png">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <button id="chatbot-toggle">💬</button>
+
+        <div id="chatbot-container">
+        <iframe src="ai_chatbot.html" frameborder="0"></iframe>
+        </div>
+ <div class="floating-btn" id="skincareBtn">
+        <i class="fas fa-hand-holding-heart"></i>
+        <div class="tooltip">Get Personalized Skincare Advice</div>
+    </div>
+            <div class="overlay" id="overlay"></div>
+
+        <hr>
+        <section id="face-care-sec" class="content-section">
+            <h2>Face Care</h2>
+            
+            <!-- Face Care Filters -->
+            <div class="face-care-filters">
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <div class="price-range">
+                        <input type="number" id="min-price" placeholder="Min" min="0">
+                        <span>-</span>
+                        <input type="number" id="max-price" placeholder="Max" min="0">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>Texture</h4>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="texture" value="serum"> Serum</label>
+                        <label><input type="checkbox" name="texture" value="liquid"> Liquid</label>
+                        <label><input type="checkbox" name="texture" value="mask"> Mask</label>
+                        <label><input type="checkbox" name="texture" value="gel"> Gel</label>
+                        <label><input type="checkbox" name="texture" value="emulsion"> Emulsion</label>
+                        <label><input type="checkbox" name="texture" value="cream"> Cream</label>
+                        <label><input type="checkbox" name="texture" value="oil"> Oil</label>
+                        <label><input type="checkbox" name="texture" value="with-beads"> With beads</label>
+                        <label><input type="checkbox" name="texture" value="lotion"> Lotion</label>
+                        <label><input type="checkbox" name="texture" value="clay"> Clay</label>
+                        <label><input type="checkbox" name="texture" value="scrub"> Scrub</label>
+                        <label><input type="checkbox" name="texture" value="milk"> Milk</label>
+
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>Age</h4>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="age" value="any"> Any age</label>
+                        <label><input type="checkbox" name="age" value="teens"> Teens</label>
+                        <label><input type="checkbox" name="age" value="20s"> 20-29</label>
+                        <label><input type="checkbox" name="age" value="30s"> 30-39</label>
+                        <label><input type="checkbox" name="age" value="40s"> 40-49</label>
+                        <label><input type="checkbox" name="age" value="50+"> 50+</label>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>Skin Type</h4>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="skin-type" value="all"> All</label>
+                        <label><input type="checkbox" name="skin-type" value="normal"> Normal</label>
+                        <label><input type="checkbox" name="skin-type" value="sensitive"> Sensitive</label>
+                        <label><input type="checkbox" name="skin-type" value="acne"> Acne</label>
+                        <label><input type="checkbox" name="skin-type" value="oily"> Oily</label>
+                        <label><input type="checkbox" name="skin-type" value="dry"> Dry</label>
+                        <label><input type="checkbox" name="skin-type" value="combination"> Combination</label>
+                    </div>
+                </div>
+
+                   <div class="filter-group">
+                    <h4>Skin Concern</h4>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="skin-concern" value="dryness"> Dryness/Dehydration</label>
+                        <label><input type="checkbox" name="skin-concern" value="redness"> Redness</label>
+                        <label><input type="checkbox" name="skin-concern" value="acne"> Acne</label>
+                        <label><input type="checkbox" name="skin-concern" value="blackhead"> Blackheads</label>
+                        <label><input type="checkbox" name="skin-concern" value="clogged-pores"> Clogged Pores</label>
+                        <label><input type="checkbox" name="skin-concern" value="oiliness"> Oiliness</label>
+                        <label><input type="checkbox" name="skin-concern" value="dullness"> Dullness</label>
+                        <label><input type="checkbox" name="skin-concern" value="uneven-skin-tone"> Uneven Skin Tone</label>
+                        <label><input type="checkbox" name="skin-concern" value="dark-spots"> Dark Spots</label>                        
+                        <label><input type="checkbox" name="skin-concern" value="loss-of-firmness"> Loss of Firmness</label>
+                        <label><input type="checkbox" name="skin-concern" value="wrinkles"> Wrinkles</label>
+                        <label><input type="checkbox" name="skin-concern" value="dark-circle"> Dark Circle</label>
+                        <label><input type="checkbox" name="skin-concern" value="puffiness"> Puffiness</label>
+
+
+
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>Main Usage</h4>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="usage" value="hydration"> Hydration</label>
+                        <label><input type="checkbox" name="usage" value="brightening"> Brightening</label>
+                        <label><input type="checkbox" name="usage" value="anti-aging"> Anti-aging</label>
+                        <label><input type="checkbox" name="usage" value="balancing"> Balancing</label>
+                        <label><input type="checkbox" name="usage" value="pore-care"> Pore Care</label>
+                        <label><input type="checkbox" name="usage" value="even-tone"> Even Tone</label>
+                        <label><input type="checkbox" name="usage" value="cleansing"> Cleansing</label>
+                        <label><input type="checkbox" name="usage" value="soothing"> Soothing</label>
+                        <label><input type="checkbox" name="usage" value="acne-care"> Acne Care</label>
+                        <label><input type="checkbox" name="usage" value="oil-control"> Oil Control</label>
+                        <label><input type="checkbox" name="usage" value="barrier-repair"> Barrier Repair</label>
+                        <label><input type="checkbox" name="usage" value="cooling"> Cooling</label>
+                        <label><input type="checkbox" name="usage" value="protection"> UV Protection</label>
+                        <label><input type="checkbox" name="usage" value="blackhead-removal"> Blackhead Removal</label>
+                        <label><input type="checkbox" name="usage" value="firming"> Firming</label>
+                        <label><input type="checkbox" name="usage" value="radiance-boosting"> Radiance Boosting</label>
+
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>Ingredients</h4>
+                    <select class="filter-select" id="ingredients">
+                        <option value="">Select Ingredient</option>
+                        <option value="hyaluronic-acid">Hyaluronic Acid</option>
+                        <option value="aloe-vera">Aloe Vera</option>
+                        <option value="ceramides">Ceramides</option>
+                        <option value="salicylic">Salicylic Acid</option>
+                        <option value="aha">AHA</option>
+                        <option value="niacinamide">Niacinamide</option>
+                        <option value="vitamin-c">Vitamin C</option>
+                        <option value="green-tea">Green Tea</option>
+                        <option value="squalane">Squalane</option>
+                        <option value="colloidal-oatmeal">Colloidal Oatmeal</option>
+                        <option value="retinol">Retinol</option>
+                        <option value="vitamin-k">Vitamin K</option>
+                        <option value="caffeine">Caffeine</option>
+                        <option value="collagen">Collagen</option>
+                        <option value="peptides">Peptides</option>
+                        <option value="cucumber">Cucumber</option>
+                        <option value="glycolic-acid">Glycolic Acid</option>
+                        <option value="activated-charcoal">Activated Charcoal</option>
+                        <option value="rosehip-oil">Rosehip Oil</option>
+                        <option value="argan-oil">Argan Oil</option>
+                        <option value="marula-oil">Marula Oil</option>
+                        <option value="jojoba-oil">Jojoba Oil</option>
+                        <option value="antioxidants">Antioxidants</option>
+                        <option value="iron-oxides">Iron Oxides</option>
+                        <option value="vitamin-e">Vitamin E</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>Sort By</h4>
+                    <select class="filter-select" id="sort-by">
+                        <option value="default">Default</option>
+                        <option value="price-low-high">Price: Low to High</option>
+                        <option value="price-high-low">Price: High to Low</option>
+                        <option value="sales-low-high">Sales: Low to High</option>
+                        <option value="sales-high-low">Sales: High to Low</option>
+                    </select>
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="apply-filters" id="apply-face-filters">Apply Filters</button>
+                    <button class="reset-filters" id="reset-face-filters">Reset Filters</button>
+                </div>
+            </div>
+
+            <div id="c-and-t-sec">
+                <h3>Cleanser & Toner</h3>
+                <div class="product-grid" data-category="cleanser-toner">
+                    <div class="product-item" data-age="teens,20s,30s" data-skin-concern="dryness,redness" data-price="20.00" data-texture="liquid,cream" data-skin-type="sensitive,dry" data-usage="hydration,cleansing" data-ingredients="hyaluronic-acid,aloe-vera,ceramides" data-sales="150">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw0594baa6/original/80104492_original_original_A.jpg?sw=680&sh=680" alt="Hydrating Cleanser">
+                        <h3>Hydrating Cleanser</h3>
+                        <p>Gentle cleanser for dry, sensitive skin; keeps moisture, soft and refreshed.</p>
+                        <span class="price">$20.00</span>
+                        <button class="add-to-cart-btn" data-id="1" data-name="Hydrating Cleanser" data-price="20.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw0594baa6/original/80104492_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="teens,20s,30s" data-skin-concern="acne,blackhead,clogged-pores,oiliness" data-price="20.00" data-texture="liquid,cream" data-skin-type="combination,oily,acne" data-usage="pore-care,balancing,cleansing" data-ingredients="salicylic" data-sales="200">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwb33fda99/original/80104491_original_original_A.jpg?sw=680&sh=680" alt="Purifying Cleanser">
+                        <h3>Purifying Cleanser</h3>
+                        <p>Deep-cleansing solution clears pores, reduces oily buildup.</p>
+                        <span class="price">$20.00</span>
+                        <button class="add-to-cart-btn" data-id="2" data-name="Purifying Cleanser" data-price="20.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwb33fda99/original/80104491_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="teens,20s" data-skin-concern="acne,oiliness" data-price="15.50"  data-texture="foam,gel" data-skin-type="oily,acne" data-usage="balancing,cleansing,soothing,oil-control,pore-care" data-ingredients="salicylic" data-sales="180">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwf5284ba6/original/80104490_original_original_A.jpg?sw=680&sh=680" alt="Foaming Cleanser">
+                        <h3>Foaming Cleanser</h3>
+                        <p>Lightweight foam for oily, acne-prone skin; removes oil, prevents breakouts.</p>
+                        <span class="price">$15.50</span>
+                        <button class="add-to-cart-btn" data-id="3" data-name="Foaming Cleanser" data-price="15.50" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwf5284ba6/original/80104490_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+                    </div>
+                    <div class="product-item" data-age="20s,30s,40s" data-skin-concern="uneven-skin-tone,dullness,blackhead,clogged-pore" data-price="22.00" data-texture="with-beads,gel,scrub" data-skin-type="combination,dry,oily,normal" data-usage="brightening,soothing,even-tone" data-ingredients="AHA" data-sales="120">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw2e29866a/original/80104509_original_original_A.jpg?sw=680&sh=680" alt="Exfoliating Cleanser">
+                        <h3>Exfoliating Cleanser</h3>
+                        <p>Mild scrub with fruit acids; exfoliates gently, brightens, smooths skin.</p>
+                        <span class="price">$22.00</span>
+                        <button class="add-to-cart-btn" data-id="4" data-name="Exfoliating Cleanser" data-price="22.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw2e29866a/original/80104509_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="any" data-skin-concern="redness,dryness" data-price="20.00" data-texture="milk,emulsion" data-skin-type="dry,normal,sensitive" data-usage="hydration,cleansing,soothing" data-ingredients="ceramides" data-sales="90">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw145e65b1/original/80097217_original_original_A.jpg?sw=680&sh=680" alt="Cleansing Milk">
+                        <h3>Cleansing Milk</h3>
+                        <p>Creamy cleanser removes makeup; gentle for sensitive skin, leaves soft.</p>
+                        <span class="price">$20.00</span>                        
+                        <button class="add-to-cart-btn" data-id="5" data-name="Cleansing Milk" data-price="20.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw145e65b1/original/80097217_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="any" data-skin-concern="dryness,dullness" data-price="15.00" data-texture="liquid" data-skin-type="normal,dry,combination" data-usage="balancing,hydration" data-ingredients="hyaluronic-acid" data-sales="210">
+                        <img src="https://my.laneige.com/media/catalog/product/_/h/_hq__wb_water_bank_hyaluronic_essence_toner_for_dry_product_artwork_help_01_8700_8700_1008_copy.jpg" alt="Refreshing Toner">
+                        <h3>Refreshing Toner</h3>
+                        <p>Hydrating toner; balances pH and preps skin for skincare absorption.</p>
+                        <span class="price">$15.00</span>
+                        <button class="add-to-cart-btn" data-id="6" data-name="Refreshing Toner" data-price="15.00" data-image="https://my.laneige.com/media/catalog/product/_/h/_hq__wb_water_bank_hyaluronic_essence_toner_for_dry_product_artwork_help_01_8700_8700_1008_copy.jpg">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="teens,20s" data-skin-concern="ance,oiliness,blackhead,clogged-pores" data-price="16.50" data-texture="liquid" data-skin-type="oily,combination,acne" data-usage="hydration,pore-care,balancing" data-ingredients="niacinamide,salicylic" data-sales="170">
+                        <img src="https://my.laneige.com/media/catalog/product/_/h/_hq__wb_water_bank_hyaluronic_essence_toner_for_oily_product_artwork_help_01_8700_8700__copy_1_.png" alt="Clarifying Toner">
+                        <h3>Clarifying Toner</h3>
+                        <p>Acne-focused toner; unclogs pores, reduces oil, prevents breakouts.</p>
+                        <span class="price">$16.50</span>                        
+                        <button class="add-to-cart-btn" data-id="7" data-name="Clarifying Toner" data-price="16.50" data-image="https://my.laneige.com/media/catalog/product/_/h/_hq__wb_water_bank_hyaluronic_essence_toner_for_oily_product_artwork_help_01_8700_8700__copy_1_.png">Add to Cart</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="face-serum-sec">
+                <h3>Face Serum</h3>
+                <div class="product-grid" data-category="serum">
+                    <div class="product-item" data-age="20s,30s,40s" data-skin-concern="dullness,uneven-skin-tone,dark-spots" data-price="25.00" data-texture="serum" data-skin-type="combination,dry,normal,oily,all" data-usage="brightening,even-tone" data-ingredients="vitamin-c" data-sales="300">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw895a6bbe/original/80096667_original_original_A.jpg?sw=680&sh=680" alt="Brightening Serum">
+                        <h3>Brightening Serum (Vitamin C)</h3>
+                        <p>Fades dark spots, evens tone, enhances natural radiance.</p>
+                        <span class="price">$25.00</span>
+                        <button class="add-to-cart-btn" data-id="8" data-name="Brightening Serum (Vitamin C)" data-price="25.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw895a6bbe/original/80096667_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="any" data-skin-concern="dryness,loss-of-firmness" data-price="22.00" data-texture="serum" data-skin-type="dry,normal,sensitive,combination" data-usage="hydration" data-ingredients="hyaluronic-acid" data-sales="280">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dw478a36f2/original/80092151_original_original_A.jpg?sw=680&sh=680" alt="Hydrating Serum">
+                        <h3>Hydrating Serum (Hyaluronic Acid)</h3>
+                        <p>Locks in moisture, plumps skin, reduces dryness lines.</p>
+                        <span class="price">$22.00</span>                        
+                        <button class="add-to-cart-btn" data-id="9" data-name="Hydrating Serum (Hyaluronic Acid)" data-price="22.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dw478a36f2/original/80092151_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>                        
+                    </div>
+                    <div class="product-item" data-age="30s,40s,50+" data-skin-concern="wrinkles,loss-of-firmness" data-price="30.00" data-texture="serum" data-skin-type="combination,dry,normal" data-usage="anti-aging,firming" data-ingredients="retinol" data-sales="250">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw230da189/original/80087952_original_original_A.jpg?sw=680&sh=680" alt="Anti-Aging Serum">
+                        <h3>Anti-Aging Serum (Retinol/Peptides)</h3>
+                        <p>Targets fine lines; renews skin, improves firmness.</p>
+                        <span class="price">$30.00</span>                        
+                        <button class="add-to-cart-btn" data-id="10" data-name="Anti-Aging Serum (Retinol/Peptides)" data-price="30.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw230da189/original/80087952_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+
+                    <div class="product-item" data-age="teens,20s" data-skin-concern="acne, oiliness,redness" data-price="24.50" data-texture="serum" data-skin-type="acne,oily" data-usage="pore-care,acne-care,oil-control" data-ingredients="niacinamide,salicylic" data-sales="220">
+                        <img src="https://tse2.mm.bing.net/th/id/OIP.6prtXoBMvSg5M2AexIILpQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Acne-Control Serum">
+                        <h3>Acne-Control Serum</h3>
+                        <p>Combats blemishes, helps control excess oil for a clearer complexion.</p>
+                        <span class="price">$24.50</span>                        
+                        <button class="add-to-cart-btn" data-id="11" data-name="Acne-Control Serum" data-price="24.50" data-image="https://tse2.mm.bing.net/th/id/OIP.6prtXoBMvSg5M2AexIILpQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="moisturizer-sec">
+                <h3>Moisturizer</h3>
+                <div class="product-grid" data-category="moisturizer">
+                    <div class="product-item" data-age="any" data-skin-concern="oiliness,acne" data-price="22.00" data-texture="gel,liquid" data-skin-type="dry,normal,oily,combination" data-usage="hydration,oil-control" data-ingredients="green-tea,squalane,niacinamide" data-sales="190">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dw2e931aa1/original/80092156_original_original_A.jpg?sw=680&sh=680" alt="Lightweight Gel Moisturizer">
+                        <h3>Lightweight Gel Moisturizer</h3>
+                        <p>Oil-free hydration for oily, combination skin; controls shine.</p>
+                        <span class="price">$22.00</span>            
+                        <button class="add-to-cart-btn" data-id="12" data-name="Lightweight Gel Moisturizer" data-price="22.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dw2e931aa1/original/80092156_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="any" data-skin-concern="dryness" data-price="28.00" data-texture="cream" data-skin-type="dry,sensitive" data-usage="hydration" data-ingredients="ceramides,hyaluronic-acid" data-sales="230">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dwb9a46024/original/80092161_original_original_A.jpg?sw=680&sh=680" alt="Deep Hydration Cream">
+                        <h3>Deep Hydration Cream</h3>
+                        <p>Rich cream; long-lasting hydration for dry, sensitive skin.</p>
+                        <span class="price">$28.00</span>
+                        <button class="add-to-cart-btn" data-id="13" data-name="Deep Hydration Cream" data-price="28.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dwb9a46024/original/80092161_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="any" data-skin-concern="dryness,redness" data-price="30.00" data-texture="cream" data-skin-type="dry,sensitive" data-usage="barrier-repair" data-ingredients="colloidal-oatmeal,ceramides" data-sales="160">
+                        <img src="https://www.laroche-posay.us/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-acd-laroche-posay-master-catalog/default/dw92684c0e/img/3337875545792/1_Toleriane_DblRepairMoisturizer_Tube.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=70" alt="Barrier Repair Cream">
+                        <h3>Barrier Repair Cream</h3>
+                        <p>Strengthens barrier; locks moisture, protects sensitive skin.</p>
+                        <span class="price">$30.00</span>
+                        <button class="add-to-cart-btn" data-id="14" data-name="Barrier Repair Cream" data-price="30.00" data-image="https://www.laroche-posay.us/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-acd-laroche-posay-master-catalog/default/dw92684c0e/img/3337875545792/1_Toleriane_DblRepairMoisturizer_Tube.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=70">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="30s,40s,50+" data-skin-concern="wrinkles,loss-of-firmness" data-price="35.00" data-texture="cream" data-skin-type="normal,dry" data-usage="anti-aging,hydration" data-ingredients="retinol" data-sales="270">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw37226122/original/80087949_original_original_A.jpg?sw=680&sh=680" alt="Anti-Aging Night Cream">
+                        <h3>Anti-Aging Night Cream</h3>
+                        <p>Overnight cream; reduces wrinkles, deeply hydrates, rejuvenates skin.</p>
+                        <span class="price">$35.00</span>
+                        <button class="add-to-cart-btn" data-id="15" data-name="Anti-Aging Night Cream" data-price="35.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw37226122/original/80087949_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="teens,20s" data-skin-concern="oiliness,acne" data-price="24.00" data-texture="gel,cream" data-skin-type="oily,acne" data-usage="balancing,pore care" data-ingredients="niacinamide" data-sales="140">
+                        <img src="https://www.laroche-posay.us/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-acd-laroche-posay-master-catalog/default/dw84a06e77/img/3337872413025/effaclar-mat-mattifying-moisturizer-for-oily-skin-oil-free-moisturizer-3337872413025-1.jpg?sw=930&sh=930&sm=cut&sfrm=jpg&q=70" alt="Mattifying Moisturizer">
+                        <h3>Mattifying Moisturizer</h3>
+                        <p>Hydrating gel-cream; controls oil, shine, balances acne-prone skin.</p>
+                        <span class="price">$24.00</span>
+                        <button class="add-to-cart-btn" data-id="16" data-name="Mattifying Moisturizer" data-price="24.00" data-image="https://www.laroche-posay.us/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-acd-laroche-posay-master-catalog/default/dw84a06e77/img/3337872413025/effaclar-mat-mattifying-moisturizer-for-oily-skin-oil-free-moisturizer-3337872413025-1.jpg?sw=930&sh=930&sm=cut&sfrm=jpg&q=70">Add to Cart</button>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div id="eye-care-sec">
+                <h3>Eye Care</h3>
+                <div class="product-grid" data-category="eye-care">
+                    <div class="product-item" data-age="any" data-skin-concern="dark-circle,dullness" data-price="28.00" data-texture="cream" data-skin-type="all" data-usage="brightening" data-ingredients="vitamin-k,caffeine,vitamin-c" data-sales="110">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw2252839f/original/80081842_original_original_1.jpg?sw=680&sh=680" alt="Brightening Eye Cream">
+                        <h3>Brightening Eye Cream</h3>
+                        <p>Deep-cleansing solution clears pores, reduces oily buildup.</p>
+                        <span class="price">$28.00</span>
+                        <button class="add-to-cart-btn" data-id="17" data-name="Brightening Eye Cream" data-price="28.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw2252839f/original/80081842_original_original_1.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="30s,40s,50+" data-skin-concern="wrinkles,loss-of-firmness,puffiness" data-price="26.00" data-texture="gel" data-skin-type="all" data-usage="firming" data-ingredients="collagen,peptides" data-sales="130">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dw3100590a/original/80077133_original_original_A.jpg?sw=680&sh=680" alt="Firming Eye Gel">
+                        <h3>Firming Eye Gel</h3>
+                        <p>Lightweight gel smooths lines, firms delicate eye skin.</p>
+                        <span class="price">$26.00</span>
+                        <button class="add-to-cart-btn" data-id="18" data-name="Firming Eye Gel" data-price="26.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dw3100590a/original/80077133_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="20s,30s,40s,50+" data-skin-concern="redness,puffiness" data-price="20.00" data-texture="gel,liquid" data-skin-type="all" data-usage="hydration,cooling,anti-aging" data-ingredients="cucumber,hyaluronic-acid,caffeine" data-sales="180">
+                        <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwddc7f79c/original/80081841_original_original_1.jpg?sw=680&sh=680" alt="Cooling Eye Roll-On">
+                        <h3>Cooling Eye Roll-On</h3>
+                        <p>Cooling applicator reduces puffiness, refreshes tired eyes instantly.</p>
+                        <span class="price">$20.00</span>
+                        <button class="add-to-cart-btn" data-id="19" data-name="Cooling Eye Roll-On" data-price="20.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dwddc7f79c/original/80081841_original_original_1.jpg?sw=680&sh=680">Add to Cart</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mask-sec">
+                <h3>Face Mask</h3>
+                <div class="product-grid" data-category="face-masks">
+        <div class="product-item" data-age="any" data-skin-concern="oiliness,acne,clogged-pores,blackhead" data-price="18.00" data-texture="clay,mask" data-skin-type="oily,acne" data-usage="oil-control,pore-care" data-ingredients="salicylic" data-sales="250">
+            <img src="https://www.tatcha.com/on/demandware.static/-/Sites-master_catalog_tatcha/default/dw68721e7d/images/large/TAT22_ClayMask_Shot16_PPage_CapOn_1200x1200.jpg" alt="Clay Mask">
+            <h3>Clay Mask</h3>
+            <p>Absorbs excess oil, unclogs pores, and reduces breakouts for clearer skin.</p>
+            <span class="price">$18.00</span>
+            <button class="add-to-cart-btn" data-id="20" data-name="Clay Mask" data-price="18.00" data-image="https://www.tatcha.com/on/demandware.static/-/Sites-master_catalog_tatcha/default/dw68721e7d/images/large/TAT22_ClayMask_Shot16_PPage_CapOn_1200x1200.jpg">Add to Cart</button>
+
+        </div>
+        <div class="product-item" data-age="any" data-skin-concern="dryness,dullness" data-price="10.00" data-texture="mask" data-skin-type="all" data-usage="hydration,soothing" data-ingredients="hyaluronic-acid,aloe-vera" data-sales="400">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.3D_6dAvGli6_mm4pwbVK8QHaHa?pid=Api&P=0&h=180" alt="Sheet Mask">
+            <h3>Sheet Mask</h3>
+            <p>Single-use mask; hydrates, calms, plumps dull skin.</p>
+            <span class="price">$10.00</span>
+            <button class="add-to-cart-btn" data-id="21" data-name="Sheet Mask" data-price="10.00" data-image="https://tse2.mm.bing.net/th/id/OIP.3D_6dAvGli6_mm4pwbVK8QHaHa?pid=Api&P=0&h=180">Add to Cart</button>
+
+        </div>
+        <div class="product-item" data-age="20s,30s,40s" data-skin-concern="uneven-skin-tone,blackhead,clogged-pores,dullness" data-price="16.00" data-texture="cream,mask" data-skin-type="combination,normal" data-usage="brightening,even-tone" data-ingredients="glycolic-acid,AHA" data-sales="150">
+            <img src="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_3378872188551-Sephora-Collection-Blackhead-Peel-Off-Mask-Unclog-Purify-50ml_de8799fcb50137b59d2eb2c894c73d4ca4d391be_1660403925.png" alt="Peel-Off Mask">
+            <h3>Peel-Off Mask</h3>
+            <p>Removes dead skin cells and impurities, leaving skin smooth and revitalized.</p>
+            <span class="price">$16.00</span>
+            <button class="add-to-cart-btn" data-id="22" data-name="Peel-Off Mask" data-price="16.00" data-image="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_3378872188551-Sephora-Collection-Blackhead-Peel-Off-Mask-Unclog-Purify-50ml_de8799fcb50137b59d2eb2c894c73d4ca4d391be_1660403925.png">Add to Cart</button>
+
+        </div>
+        <div class="product-item" data-age="20s,30s,40s" data-skin-concern="dryness,dullness" data-price="25.00" data-texture="cream,gel,mask" data-skin-type="any" data-usage="hydration,radiance-boosting" data-ingredients="squalane,niacinamide" data-sales="190">
+            <img src="https://cdn0.woolworths.media/content/wowproductimages/large/1073843014.jpg" alt="Overnight Sleeping Mask">
+            <h3>Overnight Sleeping Mask</h3>
+            <p>Works while you sleep to restore hydration and boost radiance.</p>
+            <span class="price">$25.00</span>
+            <button class="add-to-cart-btn" data-id="23" data-name="Overnight Sleeping Mask" data-price="25.00" data-image="https://cdn0.woolworths.media/content/wowproductimages/large/1073843014.jpg">Add to Cart</button>
+
+        </div>
+        <div class="product-item" data-age="teens,20s,30s" data-skin-concern="blackhead,clogged-pores,oiliness,acne" data-price="20.00" data-texture="clay,mask" data-skin-type="oily,acne" data-usage="pore-care,blackhead-removal" data-ingredients="activated-charcoal" data-sales="300">
+            <img src="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_3378872142522-Sephora_20Collection-Hero_20Mask_20The_20Charcoal_20Face_20Mask_a4ae733385ceeebf8cd2123586c9460aa1d61421_1661273955.png" alt="Charcoal Mask">
+            <h3>Charcoal Mask</h3>
+            <p>Detoxifying treatment that draws out dirt, toxins, and blackheads for a deep clean.</p>
+            <span class="price">$20.00</span>
+            <button class="add-to-cart-btn" data-id="24" data-name="Charcoal Mask" data-price="20.00" data-image="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_3378872142522-Sephora_20Collection-Hero_20Mask_20The_20Charcoal_20Face_20Mask_a4ae733385ceeebf8cd2123586c9460aa1d61421_1661273955.png">Add to Cart</button>
+
+        </div>
+    </div>
+
+    <div id="face-treatment-oil-sec">
+    <h3>Face Treatment Oil</h3>
+    <div class="product-grid" data-category="face-treatment-oil">
+        <div class="product-item" data-age="20s,30s,40s" data-skin-concern="uneven-skin-tone,dullness" data-price="30.00" data-texture="oil" data-skin-type="all" data-usage="brightening" data-ingredients="rosehip-oil,argan-oil,vitamin-c" data-sales="150">
+            <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dwf001f297/original/80083849_original_original_A.jpg?sw=680&sh=680" alt="Glow Oil">
+            <h3>Glow Oil</h3>
+            <p>Lightweight oil rich in vitamins to restore radiance and improve skin tone.</p>
+            <span class="price">$30.00</span>
+            <button class="add-to-cart-btn" data-id="25" data-name="Glow Oil" data-price="30.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/en_MY/dwf001f297/original/80083849_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+        </div>
+        <div class="product-item" data-age="any" data-skin-concern="dryness,loss-of-firmness" data-price="28.00" data-texture="oil" data-skin-type="dry" data-age="all" data-usage="hydration,barrier-repair" data-ingredients="marula-oil,jojoba-oil,ceramides" data-sales="180">
+            <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw6893c182/original/80054599_original_original_A.jpg?sw=680&sh=680" alt="Repair Oil">
+            <h3>Repair Oil</h3>
+            <p>Nourishing oil blend that repairs the skin barrier and enhances elasticity.</p>
+            <span class="price">$28.00</span>
+            <button class="add-to-cart-btn" data-id="26" data-name="Repair Oil" data-price="28.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw6893c182/original/80054599_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+        </div>
+        <div class="product-item" data-age="30s,40s,50+" data-skin-concern="wrinkles,loss-of-firmness" data-price="35.00" data-texture="oil" data-skin-type="all" data-usage="anti-aging,firming" data-ingredients="retinol,antioxidants" data-sales="120">
+            <img src="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw7e612527/original/80062042_original_original_A.jpg?sw=680&sh=680" alt="Anti-Aging Oil">
+            <h3>Anti-Aging Oil</h3>
+            <p>Smooths lines, firms skin with antioxidants and fatty acids.</p>
+            <span class="price">$35.00</span>
+            <button class="add-to-cart-btn" data-id="27" data-name="Anti-Aging Oil" data-price="35.00" data-image="https://www.clarins.com.my/dw/image/v2/AAJY_PRD/on/demandware.static/-/Sites-clarins-master-products/default/dw7e612527/original/80062042_original_original_A.jpg?sw=680&sh=680">Add to Cart</button>
+
+        </div>
+    </div>
+</div>
+
+            <div id="uv-sec">
+                <h3>Daily UV Protection</h3>
+                <div class="product-grid" data-category="uv-protector">
+                    <div class="product-item" data-age="any" data-skin-concern="oiliness,acne" data-price="25.00" data-texture="cream,liquid" data-skin-type="oily,acne" data-usage="protection,poce-care,oil-control" data-ingredients="niacinamide" data-sales="240">
+                        <img src="https://paulaschoice.my/cdn/shop/files/resist-super-light-daily-wrinkle-defense-spf-30-60ml_720x.jpg?v=1734943071" alt="Matte Sunscreen">
+                        <h3>Matte Sunscreen SPF 50</h3>
+                        <p>Lightweight sunscreen; controls shine, protects oily skin.</p>
+                        <span class="price">$25.00</span>
+                        <button class="add-to-cart-btn" data-id="28" data-name="Matte Sunscreen SPF 50" data-price="25.00" data-image="https://paulaschoice.my/cdn/shop/files/resist-super-light-daily-wrinkle-defense-spf-30-60ml_720x.jpg?v=1734943071">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="any" data-skin-concern="dryness,redness" data-price="22.00" data-texture="cream,liquid" data-skin-type="dry,sensitive" data-usage="hydration,protection" data-ingredients="hyaluronic-acid,niacinamide" data-sales="210">
+                        <img src="https://my.laneige.com/media/catalog/product/_/h/_hq__wb_waterbank_uv_barrier_sunscreen_product_artwork_help_01_8700_8700_0109_copy.jpg" alt="Hydrating Sunscreen">
+                        <h3>Hydrating Sunscreen SPF 50+</h3>
+                        <p>Moisturizing sunscreen that shields from the sun and keeps dry skin hydrated.</p>
+                        <span class="price">$22.00</span>
+                        <button class="add-to-cart-btn" data-id="29" data-name="Hydrating Sunscreen SPF 50+" data-price="22.00" data-image="https://my.laneige.com/media/catalog/product/_/h/_hq__wb_waterbank_uv_barrier_sunscreen_product_artwork_help_01_8700_8700_0109_copy.jpg">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-age="any" data-skin-concern="uneven-skin-tone,dark-spots" data-price="28.00" data-texture="cream" data-skin-type="combination,normal" data-usage="protection,even-tone,brightening" data-ingredients="iron-oxides,vitamin-e,vitamin-c,niacinamide" data-sales="190">
+                        <img src="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/closeup_1_Product_3605972280831-It-Cosmetics-CC_Cream-Full-Coverage-_4a68ac9da748044f3871f017bdb656258edabbfd_1729771585.png" alt="Tinted Sunscreen BB Cream">
+                        <h3>Tinted Sunscreen BB Cream</h3>
+                        <p>Combines sun protection with light coverage for a flawless, natural finish.</p>
+                        <span class="price">$28.00</span>
+                        <button class="add-to-cart-btn" data-id="30" data-name="Tinted Sunscreen BB Cream" data-price="28.00" data-image="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/closeup_1_Product_3605972280831-It-Cosmetics-CC_Cream-Full-Coverage-_4a68ac9da748044f3871f017bdb656258edabbfd_1729771585.png">Add to Cart</button>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="make-up-sec" class="content-section">
+            <h2>Make-up</h2>
+            <div id="face-sec">
+                <h3>Face</h3>
+                <div class="filter-buttons">
+                    <button class="active" data-filter="all">All</button>
+                    <button data-filter="foundation">Foundation</button>
+                    <button data-filter="concealer">Concealer</button>
+                    <button data-filter="blush">Blusher</button>
+                    <button data-filter="powder">Powder</button>
+                    <button data-filter="setting-spray">Setting Spray</button>
+                </div>
+                <div class="product-grid" id="face-products">
+                    <div class="product-item" data-category="foundation"  data-sales="200">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw33a8aff9/images/PACKSHOTS/MAKEUP/COMPLEXION/WW-51164YSL_all_hours_hyper_finish/3614273997416_all_hours_hyper_finish_main.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85" alt="Matte Foundation">
+                        <h3>Matte Foundation</h3>
+                        <p> Full coverage foundation with an oil-free finish that keeps skin shine-free all day.</p>
+                        <span class="price">$35.00</span>
+                        <button class="add-to-cart-btn" data-id="31" data-name="Matte Foundation" data-price="35.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw33a8aff9/images/PACKSHOTS/MAKEUP/COMPLEXION/WW-51164YSL_all_hours_hyper_finish/3614273997416_all_hours_hyper_finish_main.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="foundation"  data-sales="190">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/en_MY/dwc8d03b2e/images/makeup/APAC-100124-YSL/APAC-100124-YSL-3614273593564-LW1-IMAGE1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85" alt="Dewy Foundation">
+                        <h3>Dewy Foundation</h3>
+                        <p>Lightweight and luminous formula for a radiant, glowing complexion.</p>
+                        <span class="price">$32.00</span>
+                        <button class="add-to-cart-btn" data-id="32" data-name="Dewy Foundation" data-price="32.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/en_MY/dwc8d03b2e/images/makeup/APAC-100124-YSL/APAC-100124-YSL-3614273593564-LW1-IMAGE1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="foundation"  data-sales="250">
+                        <img src="https://cdn.nicehair.dk/products/64394/ysl-top-secrets-bb-creme-spf-25-40-ml-light-1.jpg" alt="Lightweight BB/CC Cream">
+                        <h3>Lightweight BB/CC Cream</h3>
+                        <p>Multi-tasking base hydrates, protects, evens skin naturally.</p>
+                        <span class="price">$28.00</span>
+                        <button class="add-to-cart-btn" data-id="33" data-name="Lightweight BB/CC Cream" data-price="28.00" data-image="https://cdn.nicehair.dk/products/64394/ysl-top-secrets-bb-creme-spf-25-40-ml-light-1.jpg">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="concealer"  data-sales="210">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw86796327/images/Root/WW-51080YSL/3614273954358-img-main.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85" alt="Full Coverage Concealer">
+                        <h3>Full Coverage Concealer</h3>
+                        <p>Covers dark circles, blemishes, and imperfections with long-lasting results.</p>
+                        <span class="price">$18.00</span>
+                        <button class="add-to-cart-btn" data-id="34" data-name="Full Coverage Concealer" data-price="18.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw86796327/images/Root/WW-51080YSL/3614273954358-img-main.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="concealer"  data-sales="198">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwb472bd3c/images/makeup/141YSL/141YSL-3365440094352-IMAGE1.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85" alt="Brightening Concealer">
+                        <h3>Brightening Concealer</h3>
+                        <p>Lightweight formula that illuminates under-eye areas and brightens dull skin.</p>
+                        <span class="price">$19.50</span>
+                        <button class="add-to-cart-btn" data-id="35" data-name="Brightening Concealer" data-price="19.50" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwb472bd3c/images/makeup/141YSL/141YSL-3365440094352-IMAGE1.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="blush"  data-sales="220">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw599e1f31/images/PACKSHOTS/MAKEUP/FACE_MAKEUP/POWDER/WW-51348YSL_mmb_bold_blush/3614274254297_mmbbb_shade-57_main.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85" alt="Powder Blush">
+                        <h3>Powder Blush</h3>
+                        <p>Blendable powder that adds a natural flush of color to the cheeks.</p>
+                        <span class="price">$22.00</span>
+                        <button class="add-to-cart-btn" data-id="36" data-name="Powder Blush" data-price="22.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw599e1f31/images/PACKSHOTS/MAKEUP/FACE_MAKEUP/POWDER/WW-51348YSL_mmb_bold_blush/3614274254297_mmbbb_shade-57_main.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85">Add to Cart</button>
+
+
+                    </div>
+                    <div class="product-item" data-category="blush" data-sales="190">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwfaea88f0/pdp/WW-51286YSL/liquid_blush_3614274220667_main.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85" alt="Cream Blush">
+                        <h3>Cream Blush</h3>
+                        <p>Smooth, buildable formula that gives a dewy, youthful glow.</p>
+                        <span class="price">$24.00</span>
+                        <button class="add-to-cart-btn" data-id="37" data-name="Cream Blush" data-price="24.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwfaea88f0/pdp/WW-51286YSL/liquid_blush_3614274220667_main.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="powder"  data-sales="130">
+                        <img src="https://tse2.mm.bing.net/th/id/OIP.Tuk14MxUtF8vA8R-qSs9MwHaHa?pid=Api&P=0&h=180" alt="Loose Setting Powder">
+                        <h3>Loose Setting Powder</h3>
+                        <p>Sets makeup in place with a lightweight, natural finish.</p>
+                        <span class="price">$26.00</span>
+                        <button class="add-to-cart-btn" data-id="38" data-name="Loose Setting Powder" data-price="26.00" data-image="https://tse2.mm.bing.net/th/id/OIP.Tuk14MxUtF8vA8R-qSs9MwHaHa?pid=Api&P=0&h=180">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="powder"  data-sales="220">
+                        <img src="https://down-id.img.susercontent.com/file/ffba5ddbe9f69c53b374ee8902fb7c50" alt="Compact Powder">
+                        <h3>Compact Powder</h3>
+                        <p>Portable pressed powder for quick touch-ups on the go.</p>
+                        <span class="price">$25.00</span>
+                        <button class="add-to-cart-btn" data-id="39" data-name="Compact Powder" data-price="25.00" data-image="https://down-id.img.susercontent.com/file/ffba5ddbe9f69c53b374ee8902fb7c50">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="setting-spray"  data-sales="250">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw718ebb23/images/makeup-face-setting-spray-powder/SG-YSL-FG-00006/SG-YSL-FG-00006-3614271986177-100ml-IMAGE1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85" alt="Setting Spray">
+                        <h3>Setting Spray</h3>
+                        <p>Lightweight mist that locks makeup in place, ensuring long-lasting wear.</p>
+                        <span class="price">$20.00</span>
+                        <button class="add-to-cart-btn" data-id="40" data-name="Setting Spray" data-price="20.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw718ebb23/images/makeup-face-setting-spray-powder/SG-YSL-FG-00006/SG-YSL-FG-00006-3614271986177-100ml-IMAGE1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85">Add to Cart</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="eye-make-up-sec">
+                <h3>Eye Make-up</h3>
+                <div class="filter-buttons">
+                    <button class="active" data-filter="all">All</button>
+                    <button data-filter="mascara">Mascara</button>
+                    <button data-filter="eyeliner">Eyeliner</button>
+                    <button data-filter="eyeshadow">Eyeshadow</button>
+                    <button data-filter="eyebrow">Eyebrow Makeup</button>
+
+                </div>
+                <div class="product-grid" id="eye-products">
+                    <div class="product-item" data-category="mascara"  data-sales="150">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwf60b276c/Makeup/Eyes/MVEFC/3614270455766_mascara-volume-effet-faux-cils_01-high-density-black.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85" alt="Lengthening Mascara">
+                        <h3>Lengthening Mascara</h3>
+                        <p>Defines and extends lashes for a natural, fluttery look.</p>
+                        <span class="price">$15.00</span>
+                        <button class="add-to-cart-btn" data-id="41" data-name="Lengthening Mascara" data-price="15.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwf60b276c/Makeup/Eyes/MVEFC/3614270455766_mascara-volume-effet-faux-cils_01-high-density-black.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="mascara"  data-sales="190">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwa3bce531/Makeup/Eyes/Mascara_Volume_Effet_Faux_Cils/1012YSL/New_3365440225305_1_mascara-volume-effet-faux-cils-waterproof_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85" alt="Volumizing Mascara">
+                        <h3>Volumizing Mascara</h3>
+                        <p>Adds dramatic volume and thickness to lashes.</p>
+                        <span class="price">$16.00</span>
+                        <button class="add-to-cart-btn" data-id="42" data-name="Volumizing Mascara" data-price="16.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwa3bce531/Makeup/Eyes/Mascara_Volume_Effet_Faux_Cils/1012YSL/New_3365440225305_1_mascara-volume-effet-faux-cils-waterproof_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="eyeliner"  data-sales="180">
+                        <img src="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_840122901485-Rare-Beauty-Perfect-Strokes-Matte-Liquid-Eye-Liner-Black_3810964296adabebe5624ba08dd47928f04a3fd0_1623778472.png" alt="Liquid Eyeliner">
+                        <h3>Liquid Eyeliner</h3>
+                        <p>Sharp, precise lines with long-lasting formula.</p>
+                        <span class="price">$14.00</span>
+                        <button class="add-to-cart-btn" data-id="43" data-name="Liquid Eyeliner" data-price="14.00" data-image="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_840122901485-Rare-Beauty-Perfect-Strokes-Matte-Liquid-Eye-Liner-Black_3810964296adabebe5624ba08dd47928f04a3fd0_1623778472.png">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="eyeliner"  data-sales="220">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/en_MY/dw132f7593/Makeup/Eyes/Dessin-Du-Regard-Waterproof/3614271269720_1_dessin-du-regard-waterproof-stylo_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85" alt="Pencil Eyeliner">
+                        <h3>Pencil Eyeliner</h3>
+                        <p>Smooth and blendable for both bold and soft looks.</p>
+                        <span class="price">$12.00</span>
+                        <button class="add-to-cart-btn" data-id="44" data-name="Pencil Eyeliner" data-price="12.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/en_MY/dw132f7593/Makeup/Eyes/Dessin-Du-Regard-Waterproof/3614271269720_1_dessin-du-regard-waterproof-stylo_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="eyeliner"  data-sales="198">
+                        <img src="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/closeup_1_Product_4971710295351-Jill-Stuart-Stay-True-Gel-Eyeliner-09-Couture-Black_40160946348fd6cc31f5af5ba4552c2d94cd9a5f_1621001042.png" alt="Gel Eyeliner">
+                        <h3>Gel Eyeliner</h3>
+                        <p>Creamy, smudge-proof formula for intense definition.</p>
+                        <span class="price">$15.50</span>
+                        <button class="add-to-cart-btn" data-id="45" data-name="Gel Eyeliner" data-price="15.50" data-image="https://image-optimizer-reg.production.sephora-asia.net/images/product_images/closeup_1_Product_4971710295351-Jill-Stuart-Stay-True-Gel-Eyeliner-09-Couture-Black_40160946348fd6cc31f5af5ba4552c2d94cd9a5f_1621001042.png">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="eyeshadow"  data-sales="220">
+            <img src="https://i8.amplience.net/i/manor/10002949206_01?fmt=auto&h=360&w=360" alt="Neutral Eyeshadow Palette">
+            <h3>Neutral Palette</h3>
+            <p>Soft neutral tones for natural looks; blendable, versatile daily use.</p>
+            <span class="price">$35.00</span>
+            <button class="add-to-cart-btn" data-id="46" data-name="Neutral Palette" data-price="35.00" data-image="https://i8.amplience.net/i/manor/10002949206_01?fmt=auto&h=360&w=360">Add to Cart</button>
+
+        </div>
+                    <div class="product-item" data-category="eyeshadow"  data-sales="160">
+            <img src="https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/huda-beauty/7024418/0/cuiY7UgI91-1_Product_6291107573458-Huda-Beauty-Empowered-Eyeshadow-Palette-Christmas-Limited-Edition-_ba1370a58f82319e87165b75a4bee04764bb859e_1664945308.png" alt="Bold/Color Eyeshadow Palette">
+            <h3>Bold/Color Palette</h3>
+            <p>Vibrant, pigmented shades to create striking eye looks.</p>
+            <span class="price">$45.00</span>
+            <button class="add-to-cart-btn" data-id="47" data-name="Bold/Color Palette" data-price="45.00" data-image="https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/huda-beauty/7024418/0/cuiY7UgI91-1_Product_6291107573458-Huda-Beauty-Empowered-Eyeshadow-Palette-Christmas-Limited-Edition-_ba1370a58f82319e87165b75a4bee04764bb859e_1664945308.png">Add to Cart</button>
+
+        </div>
+                    <div class="product-item" data-category="eyeshadow" data-sales="210">
+            <img src="https://image-optimizer-reg.production.sephora-asia.net/eyJlZGl0cyI6eyJyZXNpemUiOnt9fX0=/images/product_images/zoom_1_Product_4971710290523-Jill-Stuart-Eternal-Couture-Eyes-Velvet-Eyeshadow-Palette-7_2d7c595479daf6244ff5985e724f4517ecda59c2_1634707331.png" alt="Shimmer Eyeshadow Palette">
+            <h3>Shimmer Palette</h3>
+            <p>Sparkling shades for luminous, party-ready eyes.</p>
+            <span class="price">$40.00</span>
+            <button class="add-to-cart-btn" data-id="48" data-name="Shimmer Palette" data-price="40.00" data-image="https://image-optimizer-reg.production.sephora-asia.net/eyJlZGl0cyI6eyJyZXNpemUiOnt9fX0=/images/product_images/zoom_1_Product_4971710290523-Jill-Stuart-Eternal-Couture-Eyes-Velvet-Eyeshadow-Palette-7_2d7c595479daf6244ff5985e724f4517ecda59c2_1634707331.png">Add to Cart</button>
+
+        </div>
+                    <div class="product-item" data-category="eyebrow"  data-sales="220">
+            <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/en_MY/dw09482103/Makeup/Eyes/Dessin_Des_Sourcils/3365440008366_dessin-des-sourcils_02_dark_brown.png" alt="Brow Pencil">
+            <h3>Brow Pencil</h3>
+            <p>Defines and fills brows with precision; natural finish, long-lasting wear.</p>
+            <span class="price">$18.00</span>
+            <button class="add-to-cart-btn" data-id="49" data-name="Brow Pencil" data-price="18.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/en_MY/dw09482103/Makeup/Eyes/Dessin_Des_Sourcils/3365440008366_dessin-des-sourcils_02_dark_brown.png">Add to Cart</button>
+
+        </div>
+        <div class="product-item" data-category="eyebrow" data-sales="200">
+            <img src="https://image-optimizer-id.production.sephora-asia.net/eyJlZGl0cyI6eyJyZXNpemUiOnt9fX0=/images/product_images/zoom_1_Product_3378872209744-Sephora-Collection-Tint-Volume-Brow-Gel-02-Nutmeg-Brown_932005b188e6453ed63ec3e76bd8e182a5715057_1690266415.png" alt="Brow Gel">
+            <h3>Brow Gel</h3>
+            <p>Tames and sets brows in place with long-lasting hold.</p>
+            <span class="price">$20.00</span>
+            <button class="add-to-cart-btn" data-id="50" data-name="Brow Gel" data-price="20.00" data-image="https://image-optimizer-id.production.sephora-asia.net/eyJlZGl0cyI6eyJyZXNpemUiOnt9fX0=/images/product_images/zoom_1_Product_3378872209744-Sephora-Collection-Tint-Volume-Brow-Gel-02-Nutmeg-Brown_932005b188e6453ed63ec3e76bd8e182a5715057_1690266415.png">Add to Cart</button>
+
+        </div>
+                </div>
+            </div>
+
+            <div id="lip-sec">
+                <h3>Lip</h3>
+                <div class="filter-buttons">
+                    <button class="active" data-filter="all">All</button>
+                    <button data-filter="lipstick">Lipstick</button>
+                    <button data-filter="lipoil">Lip Oil</button>
+                    <button data-filter="lip-gloss">Lip Gloss</button>
+                    <button data-filter="lip-balm">Lip Balm</button>
+                </div>
+                <div class="product-grid" id="lip-products">
+                    <div class="product-item" data-category="lipstick"  data-sales="310">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbc66637e/square/Makeup/Lips/RougePurCoutureTheSlim/3614272140004_11_rouge-pur-couture-the-slim_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85" alt="Matte Lipstick">
+                        <h3>Matte Lipstick</h3>
+                        <p>Long-lasting, richly pigmented formula with a velvety matte finish.</p>
+                        <span class="price">$40.00</span>
+                        <button class="add-to-cart-btn" data-id="51" data-name="Matte Lipstick" data-price="40.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbc66637e/square/Makeup/Lips/RougePurCoutureTheSlim/3614272140004_11_rouge-pur-couture-the-slim_Alt1.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="lipstick"  data-sales="290">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw79b69d60/images/PACKSHOTS/MAKEUP/LIPS/WW-51083YSL_new_rouge_pur_couture/3614273945165_new-rouge-pur-couture_main.jpg?sw=698&sh=698&sm=cut&sfrm=png&q=85" alt="Satin Lipstick">
+                        <h3>Satin Lipstick</h3>
+                        <p>Creamy formula glides on with a luminous sheen.</p>
+                        <span class="price">$37.50</span>
+                        <button class="add-to-cart-btn" data-id="52" data-name="Satin Lipstick" data-price="37.50" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw79b69d60/images/PACKSHOTS/MAKEUP/LIPS/WW-51083YSL_new_rouge_pur_couture/3614273945165_new-rouge-pur-couture_main.jpg?sw=698&sh=698&sm=cut&sfrm=png&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="lipstick"  data-sales="230">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwad30e8c3/images/PACKSHOTS/MAKEUP/LIPS/LIPSTICK/WW-51288YSL_ysl_the_inks_vinyl_cream/3614274226553_416_ysl_the_inks_vinyl_cream_main.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85" alt="Cream Lipstick">
+                        <h3>Cream Lipstick</h3>
+                        <p>Moisturizing lipstick delivers vibrant color with lasting comfort.</p>
+                        <span class="price">$38.00</span>
+                        <button class="add-to-cart-btn" data-id="53" data-name="Cream Lipstick" data-price="38.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwad30e8c3/images/PACKSHOTS/MAKEUP/LIPS/LIPSTICK/WW-51288YSL_ysl_the_inks_vinyl_cream/3614274226553_416_ysl_the_inks_vinyl_cream_main.jpg?sw=720&sh=720&sm=cut&sfrm=jpg&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="lipoil"  data-sales="210">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw5502213b/images/PACKSHOTS/MAKEUP/LIPS/WW-51428YSL_ysl_loveshine_plump/4936968874574_ysl_loveshine_plumpling_lip_oil_gloss_cherry_flash_alt1.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85" alt="Lip Oil">
+                        <h3>Lip Oil</h3>
+                        <p>Glossy, nourishing formula for plump, hydrated lips.</p>
+                        <span class="price">$41.00</span>
+                        <button class="add-to-cart-btn" data-id="54" data-name="Lip Oil" data-price="41.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw5502213b/images/PACKSHOTS/MAKEUP/LIPS/WW-51428YSL_ysl_loveshine_plump/4936968874574_ysl_loveshine_plumpling_lip_oil_gloss_cherry_flash_alt1.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="lip-gloss"  data-sales="280">
+                        <img src="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw20b94d95/images/makeup-lips-lipstick/WW-50915YSL/4936968875991/WW-50915YSL-4936968875991-IMAGE1.jpg?sw=698&sh=698&sm=cut&sfrm=png&q=85" alt="Lip Gloss">
+                        <h3>Lip Gloss</h3>
+                        <p>High-shine finish that enhances lips with a glass-like effect.</p>
+                        <span class="price">$33.00</span>
+                        <button class="add-to-cart-btn" data-id="55" data-name="Lip Gloss" data-price="33.00" data-image="https://www.yslbeauty.com.my/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw5502213b/images/PACKSHOTS/MAKEUP/LIPS/WW-51428YSL_ysl_loveshine_plump/4936968874574_ysl_loveshine_plumpling_lip_oil_gloss_cherry_flash_alt1.jpg?sw=720&sh=720&sm=cut&sfrm=png&q=85">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="lip-balm"  data-sales="240">
+                        <img src="https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dw23b365a1/Y0457000/Y0457000_C045700100_E01_GHC.jpg?sw=800" alt="Plain Hydrating Balm">
+                        <h3>Plain Hydrating Balm</h3>
+                        <p>A simple, nourishing balm for daily moisture and protection.</p>
+                        <span class="price">$40.00</span>                        
+                        <button class="add-to-cart-btn" data-id="56" data-name="Plain Hydrating Balm" data-price="40.00" data-image="https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dw23b365a1/Y0457000/Y0457000_C045700100_E01_GHC.jpg?sw=800">Add to Cart</button>
+
+                    </div>
+                    <div class="product-item" data-category="lip-balm" data-sales="320">
+                        <img src="https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbb64f80e/Candy%20Glow/3614274128260/3614274128260.jpg" alt="Tinted Balm">
+                        <h3>Tinted Balm</h3>
+                        <p>Sheer wash of color combined with soothing hydration.</p>
+                        <span class="price">$38.50</span>
+                        <button class="add-to-cart-btn" data-id="57" data-name="Tinted Balm" data-price="38.50" data-image="https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbb64f80e/Candy%20Glow/3614274128260/3614274128260.jpg">Add to Cart</button>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+     <footer class="main-footer">
+        <div class="footer">
+            <p>&copy; 2023 Elora Skincare. All rights reserved.</p>
+            <p>Natural, sustainable skincare for all skin types</p>
+        </div>
+    </footer>
+    <script>
+        const adModal = document.getElementById('adModal');
+        const closeAdBtn = document.getElementById('closeAdBtn');
+        const adLink = document.getElementById('adLink');
+
+        // Show the modal after a delay
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                adModal.classList.add('show');
+            }, 1000);
+        });
+
+        // Close the modal when the close button is clicked
+        closeAdBtn.addEventListener('click', () => {
+            adModal.classList.remove('show');
+        });
+
+        // Close the modal when the ad link is clicked
+        adLink.addEventListener('click', () => {
+            adModal.classList.remove('show');
+        });
+
+        // Filtering logic for Makeup sections
+        function setupFilter(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const filterButtons = container.previousElementSibling;
+            if (!filterButtons || !filterButtons.classList.contains('filter-buttons')) return;
+
+            filterButtons.addEventListener('click', (event) => {
+                const target = event.target;
+                if (target.tagName === 'BUTTON') {
+                    const filter = target.getAttribute('data-filter');
+                    const allButtons = filterButtons.querySelectorAll('button');
+                    const allProducts = container.querySelectorAll('.product-item');
+
+                    allButtons.forEach(btn => btn.classList.remove('active'));
+                    target.classList.add('active');
+
+                    allProducts.forEach(product => {
+                        if (filter === 'all' || product.getAttribute('data-category') === filter) {
+                            product.classList.remove('hidden');
+                        } else {
+                            product.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Apply filtering to Face and Lip sections
+        // Apply filtering to Makeup sections
+    document.addEventListener('DOMContentLoaded', function() {
+    setupFilter('face-products');
+    setupFilter('eye-products');
+    setupFilter('lip-products');
+});
+
+        // Face Care Filtering Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const applyFiltersBtn = document.getElementById('apply-face-filters');
+            const resetFiltersBtn = document.getElementById('reset-face-filters');
+            
+            if (applyFiltersBtn && resetFiltersBtn) {
+                applyFiltersBtn.addEventListener('click', applyFaceCareFilters);
+                resetFiltersBtn.addEventListener('click', resetFaceCareFilters);
+            }
+            
+            function applyFaceCareFilters() {
+                // Get all filter values
+                const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+                const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+                
+                const selectedTextures = getSelectedCheckboxValues('texture');
+                const selectedAges = getSelectedCheckboxValues('age');
+                const selectedSkinTypes = getSelectedCheckboxValues('skin-type');
+                const selectedSkinConcerns = getSelectedCheckboxValues('skin-concern');
+                const selectedUsages = getSelectedCheckboxValues('usage');
+                
+                const selectedIngredient = document.getElementById('ingredients').value;
+                const sortBy = document.getElementById('sort-by').value;
+                
+                // Get all face care products
+                const faceCareProducts = document.querySelectorAll('#face-care-sec .product-item');
+                
+                // Filter products
+                faceCareProducts.forEach(product => {
+                    const productPrice = parseFloat(product.getAttribute('data-price'));
+                    const productTexture = product.getAttribute('data-texture');
+                    const productAge = product.getAttribute('data-age') || '';
+                    const productSkinType = product.getAttribute('data-skin-type');
+                    const productSkinConcern = product.getAttribute('data-skin-concern').split(',');
+                    const productUsage = product.getAttribute('data-usage');
+                    const productIngredients = product.getAttribute('data-ingredients');
+                    
+                    // Check if product matches all selected filters
+                    const priceMatch = productPrice >= minPrice && productPrice <= maxPrice;
+                    const textureMatch = selectedTextures.length === 0 || selectedTextures.some(texture => productTexture.split(',').includes(texture));                    const ageMatch = selectedAges.length === 0 || selectedAges.some(age => productAge.includes(age));
+                    const skinTypeMatch = selectedSkinTypes.length === 0 || selectedSkinTypes.every(type => productSkinType.includes(type));
+                    const skinConcernMatch = selectedSkinConcerns.length === 0 || selectedSkinConcerns.some(concern => productSkinConcern.includes(concern));
+                    const usageMatch = selectedUsages.length === 0 || selectedUsages.some(usage => productUsage.includes(usage));
+                    const ingredientMatch = !selectedIngredient || (productIngredients && productIngredients.includes(selectedIngredient));
+                    
+                    if (priceMatch && textureMatch && ageMatch && skinTypeMatch && skinConcernMatch && usageMatch && ingredientMatch) {
+                        product.classList.remove('hidden');
+                    } else {
+                        product.classList.add('hidden');
+                    }
+                });
+                
+                // Sort products if needed
+                if (sortBy !== 'default') {
+                    sortFaceCareProducts(sortBy);
+                }
+            }
+            
+            function resetFaceCareFilters() {
+                // Reset all filter inputs
+                document.getElementById('min-price').value = '';
+                document.getElementById('max-price').value = '';
+                
+                document.querySelectorAll('input[name="texture"]').forEach(cb => cb.checked = false);
+                document.querySelectorAll('input[name="age"]').forEach(cb => cb.checked = false);
+                document.querySelectorAll('input[name="skin-type"]').forEach(cb => cb.checked = false);
+                document.querySelectorAll('input[name="skin-concern"]').forEach(cb => cb.checked = false);
+                document.querySelectorAll('input[name="usage"]').forEach(cb => cb.checked = false);
+                
+                document.getElementById('ingredients').value = '';
+                document.getElementById('sort-by').value = 'default';
+                
+                // Show all products
+                const faceCareProducts = document.querySelectorAll('#face-care-sec .product-item');
+                faceCareProducts.forEach(product => {
+                    product.classList.remove('hidden');
+                });
+                
+                // Reset to original order
+                const productGrids = document.querySelectorAll('#face-care-sec .product-grid');
+                productGrids.forEach(grid => {
+                    const products = Array.from(grid.querySelectorAll('.product-item'));
+                    products.sort((a, b) => {
+                        return Array.from(grid.children).indexOf(a) - Array.from(grid.children).indexOf(b);
+                    }).forEach(product => grid.appendChild(product));
+                });
+            }
+            
+            function getSelectedCheckboxValues(name) {
+                const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+                return Array.from(checkboxes).map(cb => cb.value);
+            }
+            
+            function sortFaceCareProducts(sortBy) {
+                const productGrids = document.querySelectorAll('#face-care-sec .product-grid');
+                
+                productGrids.forEach(grid => {
+                    const products = Array.from(grid.querySelectorAll('.product-item:not(.hidden)'));
+                    
+                    products.sort((a, b) => {
+                        switch(sortBy) {
+                            case 'price-low-high':
+                                return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+                            case 'price-high-low':
+                                return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
+                            case 'sales-low-high':
+                                return parseInt(a.getAttribute('data-sales')) - parseInt(b.getAttribute('data-sales'));
+                            case 'sales-high-low':
+                                return parseInt(b.getAttribute('data-sales')) - parseInt(a.getAttribute('data-sales'));
+                            default:
+                                return 0;
+                        }
+                    });
+                    
+                    // Reorder products in the grid
+                    products.forEach(product => grid.appendChild(product));
+                });
+            }
+        });
+
+             // NEW JAVASCRIPT FOR SEARCH AND CART FUNCTIONALITY
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize cart from localStorage if available
+            let cart = JSON.parse(localStorage.getItem('eloraCart')) || [];
+            updateCartCount();
+            
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                // Find matching products
+                const products = document.querySelectorAll('.product-item');
+                const matches = [];
+                
+                products.forEach(product => {
+                    const name = product.querySelector('h3').textContent.toLowerCase();
+                    const description = product.querySelector('p').textContent.toLowerCase();
+                    
+                    if (name.includes(query) || description.includes(query)) {
+                        const id = product.querySelector('.add-to-cart-btn').getAttribute('data-id');
+                        const image = product.querySelector('img').src;
+                        const price = product.querySelector('.price').textContent;
+                        
+                        matches.push({
+                            id,
+                            name: product.querySelector('h3').textContent,
+                            image,
+                            price,
+                            element: product
+                        });
+                    }
+                });
+                
+                // Display results
+                if (matches.length > 0) {
+                    searchResults.innerHTML = '';
+                    matches.forEach(match => {
+                        const resultItem = document.createElement('div');
+                        resultItem.className = 'search-result-item';
+                        resultItem.innerHTML = `
+                            <img src="${match.image}" alt="${match.name}">
+                            <div class="search-result-info">
+                                <h4>${match.name}</h4>
+                                <span class="price">${match.price}</span>
+                            </div>
+                        `;
+                        
+                        resultItem.addEventListener('click', function() {
+                            // Scroll to the product
+                            match.element.scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Highlight the product temporarily
+                            match.element.style.boxShadow = '0 0 0 2px #e3a9b1';
+                            setTimeout(() => {
+                                match.element.style.boxShadow = '';
+                            }, 2000);
+                            
+                            // Clear search
+                            searchInput.value = '';
+                            searchResults.style.display = 'none';
+                        });
+                        
+                        searchResults.appendChild(resultItem);
+                    });
+                    
+                    searchResults.style.display = 'block';
+                } else {
+                    searchResults.innerHTML = '<div class="search-result-item">No products found</div>';
+                    searchResults.style.display = 'block';
+                }
+            });
+            
+            // Close search results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+            
+            // Cart functionality
+            const cartIcon = document.getElementById('cartIcon');
+            const cartModal = document.getElementById('cartModal');
+            const closeCart = document.getElementById('closeCart');
+            const overlay = document.getElementById('overlay');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            
+            // Open cart
+            cartIcon.addEventListener('click', function() {
+                cartModal.classList.add('open');
+                overlay.classList.add('show');
+                renderCartItems();
+            });
+            
+            // Close cart
+            closeCart.addEventListener('click', function() {
+                cartModal.classList.remove('open');
+                overlay.classList.remove('show');
+            });
+            
+            overlay.addEventListener('click', function() {
+                cartModal.classList.remove('open');
+                overlay.classList.remove('show');
+            });
+            
+            // Add to cart buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const image = this.getAttribute('data-image');
+                    
+                    // Check if product already in cart
+                    const existingItem = cart.find(item => item.id === id);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id,
+                            name,
+                            price,
+                            image,
+                            quantity: 1
+                        });
+                    }
+                    
+                    // Save to localStorage
+                    localStorage.setItem('eloraCart', JSON.stringify(cart));
+                    
+                    // Update UI
+                    updateCartCount();
+                    
+                    // Show confirmation
+                    this.textContent = 'Added to Cart!';
+                    setTimeout(() => {
+                        this.textContent = 'Add to Cart';
+                    }, 1500);
+                });
+            });
+            
+            // Render cart items
+            function renderCartItems() {
+                if (cart.length === 0) {
+                    cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                    cartTotal.textContent = '$0.00';
+                    return;
+                }
+                
+                cartItems.innerHTML = '';
+                let total = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                                <input type="text" class="quantity-input" value="${item.quantity}" readonly>
+                                <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                            </div>
+                            <button class="remove-item" data-id="${item.id}">Remove</button>
+                        </div>
+                    `;
+                    
+                    cartItems.appendChild(cartItem);
+                });
+                
+                cartTotal.textContent = `$${total.toFixed(2)}`;
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.quantity-btn.plus').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        item.quantity += 1;
+                        localStorage.setItem('eloraCart', JSON.stringify(cart));
+                        renderCartItems();
+                        updateCartCount();
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-btn.minus').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        
+                        if (item.quantity > 1) {
+                            item.quantity -= 1;
+                        } else {
+                            cart = cart.filter(item => item.id !== id);
+                        }
+                        
+                        localStorage.setItem('eloraCart', JSON.stringify(cart));
+                        renderCartItems();
+                        updateCartCount();
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        localStorage.setItem('eloraCart', JSON.stringify(cart));
+                        renderCartItems();
+                        updateCartCount();
+                    });
+                });
+            }
+            
+            // Update cart count
+            function updateCartCount() {
+                const cartCount = document.getElementById('cartCount');
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+            
+            // Checkout functionality
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+                
+                // Save cart data for the checkout page
+                localStorage.setItem('eloraCheckoutData', JSON.stringify({
+                    items: cart,
+                    total: cart.reduce((total, item) => total + (item.price * item.quantity), 0)
+                }));
+                
+                // Redirect to payment page
+                window.location.href = 'payment.html';
+            });
+        });
+
+         const toggleBtn = document.getElementById("chatbot-toggle");
+  const chatbotBox = document.getElementById("chatbot-container");
+
+  toggleBtn.addEventListener("click", () => {
+    chatbotBox.style.display = chatbotBox.style.display === "none" ? "block" : "none";
+  });
+
+  document.getElementById('skincareBtn').addEventListener('click', function() {
+    // optional alert before redirect
+    alert('Redirecting to Personalized Skincare Advisor...');
+    
+    // redirect to your file
+    window.location.href = "quiz.html";
+});
+
+// Add this code to your existing JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Profile and Settings modals
+    const profileIcon = document.getElementById('profileIcon');
+    const settingsIcon = document.getElementById('settingsIcon');
+    const profileModal = document.createElement('div');
+    const settingsModal = document.createElement('div');
+    
+    
+    // Open profile modal
+    profileIcon.addEventListener('click', function() {
+        profileModal.classList.add('open');
+        overlay.classList.add('show');
+    });
+    
+    // Open settings modal
+    settingsIcon.addEventListener('click', function() {
+        settingsModal.classList.add('open');
+        overlay.classList.add('show');
+    });
+    
+    // Close modals
+    document.getElementById('closeProfile')?.addEventListener('click', function() {
+        profileModal.classList.remove('open');
+        overlay.classList.remove('show');
+    });
+    
+    document.getElementById('closeSettings')?.addEventListener('click', function() {
+        settingsModal.classList.remove('open');
+        overlay.classList.remove('show');
+    });
+    
+    // Close modals when clicking on overlay
+    overlay.addEventListener('click', function() {
+        profileModal.classList.remove('open');
+        settingsModal.classList.remove('open');
+        overlay.classList.remove('show');
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Advertisement slideshow
+    const slides = document.querySelectorAll('.ad-slide');
+    const controls = document.querySelectorAll('.ad-control');
+    let currentSlide = 0;
+    let slideInterval;
+
+    function showSlide(index) {
+        slides.forEach((slide) => slide.classList.remove('active'));
+        controls.forEach((control) => control.classList.remove('active'));
+        slides[index].classList.add('active');
+        controls[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function startSlideshow() {
+        slideInterval = setInterval(nextSlide, 3000); // Change slide every 5 seconds
+    }
+
+    function stopSlideshow() {
+        clearInterval(slideInterval);
+    }
+
+    controls.forEach(control => {
+        control.addEventListener('click', () => {
+            stopSlideshow();
+            currentSlide = parseInt(control.dataset.index);
+            showSlide(currentSlide);
+            startSlideshow(); // Resume slideshow after manual click
+        });
+    });
+
+    // Initialize slideshow
+    showSlide(currentSlide);
+    startSlideshow();
+});
+      
+      // Product Reviews and Wishlist
+document.addEventListener('DOMContentLoaded', function() {
+    // Add wishlist buttons to products
+    document.querySelectorAll('.product-item').forEach(product => {
+        const productId = product.querySelector('.add-to-cart-btn').getAttribute('data-id');
+        const productName = product.querySelector('.add-to-cart-btn').getAttribute('data-name');
+        const productPrice = parseFloat(product.querySelector('.add-to-cart-btn').getAttribute('data-price'));
+        const productImage = product.querySelector('.add-to-cart-btn').getAttribute('data-image');
+        
+        // Create wishlist button
+        const wishlistBtn = document.createElement('button');
+        wishlistBtn.className = 'wishlist-btn';
+        wishlistBtn.innerHTML = '<i class="far fa-heart"></i>';
+        wishlistBtn.setAttribute('data-id', productId);
+        wishlistBtn.setAttribute('data-name', productName);
+        wishlistBtn.setAttribute('data-price', productPrice);
+        wishlistBtn.setAttribute('data-image', productImage);
+        
+        // Position the button
+        wishlistBtn.style.position = 'absolute';
+        wishlistBtn.style.top = '10px';
+        wishlistBtn.style.right = '10px';
+        wishlistBtn.style.background = 'white';
+        wishlistBtn.style.border = 'none';
+        wishlistBtn.style.borderRadius = '50%';
+        wishlistBtn.style.width = '30px';
+        wishlistBtn.style.height = '30px';
+        wishlistBtn.style.cursor = 'pointer';
+        wishlistBtn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        
+        product.style.position = 'relative';
+        product.appendChild(wishlistBtn);
+        
+        // Check if product is in wishlist
+        const wishlist = JSON.parse(localStorage.getItem('eloraWishlist')) || [];
+        const inWishlist = wishlist.some(item => item.id === productId);
+        
+        if (inWishlist) {
+            wishlistBtn.innerHTML = '<i class="fas fa-heart" style="color: #e91e63;"></i>';
+        }
+        
+        // Add click event
+        wishlistBtn.addEventListener('click', function() {
+            toggleWishlist(this);
+        });
+    });
+    
+    // Toggle wishlist
+    function toggleWishlist(button) {
+        const productId = button.getAttribute('data-id');
+        const productName = button.getAttribute('data-name');
+        const productPrice = parseFloat(button.getAttribute('data-price'));
+        const productImage = button.getAttribute('data-image');
+        
+        let wishlist = JSON.parse(localStorage.getItem('eloraWishlist')) || [];
+        const index = wishlist.findIndex(item => item.id === productId);
+        
+        if (index === -1) {
+            // Add to wishlist
+            wishlist.push({
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage
+            });
+            button.innerHTML = '<i class="fas fa-heart" style="color: #e91e63;"></i>';
+        } else {
+            // Remove from wishlist
+            wishlist.splice(index, 1);
+            button.innerHTML = '<i class="far fa-heart"></i>';
+        }
+        
+        localStorage.setItem('eloraWishlist', JSON.stringify(wishlist));
+    }
+    
+    // Add review functionality
+    function setupProductReviews() {
+        // This would be expanded to show reviews when clicking on a product
+        // For now, we'll just add a basic structure
+        
+        document.querySelectorAll('.product-item').forEach(product => {
+            product.addEventListener('click', function(e) {
+                // Don't trigger if clicking on buttons
+                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                    return;
+                }
+                
+                const productId = this.querySelector('.add-to-cart-btn').getAttribute('data-id');
+                showProductReviews(productId);
+            });
+        });
+    }
+    
+    // Show product reviews (simplified version)
+    function showProductReviews(productId) {
+        // In a real implementation, this would fetch reviews from a server
+        // For now, we'll just show a simple alert
+        
+        const reviews = JSON.parse(localStorage.getItem(`eloraReviews_${productId}`)) || [];
+        const averageRating = reviews.length > 0 
+            ? (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1)
+            : 'No ratings yet';
+ 
+    }
+    
+    setupProductReviews();
+});
+      // Enhanced Settings Modal
+document.addEventListener('DOMContentLoaded', function() {
+    // Create enhanced settings modal
+    const settingsModal = document.createElement('div');
+    settingsModal.className = 'settings-modal';
+    settingsModal.innerHTML = `
+        <div class="modal-header">
+            <h2>Settings</h2>
+            <button class="close-modal" id="closeSettings">×</button>
+        </div>
+        <div class="modal-content">         
+            <div class="settings-section">
+                <h3>Order History</h3>
+                <div id="orderHistory">
+                    <p class="empty-message">No order history found.</p>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h3>Wishlist</h3>
+                <div id="wishlistItems">
+                    <p class="empty-message">Your wishlist is empty.</p>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h3>Contact Us</h3>
+                <p>Have questions or need assistance?</p>
+                <button class="btn btn-primary" id="contactBtn">Contact Support</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(settingsModal);
+    
+    // Load order history
+    function loadOrderHistory() {
+        const orderHistory = JSON.parse(localStorage.getItem('eloraOrderHistory')) || [];
+        const orderHistoryContainer = document.getElementById('orderHistory');
+        
+        if (orderHistory.length === 0) {
+            orderHistoryContainer.innerHTML = '<p class="empty-message">No order history found.</p>';
+            return;
+        }
+        
+        let html = '';
+        orderHistory.forEach(order => {
+            html += `
+                <div class="order-item">
+                    <p><strong>Order #${order.id}</strong> - ${order.date}</p>
+                    <p>Total: $${order.total.toFixed(2)}</p>
+                    <p>Status: ${order.status}</p>
+                </div>
+            `;
+        });
+        
+        orderHistoryContainer.innerHTML = html;
+    }
+    
+    // Load wishlist
+    function loadWishlist() {
+        const wishlist = JSON.parse(localStorage.getItem('eloraWishlist')) || [];
+        const wishlistContainer = document.getElementById('wishlistItems');
+        
+        if (wishlist.length === 0) {
+            wishlistContainer.innerHTML = '<p class="empty-message">Your wishlist is empty.</p>';
+            return;
+        }
+        
+        let html = '';
+        wishlist.forEach(item => {
+            html += `
+                <div class="wishlist-item">
+                    <img src="${item.image}" alt="${item.name}" width="50">
+                    <div class="wishlist-info">
+                        <p>${item.name}</p>
+                        <p>$${item.price.toFixed(2)}</p>
+                    </div>
+                    <button class="remove-wishlist" data-id="${item.id}">Remove</button>
+                </div>
+            `;
+        });
+        
+        wishlistContainer.innerHTML = html;
+        
+        // Add event listeners to remove buttons
+        document.querySelectorAll('.remove-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                removeFromWishlist(id);
+                loadWishlist();
+            });
+        });
+    }
+    
+    // Remove from wishlist
+    function removeFromWishlist(productId) {
+        let wishlist = JSON.parse(localStorage.getItem('eloraWishlist')) || [];
+        wishlist = wishlist.filter(item => item.id !== productId);
+        localStorage.setItem('eloraWishlist', JSON.stringify(wishlist));
+    }    
+    
+    // Contact support button
+    document.getElementById('contactBtn').addEventListener('click', function() {
+        window.location.href = 'mailto:support@elora.com?subject=Customer Support';
+    });
+    
+    // Open settings modal
+    document.getElementById('settingsIcon').addEventListener('click', function() {
+        loadOrderHistory();
+        loadWishlist();
+        settingsModal.classList.add('open');
+        document.getElementById('overlay').classList.add('show');
+    });
+    
+    // Close settings modal
+    document.getElementById('closeSettings').addEventListener('click', function() {
+        settingsModal.classList.remove('open');
+        document.getElementById('overlay').classList.remove('show');
+    });
+});
+      // Profile and Settings modals
+document.addEventListener('DOMContentLoaded', function() {
+    // Load user data from localStorage or membership form
+    function loadUserData() {
+        const userData = JSON.parse(localStorage.getItem('eloraUserData')) || {};
+        const membershipData = JSON.parse(localStorage.getItem('eloraMembershipData')) || {};
+        
+        // Merge data with membership data taking priority
+        return {...userData, ...membershipData};
+    }
+    
+    // Save user data to localStorage
+    function saveUserData(userData) {
+        localStorage.setItem('eloraUserData', JSON.stringify(userData));
+    }
+    
+    // Create enhanced profile modal
+    const profileModal = document.createElement('div');
+    profileModal.className = 'profile-modal';
+    profileModal.innerHTML = `
+        <div class="modal-header">
+            <h2>Profile</h2>
+            <button class="close-modal" id="closeProfile">×</button>
+        </div>
+        <div class="modal-content" id="profileContent">
+            <div id="profileView">
+                <div class="profile-section">
+                    <h3>Personal Information</h3>
+                    <p><strong>Name:</strong> <span id="profileName">-</span></p>
+                    <p><strong>Birthdate:</strong> <span id="profileBirthdate">-</span></p>
+                    <p><strong>Email:</strong> <span id="profileEmail">-</span></p>
+                    <p><strong>Phone:</strong> <span id="profilePhone">-</span></p>
+                    <p><strong>Address:</strong> <span id="profileAddress">-</span></p>
+                </div>
+                <div class="profile-section">
+                    <h3>Skin Profile</h3>
+                    <p><strong>Skin Type:</strong> <span id="profileSkinType">-</span></p>
+                    <p><strong>Main Concerns:</strong> <span id="profileConcerns">-</span></p>
+                </div>
+                <div class="profile-section">
+                    <h3>Membership</h3>
+                    <p><strong>Status:</strong> <span id="profileMembership">Not a member</span></p>
+                    <p><strong>Points:</strong> <span id="profilePoints">0</span></p>
+                </div>
+                <button class="btn btn-primary" id="editProfileBtn">Edit Profile</button>
+            </div>
+            
+            <div id="profileEdit" style="display: none;">
+                <h3>Edit Profile</h3>
+                <div class="form-group">
+                    <label for="editName">Full Name</label>
+                    <input type="text" id="editName">
+                </div>
+                <div class="form-group">
+                    <label for="editBirthdate">Birthdate</label>
+                    <input type="date" id="editBirthdate">
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail">
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">Phone</label>
+                    <input type="tel" id="editPhone">
+                </div>
+                <div class="form-group">
+                    <label for="editAddress">Address</label>
+                    <textarea id="editAddress" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editSkinType">Skin Type</label>
+                    <select id="editSkinType">
+                        <option value="">Select Skin Type</option>
+                        <option value="normal">Normal</option>
+                        <option value="dry">Dry</option>
+                        <option value="oily">Oily</option>
+                        <option value="combination">Combination</option>
+                        <option value="sensitive">Sensitive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Main Skin Concerns</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernAcne" value="Acne">
+                            <label for="concernAcne">Acne</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernAging" value="Aging">
+                            <label for="concernAging">Aging</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernDryness" value="Dryness">
+                            <label for="concernDryness">Dryness</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernHyperpigmentation" value="Hyperpigmentation">
+                            <label for="concernHyperpigmentation">Hyperpigmentation</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernRedness" value="Redness">
+                            <label for="concernRedness">Redness</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernOiliness" value="Oiliness">
+                            <label for="concernOiliness">Oiliness</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernDarkCircle" value="Dark Circle">
+                            <label for="concernDarkCircle">Dark Circle</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernBlackheads" value="Blackheads">
+                            <label for="concernBlackheads">Blackheads</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernSunDamage" value="Sun Damage">
+                            <label for="concernSunDamage">Sun Damage</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="concernDullness" value="Dullness">
+                            <label for="concernDullness">Dullness</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-navigation">
+                    <button class="btn" id="cancelEditBtn">Cancel</button>
+                    <button class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(profileModal);
+    
+    // Populate profile data
+    function populateProfile() {
+        const userData = loadUserData();
+        
+        // Personal info
+        document.getElementById('profileName').textContent = userData.name || '-';
+        document.getElementById('profileBirthdate').textContent = userData.birthdate || '-';
+        document.getElementById('profileEmail').textContent = userData.email || '-';
+        document.getElementById('profilePhone').textContent = userData.phone || '-';
+        document.getElementById('profileAddress').textContent = userData.address || '-';
+        
+        // Skin profile
+        document.getElementById('profileSkinType').textContent = userData.skinType || '-';
+        
+        if (userData.skinConcerns && userData.skinConcerns.length > 0) {
+            document.getElementById('profileConcerns').textContent = userData.skinConcerns.join(', ');
+        } else {
+            document.getElementById('profileConcerns').textContent = '-';
+        }
+        
+        // Membership
+        if (userData.membershipStatus) {
+            document.getElementById('profileMembership').textContent = userData.membershipStatus;
+            document.getElementById('profilePoints').textContent = userData.points || '0';
+        }
+        
+        // Populate edit form
+        document.getElementById('editName').value = userData.name || '';
+        document.getElementById('editBirthdate').value = userData.birthdate || '';
+        document.getElementById('editEmail').value = userData.email || '';
+        document.getElementById('editPhone').value = userData.phone || '';
+        document.getElementById('editAddress').value = userData.address || '';
+        document.getElementById('editSkinType').value = userData.skinType || '';
+        
+        // Reset checkboxes
+        document.querySelectorAll('#profileEdit input[type="checkbox"]').forEach(cb => {
+            cb.checked = false;
+        });
+        
+        // Check concerns
+        if (userData.skinConcerns) {
+            userData.skinConcerns.forEach(concern => {
+                const checkbox = document.getElementById(`concern${concern.charAt(0).toUpperCase() + concern.slice(1)}`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+    }
+    
+    // Event listeners for profile modal
+    document.getElementById('editProfileBtn').addEventListener('click', function() {
+        document.getElementById('profileView').style.display = 'none';
+        document.getElementById('profileEdit').style.display = 'block';
+    });
+    
+    document.getElementById('cancelEditBtn').addEventListener('click', function() {
+        document.getElementById('profileEdit').style.display = 'none';
+        document.getElementById('profileView').style.display = 'block';
+    });
+    
+    document.getElementById('saveProfileBtn').addEventListener('click', function() {
+        const userData = loadUserData();
+        
+        // Get values from form
+        userData.name = document.getElementById('editName').value;
+        userData.birthdate = document.getElementById('editBirthdate').value;
+        userData.email = document.getElementById('editEmail').value;
+        userData.phone = document.getElementById('editPhone').value;
+        userData.address = document.getElementById('editAddress').value;
+        userData.skinType = document.getElementById('editSkinType').value;
+        
+        // Get selected concerns
+        userData.skinConcerns = [];
+        document.querySelectorAll('#profileEdit input[type="checkbox"]:checked').forEach(cb => {
+            userData.skinConcerns.push(cb.value);
+        });
+        
+        // Save data
+        saveUserData(userData);
+        
+        // Update view
+        populateProfile();
+        
+        // Switch back to view mode
+        document.getElementById('profileEdit').style.display = 'none';
+        document.getElementById('profileView').style.display = 'block';
+        
+        alert('Profile updated successfully!');
+    });
+    
+    // Open profile modal
+    document.getElementById('profileIcon').addEventListener('click', function() {
+        populateProfile();
+        profileModal.classList.add('open');
+        document.getElementById('overlay').classList.add('show');
+    });
+    
+    // Close profile modal
+    document.getElementById('closeProfile').addEventListener('click', function() {
+        profileModal.classList.remove('open');
+        document.getElementById('overlay').classList.remove('show');
+    });
+    
+    // Check if we have membership data from the form
+    function checkForMembershipData() {
+        const membershipData = localStorage.getItem('eloraMembershipData');
+        if (membershipData) {
+            const userData = loadUserData();
+            if (!userData.membershipStatus || userData.membershipStatus === 'Not a member') {
+                // Update with membership data
+                const membership = JSON.parse(membershipData);
+                userData.membershipStatus = 'Member';
+                userData.points = 100; // Starting points
+                userData.name = membership.name || userData.name;
+                userData.birthdate = membership.birthdate || userData.birthdate;
+                userData.email = membership.email || userData.email;
+                userData.phone = membership.phone || userData.phone;
+                userData.address = membership.address || userData.address;
+                
+                saveUserData(userData);
+                
+                // Remove the membership data flag
+                localStorage.removeItem('eloraMembershipData');
+            }
+        }
+    }
+    
+    // Check for membership data on page load
+    checkForMembershipData();
+});
+      
+       document.getElementById('closeProfile')?.addEventListener('click', function() {
+        profileModal.classList.remove('open');
+        overlay.classList.remove('show');
+    });
+    
+    document.getElementById('closeSettings')?.addEventListener('click', function() {
+        settingsModal.classList.remove('open');
+        overlay.classList.remove('show');
+    });
+// Product Review System
+document.addEventListener('DOMContentLoaded', function() {
+    // Add review toggle to each product
+    document.querySelectorAll('.product-item').forEach(product => {
+        const productId = product.querySelector('.add-to-cart-btn').getAttribute('data-id');
+        const sales = product.getAttribute('data-sales') || 0;
+        
+        // Add sales count
+        const priceElement = product.querySelector('.price');
+        const salesElement = document.createElement('div');
+        salesElement.className = 'sales-count';
+        salesElement.textContent = `${sales} sold`;
+        priceElement.after(salesElement);
+        
+        // Add review toggle button
+        const reviewBtn = document.createElement('button');
+        reviewBtn.className = 'review-toggle-btn';
+        reviewBtn.textContent = 'Reviews';
+        reviewBtn.style.marginTop = '10px';
+        reviewBtn.style.fontSize = '12px';
+        reviewBtn.style.background = 'transparent';
+        reviewBtn.style.border = 'none';
+        reviewBtn.style.color = 'var(--color-accent)';
+        reviewBtn.style.cursor = 'pointer';
+        reviewBtn.style.textDecoration = 'underline';
+        
+        const addToCartBtn = product.querySelector('.add-to-cart-btn');
+        addToCartBtn.after(reviewBtn);
+        
+        // Create review section
+        const reviewSection = document.createElement('div');
+        reviewSection.className = 'review-section';
+        reviewSection.innerHTML = `
+            <h4>Customer Reviews</h4>
+            <div class="review-form">
+                <h5>Write a Review</h5>
+                <div class="rating-stars">
+                    <span data-rating="1">★</span>
+                    <span data-rating="2">★</span>
+                    <span data-rating="3">★</span>
+                    <span data-rating="4">★</span>
+                    <span data-rating="5">★</span>
+                </div>
+                <textarea placeholder="Share your experience..." rows="3" style="width: 100%; margin: 10px 0; padding: 8px;"></textarea>
+                <button class="submit-review-btn">Submit Review</button>
+            </div>
+            <div class="review-list"></div>
+        `;
+        
+        product.appendChild(reviewSection);
+        
+        // Toggle review section
+        reviewBtn.addEventListener('click', function() {
+            reviewSection.classList.toggle('active');
+            if (reviewSection.classList.contains('active')) {
+                loadReviews(productId);
+            }
+        });
+        
+        // Star rating functionality
+        const stars = reviewSection.querySelectorAll('.rating-stars span');
+        let selectedRating = 0;
+        
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.getAttribute('data-rating'));
+                selectedRating = rating;
+                
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute('data-rating')) <= rating) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Submit review
+        reviewSection.querySelector('.submit-review-btn').addEventListener('click', function() {
+            const reviewText = reviewSection.querySelector('textarea').value;
+            
+            if (selectedRating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+            
+            if (!reviewText.trim()) {
+                alert('Please write a review');
+                return;
+            }
+            
+            saveReview(productId, selectedRating, reviewText);
+            reviewSection.querySelector('textarea').value = '';
+            stars.forEach(s => s.classList.remove('active'));
+            selectedRating = 0;
+            
+            loadReviews(productId);
+        });
+    });
+    
+    // Load reviews for a product
+    function loadReviews(productId) {
+        const reviews = JSON.parse(localStorage.getItem(`eloraReviews_${productId}`)) || [];
+        const reviewList = document.querySelector(`.product-item [data-id="${productId}"]`).closest('.product-item').querySelector('.review-list');
+        
+        if (reviews.length === 0) {
+            reviewList.innerHTML = '<p>No reviews yet. Be the first to review!</p>';
+            return;
+        }
+        
+        let html = '';
+        reviews.forEach(review => {
+            html += `
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="review-author">${review.author || 'Anonymous'}</span>
+                        <span class="review-rating">${'★'.repeat(review.rating)}</span>
+                    </div>
+                    <p>${review.text}</p>
+                    <div class="review-date">${new Date(review.date).toLocaleDateString()}</div>
+                </div>
+            `;
+        });
+        
+        reviewList.innerHTML = html;
+    }
+    
+    // Save review to localStorage
+    function saveReview(productId, rating, text) {
+        const reviews = JSON.parse(localStorage.getItem(`eloraReviews_${productId}`)) || [];
+        
+        reviews.push({
+            rating: rating,
+            text: text,
+            date: new Date().toISOString(),
+            author: localStorage.getItem('eloraUserName') || 'Guest'
+        });
+        
+        localStorage.setItem(`eloraReviews_${productId}`, JSON.stringify(reviews));
+    }
+});
+    
+// Function to update wishlist heart icons on the page
+function updateWishlistIcons() {
+    const wishlist = JSON.parse(localStorage.getItem('eloraWishlist')) || [];
+    
+    // Update all wishlist buttons
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        const productId = btn.getAttribute('data-id');
+        const inWishlist = wishlist.some(item => item.id === productId);
+        
+        if (inWishlist) {
+            btn.innerHTML = '<i class="fas fa-heart" style="color: #e91e63;"></i>';
+        } else {
+            btn.innerHTML = '<i class="far fa-heart"></i>';
+        }
+    });
+}
+
+// Update the removeFromWishlist function
+function removeFromWishlist(productId) {
+    let wishlist = JSON.parse(localStorage.getItem('eloraWishlist')) || [];
+    wishlist = wishlist.filter(item => item.id !== productId);
+    localStorage.setItem('eloraWishlist', JSON.stringify(wishlist));
+    
+    // Update the UI
+    updateWishlistIcons();
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing code ...
+    
+    // Update wishlist icons on page load
+    updateWishlistIcons();
+    
+    // Also update when the settings modal is closed
+    document.getElementById('closeSettings')?.addEventListener('click', function() {
+        updateWishlistIcons();
+    });
+    
+    // Update when overlay is clicked to close modal
+    overlay.addEventListener('click', function() {
+        setTimeout(updateWishlistIcons, 100);
+    });
+});
+
+    </script>
+</body>
+</html>

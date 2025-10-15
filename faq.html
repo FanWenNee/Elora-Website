@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elora Skincare - FAQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+
+        /* CSS Variables & Base Styles */
+        :root {
+            --color-primary: #333333;
+            --color-secondary: #5e5e5e;
+            --color-accent: #8a7356;
+            --color-background: #f7f7f7;
+            --color-surface: #ffffff;
+            --color-border: #e0e0e0;
+            --color-text: #2a2a2a;
+            --color-text-light: #757575;
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Helvetica Neue', Arial, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-md: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 6rem;
+            --container-width: 1280px;
+            --border-radius: 0;
+            --primary-pink: #f8e2e7;
+            --primary-pink-dark: #e8c6cf;
+            --accent-pink: #d4afb7;
+            --dark-gray: #2a2a2a;
+            --medium-gray: #444444;
+            --white: #ffffff;
+            --transition-medium: 0.3s ease;
+            --transition-fast: 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background-color: var(--color-background);
+            color: var(--medium-gray);
+            line-height: 1.6;
+            font-size: var(--font-size-md);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.01em;
+            color: var(--color-primary);
+        }
+
+        a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: color var(--transition-medium);
+        }
+
+        a:hover {
+            color: var(--accent-pink);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header & Navigation - FIXED HEIGHT */
+        header {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+            height:110px;
+              align-items: center;       
+  justify-content: center;
+  display:flex;
+        }
+
+        .logo {
+            font-size: var(--font-size-xxl);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+            margin: 0;   
+            line-height:1; 
+            font-family: "Lucida Handwriting", cursive;
+
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            height: 60px; /* Fixed height for nav container */
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 0.95rem 1.6rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+        }
+
+        .nav-item a {
+            font-weight: 500;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 12px;
+            transition: color var(--transition-medium);
+            font-family: "FS Kim", serif;
+
+        }
+
+        .nav-item:hover a {
+            color: rgb(194, 132, 142);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 180px;
+            z-index: 10;
+            padding: var(--spacing-md) 0;
+            text-align: center;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: normal;
+            transition: all 0.2s ease;
+            font-family: 'Karla', sans-serif;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--primary-pink);
+            color: var(--dark-gray);
+        }
+        
+        /* Search, Cart & User Icons */
+        .search-cart-container {
+            margin-left: auto;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding: 0 var(--spacing-md);
+            height: 100%;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 50px;
+            width: 200px;
+            font-family: 'Karla', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 2px rgba(212, 175, 183, 0.2);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-sm);
+            border-bottom: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background-color: var(--primary-pink);
+        }
+
+        .search-result-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: var(--spacing-sm);
+        }
+
+        .search-result-info h4 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            font-family: 'Karla', sans-serif;
+        }
+
+        .search-result-info .price {
+            font-size: 0.8rem;
+            color: var(--accent-pink);
+        }
+
+        .cart-icon, .profile-icon, .settings-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+
+        .profile-icon:hover, .settings-icon:hover {
+            color: var(--accent-pink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: rgb(194, 132, 142);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* FAQ Page Specific Styles */
+        .page-title {
+            text-align: center;
+            margin: var(--spacing-xxl) 0 var(--spacing-xl);
+        }
+        
+        .page-title h1 {
+            font-size: 2.8rem;
+            color: var(--accent-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .page-title p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Search Bar Styles */
+        .search-container-faq {
+            max-width: 700px;
+            margin: var(--spacing-xl) auto;
+            position: relative;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 2px solid var(--primary-pink);
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            background: white;
+            font-family: 'Karla', sans-serif;
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 2px rgba(212, 175, 183, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-pink);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .search-results-faq {
+            margin-top: var(--spacing-md);
+            text-align: center;
+            color: var(--accent-pink);
+            font-weight: 500;
+        }
+        
+        .faq-layout {
+            display: flex;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xxl);
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: white;
+            border-radius: 8px;
+            padding: var(--spacing-lg) 0;
+            color: var(--color-text);
+            height: fit-content;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-border);
+        }
+        
+        .sidebar-title {
+            text-align: center;
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: var(--spacing-md);
+            color: var(--accent-pink);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-item {
+            padding: var(--spacing-md) var(--spacing-lg);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+            font-family: 'Karla', sans-serif;
+        }
+        
+        .category-item:hover {
+            background-color: var(--primary-pink);
+        }
+        
+        .category-item.active {
+            background-color: var(--primary-pink);
+            border-left: 4px solid var(--accent-pink);
+        }
+        
+        .category-icon {
+            margin-right: var(--spacing-sm);
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--accent-pink);
+        }
+        
+        /* FAQ Content Styles */
+        .faq-content {
+            flex: 1;
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-border);
+            margin: 0px;
+              align-items: flex-start;
+        }
+        
+        .category-header {
+            color: var(--accent-pink);
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--primary-pink);
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+            margin-top:0px;
+        }
+        
+        .category-header i {
+            margin-right: var(--spacing-sm);
+            font-size: 1.5rem;
+        }
+        
+        .faq-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border: 1px solid var(--color-border);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            padding: var(--spacing-md);
+            background-color: var(--primary-pink);
+            color: var(--accent-pink);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-family: 'Karla', sans-serif;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+            color: var(--accent-pink);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 var(--spacing-lg);
+            max-height: 0;
+            overflow: hidden;
+            background-color: white;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            line-height: 1.6;
+            color: var(--color-text);
+            font-family: 'Karla', sans-serif;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: var(--spacing-md);
+            max-height: 400px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: var(--spacing-xl);
+            color: var(--color-text-light);
+            font-style: italic;
+        }
+        
+        .highlight {
+            background-color: var(--primary-pink);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .contact-prompt {
+            background: var(--primary-pink);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-top: var(--spacing-xl);
+            text-align: center;
+            border-left: 4px solid var(--accent-pink);
+        }
+        
+        .contact-prompt h3 {
+            color: var(--accent-pink);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .contact-prompt p {
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-text-light);
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-xl);
+            background: var(--accent-pink);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Karla', sans-serif;
+        }
+        
+        .contact-btn:hover {
+            background: var(--primary-pink-dark);
+        }
+        
+  .main-footer {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--spacing-xl);
+}
+
+.main-footer .footer p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.main-footer .footer p:last-child {
+    margin-bottom: 0;
+}
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .faq-layout {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                margin-bottom: var(--spacing-lg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+                height: auto;
+            }
+            
+            .nav-item {
+                padding: 0.6rem 0.8rem;
+
+            }
+            
+            .page-title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .faq-question {
+                padding: var(--spacing-md);
+                font-size: 1rem;
+            }
+            
+            .category-header {
+                font-size: 1.5rem;
+            }
+            
+            .search-bar {
+                padding: var(--spacing-md);
+                font-size: 1rem;
+            }
+            
+            .search-container-faq {
+                margin: var(--spacing-lg) auto;
+            }
+            
+            .search-cart-container {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                padding: var(--spacing-sm) 0;
+                border-top: 1px solid var(--color-border);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .search-input {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p class="logo">Elora</p>
+    </header>
+    <nav class="nav-container">
+            <div class="nav-item">
+            <a href="about-us.html">About Elora</a>
+        </div>
+          <div class="nav-item">
+            <a href="elora2.html">Home</a>
+            </div>   
+        <div class="nav-item">
+            <a href="elora2.html#whats-new-sec">What's New</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#new-arrival-sec">New Arrival</a>
+                <a href="elora2.html#best-seller-sec">Best Seller</a>
+                <a href="elora2.html#limited-deal-sec">Limited Deal</a>
+                <a href="elora2.html#gift-set-sec">Gift Set</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html#face-care-sec">Face Care</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#c-and-t-sec">Cleanser & Toner</a>
+                <a href="elora2.html#face-serum-sec">Face Serum</a>
+                <a href="elora2.html#moisturizer-sec">Moisturizer</a>
+                <a href="elora2.html#eye-care-sec">Eye Care</a>
+                <a href="elora2.html#mask-sec">Face Mask</a>
+                <a href="elora2.html#face-treatment-oil-sec">Face Treatment Oil</a>
+                <a href="elora2.html#uv-sec">Daily UV Protector</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="elora2.html#make-up-sec">Make-up</a>
+            <div class="dropdown-menu">
+                <a href="elora2.html#face-sec">Face</a>
+                <a href="elora2.html#eye-make-up-sec">Eye make-up</a>
+                <a href="elora2.html#lip-sec">Lip</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a onclick="window.location.href='membership.html'">Membership</a>
+        </div>
+        <div class="nav-item">
+            <a href="faq.html" style="color: rgb(194, 132, 142);">FAQ</a>
+        </div>
+        <div class="nav-item">
+            <a onclick="window.location.href='consultation.html'">Consultation</a>
+        </div>
+        <div class="search-cart-container">
+            <div class="profile-icon" id="profileIcon">
+                <i class="far fa-user"></i>
+            </div>
+            <div class="settings-icon" id="settingsIcon">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="faq-section">
+           <div class="container">
+                <div class="page-title">
+                    <h1>Frequently Asked Questions</h1>
+                    <p>Find answers to common questions about orders, membership, products, and more.</p>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-container-faq">
+                    <input type="text" class="search-bar" id="searchInputFaq" placeholder="Search for questions...">
+                    <div class="search-icon" id="searchButton">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="search-results-faq" id="searchResultsFaq"></div>
+                </div>
+                
+                <div class="faq-layout">
+                    <!-- Sidebar with categories -->
+                    <div class="sidebar">
+                        <div class="sidebar-title">FAQ Categories</div>
+                        
+                        <ul class="category-list">
+                            <li class="category-item active" data-category="orders">
+                                <div class="category-icon"><i class="fas fa-box"></i></div>
+                                <span>Orders & Tracking</span>
+                            </li>
+                            <li class="category-item" data-category="membership">
+                                <div class="category-icon"><i class="fas fa-crown"></i></div>
+                                <span>Membership & Loyalty</span>
+                            </li>
+                            <li class="category-item" data-category="payments">
+                                <div class="category-icon"><i class="fas fa-credit-card"></i></div>
+                                <span>Payments & Billing</span>
+                            </li>
+                            <li class="category-item" data-category="account">
+                                <div class="category-icon"><i class="fas fa-user"></i></div>
+                                <span>Account & Details</span>
+                            </li>
+                            <li class="category-item" data-category="support">
+                                <div class="category-icon"><i class="fas fa-headset"></i></div>
+                                <span>Customer Support</span>
+                            </li>
+                            <li class="category-item" data-category="promotions">
+                                <div class="category-icon"><i class="fas fa-tag"></i></div>
+                                <span>Promotions & Discounts</span>
+                            </li>
+                            <li class="category-item" data-category="returns">
+                                <div class="category-icon"><i class="fas fa-exchange-alt"></i></div>
+                                <span>Returns & Exchanges</span>
+                            </li>
+                            <li class="category-item" data-category="shipping">
+                                <div class="category-icon"><i class="fas fa-shipping-fast"></i></div>
+                                <span>Shipping & Delivery</span>
+                            </li>
+                            <li class="category-item" data-category="technical">
+                                <div class="category-icon"><i class="fas fa-laptop"></i></div>
+                                <span>Technical & Website</span>
+                            </li>
+                            <li class="category-item" data-category="subscriptions">
+                                <div class="category-icon"><i class="fas fa-sync"></i></div>
+                                <span>Subscriptions</span>
+                            </li>
+                            <li class="category-item" data-category="authenticity">
+                                <div class="category-icon"><i class="fas fa-shield-alt"></i></div>
+                                <span>Product Authenticity</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- FAQ Content -->
+                    <div class="faq-content">
+                        <div class="category-header">
+                            <i class="fas fa-box"></i>
+                            <span>Orders & Tracking</span>
+                        </div>
+                        
+                        <div class="faq-item active">
+                            <div class="faq-question">
+                                How can I track my order?
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Once your order has been shipped, you will receive a confirmation email with a tracking number and a link to track your package.</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Do I need an account to place an order?
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>You can browse our products as a guest. However, to complete your purchase and make payment, you’ll need to sign up for an Elora account. Creating an account also allows you to track your orders and enjoy exclusive member perks.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Can I change or cancel my order after placing it?
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Orders cannot be changed once placed. However, you may cancel your order within 24 hours by contacting our customer support team. After this period, your order will have entered the processing stage and cannot be canceled.</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                What should I do if my order is missing or delayed?
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>If your order is missing or significantly delayed, please contact our customer support team with your order number. We will investigate the issue with our shipping partner and work to resolve it promptly.</p>
+                            </div>
+                        </div>
+                           
+     <div class="faq-item">
+                            <div class="faq-question">
+Why is my order still pending?                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Orders may appear as 'pending' if the payment has not been fully processed. Please check your payment method or contact our support team for assistance.</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+I made a mistake in my order details. What should I do?                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>If you entered incorrect information (such as your email or phone number), please contact our customer support immediately so we can assist before the order is processed.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-prompt">
+                            <h3>Can't find what you're looking for?</h3>
+                            <p>Our customer support team is here to help you with any questions</p>
+                            <button class="contact-btn">Contact Support</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer">
+            <p>&copy; 2023 Elora Skincare. All rights reserved.</p>
+            <p>Natural, sustainable skincare for all skin types</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle FAQ item clicks
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all items
+                    faqItems.forEach(el => {
+                        el.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Handle category clicks
+            const categoryItems = document.querySelectorAll('.category-item');
+            const categoryHeader = document.querySelector('.category-header');
+            const faqContent = document.querySelector('.faq-content');
+            
+            // Sample content for different categories
+            const categoryContent = {
+                orders: {
+                    title: "Orders & Tracking",
+                    icon: "fa-box",
+                    questions: [
+       {
+        q: "How can I track my order?",
+        a: "Once your order has been shipped, you will receive a confirmation email with a tracking number and a link to track your package."
+    },
+    {
+        q: "Can I change or cancel my order after placing it?",
+        a: "Orders cannot be changed once placed. However, you may cancel your order within 24 hours by contacting our customer support team. After this period, your order will have entered the processing stage and cannot be canceled."
+    },
+    {
+        q: "Do I need an account to place an order?",
+        a: "You can browse our products as a guest. However, to complete your purchase and make payment, you’ll need to sign up for an Elora account. Creating an account also allows you to track your orders and enjoy exclusive member perks."
+    },
+    {
+        q: "I made a mistake in my order details. What should I do?",
+        a: "If you entered incorrect information (such as your email or phone number), please contact our customer support immediately so we can assist before the order is processed."
+    },
+    {
+        q: "Why is my order still pending?",
+        a: "Orders may appear as 'pending' if the payment has not been fully processed. Please check your payment method or contact our support team for assistance."
+    },
+    {
+        q: "What should I do if I receive the wrong item?",
+        a: "In the rare event that you receive the wrong item, please reach out to our customer support team within 7 days of receiving your package, and we’ll arrange a replacement."
+    }
+                    ]
+                },
+                membership: {
+                    title: "Membership & Loyalty",
+                    icon: "fa-crown",
+                    questions: [
+                        {
+                            q: "What are the benefits of joining your membership program?",
+    a: "Our membership program offers exclusive benefits including early access to new products, members-only discounts, reduced shipping fees, and special birthday gifts. Members also earn points on every purchase that can be redeemed for future discounts. For the full list of perks, please visit our Membership page."
+                        },
+                        {
+                            q: "How do I earn points or rewards?",
+                            a: "You earn 1 point for each RM 1 spent for Blush tier, 1.5 point for each RM 1 spent for Rose tier, 2 point for each RM 1 spent for Carmine tier. Additionally, you can earn bonus points by reviewing products, referring friends. Points are automatically added to your account within 24 hours of purchase."
+                        },
+                        {
+                            q: "Can I redeem my points for products?",
+    a: "You can redeem your points for certain products, or exchange them for cash vouchers that can be used on our website."
+                        },
+                        {
+                            q: "How do I upgrade my membership?",
+                            a: "Membership upgrades are handled automatically by our system based on your spending."
+                        },
+                        {
+                            q: "Are there exclusive member-only discounts?",
+                            a: "Yes, members receive exclusive discounts not available to the general public. These include seasonal sales, early access to promotions, and special member-only pricing on select products. For the full list of perks, please visit our Membership page."
+                        }
+                    ]
+                },
+                payments: {
+                    title: "Payments & Billing",
+                    icon: "fa-credit-card",
+                    questions: [
+                      {
+    q: "What payment methods do you accept?",
+    a: "We accept Touch ’n Go eWallet, GrabPay, major credit and debit cards (Visa, MasterCard, American Express), and online banking from many local banks. All payments are processed securely through encrypted channels."
+},
+                        {
+                            q: "Is it safe to pay online?",
+                            a: "Yes, your security is our priority. We use industry-standard SSL encryption to protect all transactions and are PCI DSS compliant. For your convenience, you may choose to securely save your payment details for faster checkout, or proceed without saving them. We never store your full card information on our servers."
+                        },
+                        {
+                            q: "Can I use multiple payment methods for one order?",
+                            a: "Currently, we only support one payment method per order."
+                        },
+                        {
+                            q: "When will I be charged?",
+                            a: "For regular orders, you will be charged when your order is placed."
+                        },
+                        {
+                            q: "How do I get a refund or store credit?",
+                            a: "Refunds are processed to the original payment method within 7-21 business days after we receive your return. Store credit is issued immediately upon approval and can be used on future purchases."
+                        }
+                    ]
+                },
+                account: {
+                    title: "Account & Personal Details",
+                    icon: "fa-user",
+                    questions: [
+                        {
+                            q: "How do I create an account?",
+    a: "You can create an account by clicking the 'Sign Up' button in the Profile section and filling in the required details. Simply provide your name, email address, and create a password to get started."
+                        },
+                        {
+                            q: "How do I reset my password?",
+                            a: "Click on 'Forgot Password' on the login page, and we'll send a password reset link to your email address. Follow the instructions in the email to create a new password."
+                        },
+                        {
+                            q: "Can I update my personal information, such as address or email?",
+    a: "Yes! You can update your personal details by logging into your Elora account and going to the 'Profile' section. Make sure to save your changes to ensure they are applied to future orders and communications."
+                        },
+                        {
+                            q: "How do I delete my account?",
+a: "You can delete your account by contacting our customer support team. Please note that account deletion is permanent and cannot be undone. Once deleted, all entitled benefits, rewards, and points will be disqualified."
+                        },
+                        {
+                            q: "How is my data protected?",
+                            a: "We use industry-standard security measures to protect your data, including encryption and secure servers. We never share your personal information with third parties without your consent."
+                        }
+                    ]
+                },
+                support: {
+                    title: "Customer Support",
+                    icon: "fa-headset",
+                    questions: [
+                         {
+        q: "How can I contact Elora customer support?",
+        a: "You can reach us through our About Us page, via email at support@elora.com."
+    },
+    {
+        q: "What are your customer service hours?",
+        a: "Our support team is available from Monday to Friday, from 9:00 AM to 6:00 PM (MYT). We aim to respond to all inquiries within 24 hours."
+    },
+    {
+        q: "Do you offer support in multiple languages?",
+        a: "Currently, we provide customer support in English, Chinese and Malay. We’re working on expanding to more languages to better serve our customers."
+    },
+    {
+        q: "I haven’t received a reply to my email. What should I do?",
+        a: "Please check your spam or promotions folder, as our emails may occasionally land there. If you still haven’t heard back within 48 hours, reach out again."
+    },
+    {
+        q: "Can I speak directly with a skincare consultant?",
+        a: "Yes! Our support includes personalized consultations. You can book a free session with our skincare specialist via the 'Consultation' page."
+    }
+                ]},
+
+                    returns: {
+                    title: "Returns & Exchanges",
+                    icon: "fa-exchange-alt",
+                    questions: [
+                        {
+                            q: "What is your return policy?",
+                            a: "We accept returns within 7 days of delivery if products are unused, sealed, and in original condition. Please remember to bring your receipt as proof of purchase."
+                        },
+                        {
+                            q: "How do I initiate a return?",
+                            a: "Contact our support team with your order number. We’ll provide instructions and a return shipping label if eligible."
+                        },
+                        {
+                            q: "Can I change or cancel my order after placing it?",
+                            a: "No, we do not offer product exchanges. If you are unsatisfied, you may return the item within our return policy period and place a new order for the product you want."
+                        },
+                         {
+                            q:"Who pays for return shipping?",
+                            a:"If the product is defective or incorrect, we cover return shipping. Otherwise, customers pay the return cost."
+                        },
+                        {
+                            q:"How long does it take to process a refund?",
+                            a:"Refunds are processed within 7–21 business days after we receive your return."
+                        }
+                    ]
+                },
+                promotions: {
+                    title: "Promotions & Discounts",
+                    icon: "fa-tag",
+                    questions: [
+                         {
+        q: "How can I find current promotions and discounts?",
+    a: "All ongoing promotions and discounts are listed in our 'Limited Deal' section. You can also subscribe to our newsletter for updates on exclusive deals or become a member to enjoy special member-only discounts."
+    },
+    {
+        q: "Can I use multiple discount codes on a single order?",
+        a: "No, only one discount code can be applied per order. However, the code will automatically take the best eligible promotion for your purchase."
+    },
+    {
+        q: "Do discounts apply to all products?",
+        a: "Most discounts apply to our full range of products, but some promotions may exclude certain items. Please check the terms of each offer on the product or promotion page."
+    },
+    {
+        q: "When does a promotion or discount expire?",
+        a: "Each promotion has a specific start and end date, which is clearly mentioned on the offer. Be sure to place your order before the expiry to enjoy the discount."
+    },
+    {
+        q: "I missed a promotion, can I still get the discount?",
+        a: "Unfortunately, expired promotions cannot be applied retroactively. We recommend subscribing newsletter and following our social media for timely updates on upcoming offers."
+    }
+                    ]
+                },
+
+                returns: {
+                    title: "Returns & Exchanges",
+                    icon: "fa-exchange-alt",
+                    questions: [
+                        {
+                            q: "What is your return policy?",
+                            a: "We accept returns within 7 days of delivery if products are unused, sealed, and in original condition. Please remember to bring your receipt as proof of purchase."
+                        },
+                        {
+                            q: "How do I initiate a return?",
+                            a: "Contact our support team with your order number. We’ll provide instructions and a return shipping label if eligible."
+                        },
+                        {
+                            q: "Can I change or cancel my order after placing it?",
+                            a: "No, we do not offer product exchanges. If you are unsatisfied, you may return the item within our return policy period and place a new order for the product you want."
+                        },
+                         {
+                            q:"Who pays for return shipping?",
+                            a:"If the product is defective or incorrect, we cover return shipping. Otherwise, customers pay the return cost."
+                        },
+                        {
+                            q:"How long does it take to process a refund?",
+                            a:"Refunds are processed within 7–21 business days after we receive your return."
+                        }
+                    ]
+                },
+                shipping: {
+                    title: "Shipping & Delivery",
+                    icon: "fa-shipping-alt",
+                    questions: [
+                        {
+                            q: "How long does shipping take?",
+                            a: "Standard delivery usually takes 3–7 business days, while express delivery takes 1-2 days, depending on your location."
+                        },
+                        {
+                            q: "Do you offer international shipping?",
+                            a: "No, we currently only ship locally."
+                        },
+                          {
+                            q: "What if my package is delayed or lost?",
+                            a: "Contact our support team with your order details. We’ll investigate with the courier and resolve the issue."
+                        },
+                        {
+                            q: "Can I change my delivery address after placing an order?",
+                            a: "Yes, but only if your order hasn’t been shipped yet. Contact us as soon as possible to update your address."
+                        }
+                    ]
+                },
+
+                technical: {
+                    title: "Technical & Website",
+                    icon: "fa-laptop",
+                    questions: [
+                        {
+                            q: "I forgot my account password. What should I do?",
+                            a: "Click “Forgot Password” on the login page. A reset link will be emailed to you."
+                        },
+                        {
+                            q: "Why can’t I check out on the website?",
+                            a: "Try refreshing the page, clearing cookies, or switching browsers. If the issue continues, contact support."
+                        },
+                        {
+                            q: "Is my personal information secure on your website?",
+                            a: "Yes, we use SSL encryption and secure payment gateways to protect your information."
+                        },
+                        {
+                            q: "Can I place an order without creating an account?",
+                            a: "You may browse our website without logging in. However, to proceed with payment and complete your purchase, you must log in to your account."
+                        },
+                        {
+                            q: "How do I update my account information?",
+                            a: "Log in to your account, go to “Profile” and update your details."
+                        }
+                    ]
+                },
+
+                subscriptions:{
+                    title: "Subscriptions",
+                    icon: "fa-sync",
+                    questions: [
+                        {
+                            q: "What is a subscription?",
+                            a: "Subscribing gives you access to exclusive updates, promotions from our store."
+                        },
+                        {
+                            q: "Do subscriptions offer discounts?",
+                            a: "Yes, subscribers often enjoy exclusive savings and free shipping on recurring orders."
+                        },
+                        {
+                            q: "Do I need to pay to subscribe?",
+                            a: "No, subscribing is free. You just need to sign up with your email and create an account."
+                        }
+                    ]
+                },
+
+                authenticity:{
+                title: "Product Authenticity",
+                icon: "fa-shield-alt",
+                questions: [
+                        {
+                            q: "Are your products original and authentic?",
+                            a: "Yes, we guarantee 100% authenticity. All products are sourced directly from authorized distributors."
+                        },
+                        {
+                            q: "How can I verify product authenticity?",
+                            a: "Many items come with batch numbers or QR codes. You can verify them with the brand’s official website."
+                        },
+                        {
+                            q: "Do you sell refurbished or second-hand items?",
+                            a: "No, all our products are brand-new, unused, and sealed in original packaging."
+                        },
+                         {
+                            q: "Why does my product packaging look different from before?",
+                            a: "Brands occasionally update designs, but the formula and quality remain the same."
+                        },
+                        {
+                            q: "What should I do if I suspect a counterfeit product?",
+                            a: "Contact our support team immediately with your order details, and we’ll investigate and replace if necessary."
+                        }
+                    ]
+                }
+            };
+            
+            categoryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active class
+                    categoryItems.forEach(el => {
+                        el.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Update content based on category
+                    if (categoryContent[category]) {
+                        categoryHeader.innerHTML = `<i class="fas ${categoryContent[category].icon}"></i><span>${categoryContent[category].title}</span>`;
+                        
+                        // Clear existing questions
+                        const existingItems = faqContent.querySelectorAll('.faq-item');
+                        existingItems.forEach(el => el.remove());
+                        
+                        // Add new questions
+                        categoryContent[category].questions.forEach((qa, index) => {
+                            const newItem = document.createElement('div');
+                            newItem.className = 'faq-item';
+                            if (index === 0) newItem.classList.add('active');
+                            newItem.innerHTML = `
+                                <div class="faq-question">
+                                    ${qa.q}
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>${qa.a}</p>
+                                </div>
+                            `;
+                            faqContent.insertBefore(newItem, faqContent.querySelector('.contact-prompt'));
+                            
+                            // Add event listener to new item
+                            newItem.querySelector('.faq-question').addEventListener('click', () => {
+                                const isActive = newItem.classList.contains('active');
+                                
+                                faqContent.querySelectorAll('.faq-item').forEach(el => {
+                                    el.classList.remove('active');
+                                });
+                                
+                                if (!isActive) {
+                                    newItem.classList.add('active');
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('searchInputFaq');
+            const searchButton = document.getElementById('searchButton');
+            const searchResults = document.getElementById('searchResultsFaq');
+            
+            // Add event listeners for search
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Function to perform search
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                
+                if (searchTerm === '') {
+                    searchResults.textContent = '';
+                    // Reset to default view
+                    if (categoryContent.orders) {
+                        const event = new Event('click');
+                        document.querySelector('.category-item.active').dispatchEvent(event);
+                    }
+                    return;
+                }
+                
+                // Collect all questions from all categories
+                let allQuestions = [];
+                for (const category in categoryContent) {
+                    categoryContent[category].questions.forEach(qa => {
+                        allQuestions.push({
+                            question: qa.q,
+                            answer: qa.a,
+                            category: categoryContent[category].title,
+                            icon: categoryContent[category].icon
+                        });
+                    });
+                }
+                
+                // Filter questions based on search term
+                const matchedQuestions = allQuestions.filter(item => 
+                    item.question.toLowerCase().includes(searchTerm) || 
+                    item.answer.toLowerCase().includes(searchTerm)
+                );
+                
+                // Display search results
+                searchResults.textContent = `Found ${matchedQuestions.length} results for "${searchTerm}"`;
+                
+                // Clear existing questions
+                const existingItems = faqContent.querySelectorAll('.faq-item');
+                existingItems.forEach(el => el.remove());
+                
+                // Update category header
+                categoryHeader.innerHTML = `<i class="fas fa-search"></i><span>Search Results for "${searchTerm}"</span>`;
+                
+                // Display matched questions or no results message
+                if (matchedQuestions.length > 0) {
+                    matchedQuestions.forEach((item, index) => {
+                        const newItem = document.createElement('div');
+                        newItem.className = 'faq-item';
+                        if (index === 0) newItem.classList.add('active');
+                        
+                        // Highlight search term in question and answer
+                        const highlightedQuestion = highlightText(item.question, searchTerm);
+                        const highlightedAnswer = highlightText(item.answer, searchTerm);
+                        
+                        newItem.innerHTML = `
+                            <div class="faq-question">
+                                ${highlightedQuestion}
+                                <i class="fas fa-chevron-down"></i>
+                                <div style="font-size: 0.8rem; color: var(--accent-pink); margin-top: 5px;">
+                                    <i class="fas ${item.icon}"></i> ${item.category}
+                                </div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>${highlightedAnswer}</p>
+                            </div>
+                        `;
+                        faqContent.insertBefore(newItem, faqContent.querySelector('.contact-prompt'));
+                        
+                        // Add event listener to new item
+                        newItem.querySelector('.faq-question').addEventListener('click', () => {
+                            const isActive = newItem.classList.contains('active');
+                            
+                            faqContent.querySelectorAll('.faq-item').forEach(el => {
+                                el.classList.remove('active');
+                            });
+                            
+                            if (!isActive) {
+                                newItem.classList.add('active');
+                            }
+                        });
+                    });
+                } else {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.innerHTML = `
+                        <p><i class="fas fa-search" style="font-size: 3rem; margin-bottom: 15px;"></i></p>
+                        <h3>No results found</h3>
+                        <p>Try different keywords or browse our categories</p>
+                    `;
+                    faqContent.insertBefore(noResults, faqContent.querySelector('.contact-prompt'));
+                }
+            }
+            
+            // Function to highlight search term in text
+            function highlightText(text, term) {
+                if (!term) return text;
+                
+                const regex = new RegExp(`(${term})`, 'gi');
+                return text.replace(regex, '<span class="highlight">$1</span>');
+            }
+        });
+    </script>
+</body>
+</html>
